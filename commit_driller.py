@@ -54,7 +54,7 @@ for commit in repo.traverse_commits():
 from github import Github
 
 # Replace with your personal access token
-ACCESS_TOKEN = "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"
+ACCESS_TOKEN = "TOKEN"
 
 # Repository and PR details
 REPO_NAME = "nasa/fprime"  # Format: "owner/repo"
