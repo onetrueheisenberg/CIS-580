@@ -1,0 +1,13 @@
+.ci/
+.github/workflows/
+cmake/
+boards/
+launch/
+posix-configs/
+Tools/HIL/
+Tools/flightgear_bridge
+Tools/jMAVSim
+Tools/setup/
+Tools/jsbsim_bridge
+Tools/simulation-ignition
+Tools/sitl_gazebo

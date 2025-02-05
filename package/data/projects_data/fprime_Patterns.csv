@@ -1,0 +1,5 @@
+.github/actions/
+.github/workflows/
+cmake/
+config/
+docker/

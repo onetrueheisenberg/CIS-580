@@ -1,0 +1,20 @@
+Restructuring Name;Frequency;Is New?
+Maintainability_Split build scripts/jobs;6;NO
+Maintainability_Simplify build matrix;1;NO
+Maintainability_Rename steps/tasks/scripts/jobs;2;NO
+Maintainability_Use matrix expansion feature or list job configuration explicitly;1;NO
+Maintainability_Replace tools/methods for accomplishing a specific task;7;NO
+Security_Introduce/Remove sudo in commands;2;NO
+Performance_Remove Unneeded environments/scripts/tasks;16;NO
+Performance_Cleanup build matrix;3;NO
+Performance_Change Caching configuration;15;NO
+Performance_Introduce Parallelization;6;NO
+Dashboard/Notifications_Improve readability of the build log;13;NO
+Build Process Organization_Update checks in the build process;11;NO
+Build Process Organization_Reorganize build steps order of execution;6;NO
+Infrastructure_Introduce Containerization;1;NO
+Build Policy_Change how the build outcome is determined;8;NO
+Build Policy_Change the dependencies' installation policy;6;NO
+Build Process Organization_Add/Evolve smoke test;2;YES
+Build Process Organization_Add new build matrix environment;1;YES
+Build Policy_Modify the triggering strategy;5;YES

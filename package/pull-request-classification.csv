@@ -1,0 +1,689 @@
+ID;Project;Pull Number;Pull Request Link;Pull Request Title;Is Merged?;Has a Challenge/BadPractice?;Is CPS-Specific?;Bad Practice;Challenge/Barrier;Mitigation;Restructuring
+1;nasa/fprime;18;https://github.com/nasa/fprime/pull/18;Update better magic plugin;TRUE;NO;;;;;
+2;nasa/fprime;187;https://github.com/nasa/fprime/pull/187;Pylama on CI;TRUE;NO;;;;;
+3;nasa/fprime;242;https://github.com/nasa/fprime/pull/242;Packaged build artifacts into artifacts directory;TRUE;YES;NO;Repository Structure_The project decomposition in the repository does not follow modularization principles;;;
+4;nasa/fprime;304;https://github.com/nasa/fprime/pull/304;Separate fprime-util generate for different build types;TRUE;YES;NO;Build Process Definition_Wide and incohesive build jobs are used (e.g., a build job mixes up testing and static analysis activities);;;Maintainability_Split build scripts/jobs
+5;nasa/fprime;493;https://github.com/nasa/fprime/pull/493;Turn off pip caching for docker build;TRUE;YES;NO;Build Dependencies Management_Inappropriate choice about what to cache;;;Performance_Change Caching configuration
+6;nasa/fprime;354;https://github.com/nasa/fprime/pull/354;lestarch: refactored IPv4 drivers;FALSE;NO;;;;;
+7;nasa/fprime;788;https://github.com/nasa/fprime/pull/788;Automate development setup;FALSE;NO;;;;;
+8;mavlink/mavros;296;https://github.com/mavlink/mavros/pull/296;distance_sensor: small enhancements;TRUE;NO;;;;;
+9;mavlink/mavros;924;https://github.com/mavlink/mavros/pull/924;Blacklist HIL for APM since it is not relevent;TRUE;YES;NO;Build Dependencies Management_Including unneeded dependencies;;;Performance_Remove Unneeded environments/scripts/tasks
+10;mavlink/mavros;56;https://github.com/mavlink/mavros/pull/56;Switch to libev;TRUE;NO;;;;;
+11;mavlink/mavros;986;https://github.com/mavlink/mavros/pull/986;cmake: fix FindGeographicLib for Debian systems;FALSE;YES;NO;Build Maintainability_Customization over a specific environment (e.g., rework for making the system running on a different OS);;;
+12;carla-simulator/carla;408;https://github.com/carla-simulator/carla/pull/408;Speed up setup script;TRUE;YES;NO;Build Execution_Independent build jobs are not executed in parallel;;;Performance_Introduce Parallelization
+13;carla-simulator/carla;1318;https://github.com/carla-simulator/carla/pull/1318;Simplify Dockerfile and halve image size;TRUE;YES;NO;Build Dependencies Management_Including unneeded dependencies;;;Performance_Remove Unneeded environments/scripts/tasks
+13;carla-simulator/carla;1318;https://github.com/carla-simulator/carla/pull/1318;Simplify Dockerfile and halve image size;TRUE;YES;NO;Security_Use sudo for accessing Docker;;;Security_Introduce/Remove sudo in commands
+14;carla-simulator/carla;1857;https://github.com/carla-simulator/carla/pull/1857;Allow setting fixed time-step at runtime and package in shipping mode;TRUE;NO;;;;;
+15;carla-simulator/carla;2452;https://github.com/carla-simulator/carla/pull/2452;Sergi e/synch step;TRUE;YES;YES;;Simulators_Functional Correctness;Resources_Change simulator settings;
+16;carla-simulator/carla;2558;https://github.com/carla-simulator/carla/pull/2558;SUMO co-simulation beta version;TRUE;NO;;;;;
+17;carla-simulator/carla;2714;https://github.com/carla-simulator/carla/pull/2714;Sumo traffic lights integration;TRUE;NO;;;;;
+18;carla-simulator/carla;2774;https://github.com/carla-simulator/carla/pull/2774;Better build script;TRUE;NO;;;;;
+19;carla-simulator/carla;3258;https://github.com/carla-simulator/carla/pull/3258;Changing Jenkinsfile for Doxygen;TRUE;NO;;;;;
+20;carla-simulator/carla;3662;https://github.com/carla-simulator/carla/pull/3662;Toggle ragdoll physics + Upgrade PhysXVehicle for sweep wheel collisions;TRUE;YES;YES;;Simulators_Limited Functionality;Resources_Evolve simulator;
+21;carla-simulator/carla;3704;https://github.com/carla-simulator/carla/pull/3704;CarSim broken pipeline fix;TRUE;NO;;;;;
+22;carla-simulator/carla;3942;https://github.com/carla-simulator/carla/pull/3942;Smoke test are now executed in a predetermined order;TRUE;YES;NO;Build Execution_Build steps are not properly ordered (e.g., static analysis could precede testing to avoid failing it very late);;;Build Process Organization_Add/Evolve smoke test
+23;carla-simulator/carla;4128;https://github.com/carla-simulator/carla/pull/4128;Fixes related with vehicle physics;TRUE;NO;;;;;
+24;carla-simulator/carla;2070;https://github.com/carla-simulator/carla/pull/2070;Improve sync mode performance;FALSE;NO;;;;;
+25;carla-simulator/carla;2787;https://github.com/carla-simulator/carla/pull/2787;Building Carla on Ubuntu 20.04 LTS;FALSE;YES;NO;Build Maintainability_Customization over a specific environment (e.g., rework for making the system running on a different OS);;;
+26;carla-simulator/carla;4596;https://github.com/carla-simulator/carla/pull/4596;Minor improvements in vehicle telemetry;FALSE;NO;;;;;
+27;cleanflight/cleanflight;160;https://github.com/cleanflight/cleanflight/pull/160;New timer implementation;TRUE;NO;;;;;
+28;cleanflight/cleanflight;375;https://github.com/cleanflight/cleanflight/pull/375;Virtual Current Sensor Support;TRUE;YES;YES;;Simulators_Functional Correctness;Resources_Evolve simulator;
+29;cleanflight/cleanflight;515;https://github.com/cleanflight/cleanflight/pull/515;Add ability for Blackbox to record to an onboard dataflash chip;TRUE;NO;;;;;
+30;cleanflight/cleanflight;1504;https://github.com/cleanflight/cleanflight/pull/1504;Cooperative task scheduler;TRUE;NO;;;;;
+31;cleanflight/cleanflight;2016;https://github.com/cleanflight/cleanflight/pull/2016;For discussion refactored LuxFloat to use P8 I8 D8 and give same output as MwRewrite;TRUE;NO;;;;;
+32;cleanflight/cleanflight;1995;https://github.com/cleanflight/cleanflight/pull/1995;Fix parameter groups tests under running on OSX;TRUE;YES;NO;Build Maintainability_Customization over a specific environment (e.g., rework for making the system running on a different OS);;;
+33;cleanflight/cleanflight;1678;https://github.com/cleanflight/cleanflight/pull/1678;Added script to dump cleanflight CLI config;FALSE;NO;;;;;
+34;cleanflight/cleanflight;979;https://github.com/cleanflight/cleanflight/pull/979;Add vagrant file for seamless development environment;FALSE;NO;;;;;
+35;cleanflight/cleanflight;1654;https://github.com/cleanflight/cleanflight/pull/1654;Configuring data with TX and oled menus;FALSE;NO;;;;;
+36;cleanflight/cleanflight;1496;https://github.com/cleanflight/cleanflight/pull/1496;Building Cleanflight to run on PC with X Plane simulator;FALSE;YES;YES;;HIL_Costs and Scalability for testing;Resources_Use Both Simulators and Real Hardware;
+37;cleanflight/cleanflight;2936;https://github.com/cleanflight/cleanflight/pull/2936;Add vtx_freq setting for SmartAudio and Tramp;FALSE;NO;;;;;
+38;bulletphysics/bullet3;1788;https://github.com/bulletphysics/bullet3/pull/1788;Add Travis CI settings for Xenial and Bionic;TRUE;NO;;;;;
+39;bulletphysics/bullet3;1131;https://github.com/bulletphysics/bullet3/pull/1131;pybullet add option to use NumPy to speed up thanks to moof2k;TRUE;YES;NO;Build Maintainability_Customization over a specific environment (e.g., rework for making the system running on a different OS);;;
+40;cartographer-project/cartographer;298;https://github.com/cartographer-project/cartographer/pull/298;Do not ignore docker history command errors;TRUE;YES;NO;Build Dependencies Management_Inappropriate choice about what to cache;;;Performance_Change Caching configuration
+41;cartographer-project/cartographer;517;https://github.com/cartographer-project/cartographer/pull/517;Introduce timeout for global constraints;TRUE;NO;;;;;
+42;cartographer-project/cartographer;1094;https://github.com/cartographer-project/cartographer/pull/1094;Limit bazel test parallelism more precisely;TRUE;YES;NO;Build Execution_Independent build jobs are not executed in parallel;;;Performance_Introduce Parallelization
+43;cartographer-project/cartographer;1356;https://github.com/cartographer-project/cartographer/pull/1356;Use absl Mutex instead of custom implementation;TRUE;NO;;;;;
+44;cartographer-project/cartographer;1463;https://github.com/cartographer-project/cartographer/pull/1463;Windows build fixes Azure CI;TRUE;YES;NO;Build Maintainability_Customization over a specific environment (e.g., rework for making the system running on a different OS);;;
+45;cartographer-project/cartographer;1732;https://github.com/cartographer-project/cartographer/pull/1732;Integrate imu based extrapolator;TRUE;NO;;;;;
+46;cartographer-project/cartographer;297;https://github.com/cartographer-project/cartographer/pull/297;Check Travis cache size;FALSE;YES;NO;Build Dependencies Management_Inappropriate choice about what to cache;;;Performance_Change Caching configuration
+47;Ardupilot/ardupilot;2863;https://github.com/ArduPilot/ardupilot/pull/2863;Scripts JSBSim now runs when user selects HIL mode in sim_vehicle sh;TRUE;NO;;;;;
+48;Ardupilot/ardupilot;7591;https://github.com/ArduPilot/ardupilot/pull/7591;Travis Move a number of builds to Semaphore CI;TRUE;YES;NO;Build Process Definition_Wide and incohesive build jobs are used (e.g., a build job mixes up testing and static analysis activities);;;Maintainability_Split build scripts/jobs
+49;Ardupilot/ardupilot;7861;https://github.com/ArduPilot/ardupilot/pull/7861;Remove building of APM binaries from build_binaries py;TRUE;YES;NO;Build Duration_Unneeded tasks are scheduled in the build process;;;Performance_Remove Unneeded environments/scripts/tasks
+50;Ardupilot/ardupilot;8138;https://github.com/ArduPilot/ardupilot/pull/8138;Reintroduce plane CI tests;TRUE;NO;;;;;
+51;Ardupilot/ardupilot;9176;https://github.com/ArduPilot/ardupilot/pull/9176;scripts Add mavproxy in pip install;TRUE;NO;;;;;
+52;Ardupilot/ardupilot;9588;https://github.com/ArduPilot/ardupilot/pull/9588;Vagrant correct init script so profiles work cosmic support;TRUE;NO;;;;;
+53;Ardupilot/ardupilot;10114;https://github.com/ArduPilot/ardupilot/pull/10114;SITL build cygwin32 binaries for GCS SITL;TRUE;YES;NO;Build Maintainability_Build configurations are cloned in different environments;;;
+54;Ardupilot/ardupilot;10642;https://github.com/ArduPilot/ardupilot/pull/10642;Azure GitHub and CI changes;TRUE;NO;;;;;
+55;Ardupilot/ardupilot;10911;https://github.com/ArduPilot/ardupilot/pull/10911;travis Use clang 7 and not clang 5;TRUE;NO;;;;;
+56;Ardupilot/ardupilot;11155;https://github.com/ArduPilot/ardupilot/pull/11155;Update CI loads and Python3 compat problems;TRUE;YES;NO;Build Execution_Include unneeded environment;;;Performance_Remove Unneeded environments/scripts/tasks
+57;Ardupilot/ardupilot;11229;https://github.com/ArduPilot/ardupilot/pull/11229;Tools Environment install updates;TRUE;NO;;;;;
+58;Ardupilot/ardupilot;11529;https://github.com/ArduPilot/ardupilot/pull/11529;SITL support SITL_PANIC_EXIT;TRUE;YES;NO;Build Outcome_Do not fail a build as soon as a failure/error is encountered;;;Build Process Organization_Update checks in the build process
+59;Ardupilot/ardupilot;10741;https://github.com/ArduPilot/ardupilot/pull/10741;Move Vagrant to using new JSBSim;TRUE;NO;;;;;
+60;Ardupilot/ardupilot;11559;https://github.com/ArduPilot/ardupilot/pull/11559;Azure fix builds;TRUE;YES;NO;Culture_Changes are pulled before fixing a previous build failure;;;
+61;Ardupilot/ardupilot;11835;https://github.com/ArduPilot/ardupilot/pull/11835;SITL Add Lidar Sensor RC Support for AirSim;TRUE;YES;YES;;Simulators_Limited Functionality;Resources_Add better simulators;
+62;Ardupilot/ardupilot;13060;https://github.com/ArduPilot/ardupilot/pull/13060;SITL fixed accuracy of lat lon in AirSim;TRUE;YES;YES;;Simulators_Functional Correctness;Resources_Change simulator settings;
+63;Ardupilot/ardupilot;13265;https://github.com/ArduPilot/ardupilot/pull/13265;Travis Combine jobs flake8 has been moved to semaphore;TRUE;YES;NO;Build Process Definition_Monolithic builds (i.e., builds not decomposed into specific, cohesive jobs, when this is appropriate) are used in the pipeline;;;Maintainability_Simplify build matrix
+64;Ardupilot/ardupilot;13814;https://github.com/ArduPilot/ardupilot/pull/13814;BeagleBone Faulty PWM output after few flight controller restarts due to wrong IEP Timer configuration;TRUE;NO;;;;;
+65;Ardupilot/ardupilot;15255;https://github.com/ArduPilot/ardupilot/pull/15255;travis shift embedded tests to avoid travis time overrun;TRUE;YES;NO;"Build Duration_Build time for the ""commit stage"" overcomes the 10-minutes rule";;;Performance_Cleanup build matrix
+66;Ardupilot/ardupilot;15463;https://github.com/ArduPilot/ardupilot/pull/15463;github add first github action;TRUE;YES;NO;Infrastructure Choices_Software_Wrong Choice of the CI/CD framework being used;;;Maintainability_Replace tools/methods for accomplishing a specific task
+67;Ardupilot/ardupilot;15320;https://github.com/ArduPilot/ardupilot/pull/15320;Add SITL support for AP Periph using new CAN setup;TRUE;NO;;;;;
+68;Ardupilot/ardupilot;1296;https://github.com/ArduPilot/ardupilot/pull/1296;SITL added missing parameters to sim_multicopter py call;FALSE;NO;;;;;
+69;Ardupilot/ardupilot;1809;https://github.com/ArduPilot/ardupilot/pull/1809;SITL Numerous improvements to vagrant image and easier SITL for mac win;FALSE;NO;;;;;
+70;Ardupilot/ardupilot;1882;https://github.com/ArduPilot/ardupilot/pull/1882;Enable SITL code to call an external ROS simulator for ArduPlane;FALSE;NO;;;;;
+71;Ardupilot/ardupilot;2398;https://github.com/ArduPilot/ardupilot/pull/2398;Travis reduced number of threads used for a build;FALSE;YES;NO;Build Execution_Independent build jobs are not executed in parallel;;;Performance_Introduce Parallelization
+72;Ardupilot/ardupilot;2640;https://github.com/ArduPilot/ardupilot/pull/2640;DataFlash_test make it works with PX4 FMUv2;FALSE;NO;;;;;
+73;Ardupilot/ardupilot;3092;https://github.com/ArduPilot/ardupilot/pull/3092;build allow j on top level makefile;FALSE;NO;;;;;
+74;Ardupilot/ardupilot;3228;https://github.com/ArduPilot/ardupilot/pull/3228;Overhaul travis configuration;FALSE;YES;NO;Infrastructure Choices_Software_A task is implemented using an unsuitable tool/plugin;;;Infrastructure_Introduce Containerization
+75;Ardupilot/ardupilot;1247;https://github.com/ArduPilot/ardupilot/pull/1247;Added Scripts to set up SITL Env;FALSE;NO;;;;;
+76;Ardupilot/ardupilot;3244;https://github.com/ArduPilot/ardupilot/pull/3244;Support BH HAT for ardupilot;FALSE;NO;;;;;
+77;Ardupilot/ardupilot;3491;https://github.com/ArduPilot/ardupilot/pull/3491;Initial CMake build system for Linux;FALSE;NO;;;;;
+78;Ardupilot/ardupilot;3526;https://github.com/ArduPilot/ardupilot/pull/3526;semaphore add another option for CI;FALSE;NO;;;;;
+79;Ardupilot/ardupilot;3847;https://github.com/ArduPilot/ardupilot/pull/3847;Travis remove cache since it isn t used currently;FALSE;YES;NO;Security_Use sudo for accessing Docker;;;Security_Introduce/Remove sudo in commands
+80;Ardupilot/ardupilot;4208;https://github.com/ArduPilot/ardupilot/pull/4208;CI increase ccache size;FALSE;YES;NO;Infrastructure Choices_Software_A task is implemented using an unsuitable tool/plugin;;;Performance_Change Caching configuration
+81;Ardupilot/ardupilot;2660;https://github.com/ArduPilot/ardupilot/pull/2660;SITL The range finder and new mode in SITL;FALSE;YES;YES;;Simulators_Limited Functionality;Resources_Evolve simulator;
+82;Ardupilot/ardupilot;5280;https://github.com/ArduPilot/ardupilot/pull/5280;in tree IRLock driver;FALSE;YES;YES;;Simulators_Interacting environment;;
+83;Ardupilot/ardupilot;6821;https://github.com/ArduPilot/ardupilot/pull/6821;CI greatly reduce Make builds merge Travis jobs and move some to Semaphore;FALSE;YES;NO;Infrastructure Choices_Software_A task is implemented using an unsuitable tool/plugin;;;Performance_Change Caching configuration
+84;Ardupilot/ardupilot;7368;https://github.com/ArduPilot/ardupilot/pull/7368;Copter 3 5 modify SITL default behavior;FALSE;YES;YES;;Simulators_Functional Correctness;Resources_Evolve simulator;
+85;Ardupilot/ardupilot;10027;https://github.com/ArduPilot/ardupilot/pull/10027;CI add Azure pipelines;FALSE;YES;NO;;Flaky Behaviour_Netowork Issues;Flakiness_Retry;
+85;Ardupilot/ardupilot;10027;https://github.com/ArduPilot/ardupilot/pull/10027;CI add Azure pipelines;FALSE;YES;NO;Build Output_Some tasks are executed without clearly reporting their results in the build output;;;
+86;paparazzi/paparazzi;99;https://github.com/paparazzi/paparazzi/pull/99;Datalink;TRUE;NO;;;;;
+87;paparazzi/paparazzi;206;https://github.com/paparazzi/paparazzi/pull/206;Fixes simulations for visualization in FlightGear 2 6;TRUE;NO;;;;;
+88;paparazzi/paparazzi;490;https://github.com/paparazzi/paparazzi/pull/490;ARDrone2 RAW battery readout;TRUE;NO;;;;;
+89;paparazzi/paparazzi;662;https://github.com/paparazzi/paparazzi/pull/662;Stm32 i2c watchdog;TRUE;NO;;;;;
+90;paparazzi/paparazzi;485;https://github.com/paparazzi/paparazzi/pull/485;Sbus radio control driver;TRUE;YES;YES;;Simulators_Limited Functionality;Resources_Evolve simulator;
+91;paparazzi/paparazzi;663;https://github.com/paparazzi/paparazzi/pull/663;stabilization attitude reference quaternion scale;TRUE;NO;;;;;
+92;paparazzi/paparazzi;646;https://github.com/paparazzi/paparazzi/pull/646;Fix compatibility with automatically configuring newer ublox modules;TRUE;NO;;;;;
+93;paparazzi/paparazzi;683;https://github.com/paparazzi/paparazzi/pull/683;build parallel build for firmwares;TRUE;YES;NO;Build Execution_Independent build jobs are not executed in parallel;;;Performance_Introduce Parallelization
+94;paparazzi/paparazzi;744;https://github.com/paparazzi/paparazzi/pull/744;navstik Added a new board;TRUE;NO;;;;;
+95;paparazzi/paparazzi;705;https://github.com/paparazzi/paparazzi/pull/705;mcu_periph Fix error sending;TRUE;NO;;;;;
+96;paparazzi/paparazzi;776;https://github.com/paparazzi/paparazzi/pull/776;Updated the synchronisation tool;TRUE;YES;YES;;Simulators_Real-Time Properties;;
+97;paparazzi/paparazzi;929;https://github.com/paparazzi/paparazzi/pull/929;messages add INFO_MSG and with printing to GCS console;TRUE;NO;;;;;
+98;paparazzi/paparazzi;851;https://github.com/paparazzi/paparazzi/pull/851;radio_control spektrum for nps sim;TRUE;NO;;;;;
+99;paparazzi/paparazzi;1002;https://github.com/paparazzi/paparazzi/pull/1002;build default to parallel make for aircrafts;TRUE;NO;;;;;
+100;paparazzi/paparazzi;963;https://github.com/paparazzi/paparazzi/pull/963;simulator OCaml sim simulate sys_time;TRUE;YES;YES;;Simulators_Real-Time Properties;Resources_Change simulator settings;
+101;paparazzi/paparazzi;1004;https://github.com/paparazzi/paparazzi/pull/1004;actuators ESC32 can support;TRUE;NO;;;;;
+102;paparazzi/paparazzi;1082;https://github.com/paparazzi/paparazzi/pull/1082;Improvement of Ivy efficiency;TRUE;NO;;;;;
+103;paparazzi/paparazzi;1109;https://github.com/paparazzi/paparazzi/pull/1109;implement persistent settings for linux arch;TRUE;NO;;;;;
+104;paparazzi/paparazzi;1117;https://github.com/paparazzi/paparazzi/pull/1117;arch linux sys time thread;TRUE;NO;;;;;
+105;paparazzi/paparazzi;1131;https://github.com/paparazzi/paparazzi/pull/1131;NPS fix some JSBSim FDM issues for fixedwing sim;TRUE;YES;YES;;Simulators_Installation and Setting;Resources_Change simulator settings;
+106;paparazzi/paparazzi;1272;https://github.com/paparazzi/paparazzi/pull/1272;compile run paparazzi in a docker container;TRUE;NO;;;;;
+107;paparazzi/paparazzi;1383;https://github.com/paparazzi/paparazzi/pull/1383;Fixed all configs for OpenUAS;TRUE;NO;;;;;
+108;paparazzi/paparazzi;1390;https://github.com/paparazzi/paparazzi/pull/1390;Unified conf airframe and simulator files for Hooperfly;TRUE;NO;;;;;
+109;paparazzi/paparazzi;1392;https://github.com/paparazzi/paparazzi/pull/1392;sd logger Version 2 0 release direct SPI logging UART download;TRUE;NO;;;;;
+110;paparazzi/paparazzi;1471;https://github.com/paparazzi/paparazzi/pull/1471;build Modules can be used like subsystems in airframe files;TRUE;NO;;;;;
+111;paparazzi/paparazzi;1569;https://github.com/paparazzi/paparazzi/pull/1569;Px4 imu;TRUE;YES;YES;;Throroughness_Phases_Automated HIL testing impossible dues to too many different real devices;;
+112;paparazzi/paparazzi;1645;https://github.com/paparazzi/paparazzi/pull/1645;build add boards specific flags when needed;TRUE;YES;YES;;Barriers_Resources_Limited Sw/Hw Resources;;
+113;paparazzi/paparazzi;1693;https://github.com/paparazzi/paparazzi/pull/1693;docker use ubuntu 16 04 and deal with user group ids 1000;TRUE;NO;;;;;
+114;paparazzi/paparazzi;1664;https://github.com/paparazzi/paparazzi/pull/1664;Updated safety behaviors;TRUE;NO;;;;;
+115;paparazzi/paparazzi;1790;https://github.com/paparazzi/paparazzi/pull/1790;Coverity fixes;TRUE;NO;;;;;
+116;paparazzi/paparazzi;1831;https://github.com/paparazzi/paparazzi/pull/1831;Nps update proof of concept of HITL SITL integration;TRUE;YES;YES;;Simulators_Interacting environment;;
+117;paparazzi/paparazzi;1872;https://github.com/paparazzi/paparazzi/pull/1872;emergency kill Kill is a setting To be less xml dependent it shoul;TRUE;NO;;;;;
+118;paparazzi/paparazzi;1990;https://github.com/paparazzi/paparazzi/pull/1990;modules simulator modules SIM and NPS;TRUE;NO;;;;;
+119;paparazzi/paparazzi;2033;https://github.com/paparazzi/paparazzi/pull/2033;simulation of bebop1;TRUE;NO;;;;;
+120;paparazzi/paparazzi;2069;https://github.com/paparazzi/paparazzi/pull/2069;Add Gazebo simulation to NPS;TRUE;NO;;;;;
+121;paparazzi/paparazzi;2120;https://github.com/paparazzi/paparazzi/pull/2120;sim updates to gazebo so simulate pressure and acceleration;TRUE;YES;YES;;Simulators_Limited Functionality;Resources_Evolve simulator;
+121;paparazzi/paparazzi;2120;https://github.com/paparazzi/paparazzi/pull/2120;sim updates to gazebo so simulate pressure and acceleration;TRUE;YES;YES;;Simulators_Functional Correctness;Resources_Change simulator settings;
+122;paparazzi/paparazzi;2135;https://github.com/paparazzi/paparazzi/pull/2135;nps load aircraft into gazebo at run time actuator handling;TRUE;YES;YES;;Simulators_Limited Functionality;Resources_Evolve simulator;
+123;paparazzi/paparazzi;2128;https://github.com/paparazzi/paparazzi/pull/2128;Fix incorrect in flight acceleration measurements in Gazebo;TRUE;YES;YES;;Simulators_Functional Correctness;Resources_Evolve simulator;
+124;paparazzi/paparazzi;2172;https://github.com/paparazzi/paparazzi/pull/2172;Set Gazebo world in flight plan;TRUE;YES;YES;;Simulators_Limited Functionality;;
+124;paparazzi/paparazzi;2172;https://github.com/paparazzi/paparazzi/pull/2172;Set Gazebo world in flight plan;TRUE;YES;YES;;Simulators_Choose among different simulators;;
+125;paparazzi/paparazzi;2204;https://github.com/paparazzi/paparazzi/pull/2204;tmtc add pprzlink_proxy tool;TRUE;NO;;;;;
+126;paparazzi/paparazzi;2234;https://github.com/paparazzi/paparazzi/pull/2234;parrot wait longer when connecting bebop to wifi router;TRUE;YES;NO;;Flaky Behaviour_Netowork Issues;Flakiness_Timeout;
+127;paparazzi/paparazzi;2258;https://github.com/paparazzi/paparazzi/pull/2258;update opencv with multithread build;TRUE;NO;;;;;
+128;paparazzi/paparazzi;2279;https://github.com/paparazzi/paparazzi/pull/2279;CV Improve timing stability;TRUE;NO;;;;;
+129;paparazzi/paparazzi;2327;https://github.com/paparazzi/paparazzi/pull/2327;Conf cleaning;TRUE;YES;NO;Build Execution_Include unneeded environment;;;Performance_Remove Unneeded environments/scripts/tasks
+130;paparazzi/paparazzi;2353;https://github.com/paparazzi/paparazzi/pull/2353;Indicate when HITL is not getting AP data;TRUE;NO;;;;;
+131;paparazzi/paparazzi;2368;https://github.com/paparazzi/paparazzi/pull/2368;conf remove conf failing the CI tests;TRUE;YES;NO;Build Execution_Pipeline steps/stages are skipped arbitrarily;;;
+132;paparazzi/paparazzi;2399;https://github.com/paparazzi/paparazzi/pull/2399;gazebo add ROS support and sonar sensor;TRUE;NO;;;;;
+133;paparazzi/paparazzi;2419;https://github.com/paparazzi/paparazzi/pull/2419;Tawaki board integration;TRUE;NO;;;;;
+134;paparazzi/paparazzi;2520;https://github.com/paparazzi/paparazzi/pull/2520;jsbsim support of more recent jsbsim versions;TRUE;NO;;;;;
+135;paparazzi/paparazzi;2528;https://github.com/paparazzi/paparazzi/pull/2528;adapt calibration script to python updates;TRUE;NO;;;;;
+136;paparazzi/paparazzi;2545;https://github.com/paparazzi/paparazzi/pull/2545;Aircraft generator;TRUE;YES;NO;Build Execution_Independent build jobs are not executed in parallel;;;Build Process Organization_Reorganize build steps order of execution
+137;paparazzi/paparazzi;2548;https://github.com/paparazzi/paparazzi/pull/2548;Added try except to be more safe after pprzlink api changes;TRUE;NO;;;;;
+138;paparazzi/paparazzi;2617;https://github.com/paparazzi/paparazzi/pull/2617;conf replace ardrone2_opticflow with bebop2 version in test conf;TRUE;NO;;;;;
+139;paparazzi/paparazzi;2605;https://github.com/paparazzi/paparazzi/pull/2605;SPI SD Logger updates;TRUE;NO;;;;;
+140;paparazzi/paparazzi;2618;https://github.com/paparazzi/paparazzi/pull/2618;computer vision Opticflow multiple cameras;TRUE;NO;;;;;
+141;paparazzi/paparazzi;2674;https://github.com/paparazzi/paparazzi/pull/2674;build split subdirs rules;TRUE;YES;NO;Build Dependencies Management_Including unneeded dependencies;;;Performance_Remove Unneeded environments/scripts/tasks
+142;paparazzi/paparazzi;2691;https://github.com/paparazzi/paparazzi/pull/2691;Health tools based cleaning;TRUE;NO;;;;;
+143;paparazzi/paparazzi;2511;https://github.com/paparazzi/paparazzi/pull/2511;actuators Add UAVCAN actuators for chibios;TRUE;NO;;;;;
+144;paparazzi/paparazzi;2704;https://github.com/paparazzi/paparazzi/pull/2704;ins EKF2 fix localization of global waypoints;TRUE;NO;;;;;
+145;paparazzi/paparazzi;2710;https://github.com/paparazzi/paparazzi/pull/2710;Fix radio confs;TRUE;NO;;;;;
+146;paparazzi/paparazzi;2679;https://github.com/paparazzi/paparazzi/pull/2679;docker make it possible to disable X server access;TRUE;NO;;;;;
+147;paparazzi/paparazzi;2738;https://github.com/paparazzi/paparazzi/pull/2738;Added new flight plan to safely learn to pilot a drone in the cyber zoo;TRUE;NO;;;;;
+148;paparazzi/paparazzi;2764;https://github.com/paparazzi/paparazzi/pull/2764;FIX simulation mag saturation;TRUE;YES;YES;;Simulators_Functional Correctness;Resources_Change simulator settings;
+149;paparazzi/paparazzi;2759;https://github.com/paparazzi/paparazzi/pull/2759;Fix MPU6000 spikes in certain chipbatches;TRUE;YES;YES;;Simulators_Functional Correctness;Resources_Evolve simulator;
+149;paparazzi/paparazzi;2759;https://github.com/paparazzi/paparazzi/pull/2759;Fix MPU6000 spikes in certain chipbatches;TRUE;YES;YES;;Simulators_Limited Functionality;Resources_Evolve simulator;
+150;paparazzi/paparazzi;2665;https://github.com/paparazzi/paparazzi/pull/2665;Fix python comparison;TRUE;NO;;;;;
+151;paparazzi/paparazzi;2695;https://github.com/paparazzi/paparazzi/pull/2695;cleaning drop support of LPC21 boards and related conf;TRUE;NO;;;;;
+152;paparazzi/paparazzi;2645;https://github.com/paparazzi/paparazzi/pull/2645;Update key generator;TRUE;NO;;;;;
+153;paparazzi/paparazzi;2623;https://github.com/paparazzi/paparazzi/pull/2623;fix log plotter not crashing with ubuntu 20 4 in debug mode;TRUE;NO;;;;;
+154;paparazzi/paparazzi;2529;https://github.com/paparazzi/paparazzi/pull/2529;PMW3901MB optic flow sensor driver;FALSE;NO;;;;;
+155;paparazzi/paparazzi;2482;https://github.com/paparazzi/paparazzi/pull/2482;Refresh WMM data for 2020 to 2025;FALSE;NO;;;;;
+156;paparazzi/paparazzi;1182;https://github.com/paparazzi/paparazzi/pull/1182;bebop Sonar;FALSE;YES;YES;;Simulators_Limited Functionality;Resources_Evolve simulator;
+157;paparazzi/paparazzi;1932;https://github.com/paparazzi/paparazzi/pull/1932;slam_dunk communication;FALSE;NO;;;;;
+158;paparazzi/paparazzi;1185;https://github.com/paparazzi/paparazzi/pull/1185;can start support of CAN for STM32F4;FALSE;NO;;;;;
+159;paparazzi/paparazzi;1780;https://github.com/paparazzi/paparazzi/pull/1780;bebop updated sonar driver to improve accuracy and range;FALSE;NO;;;;;
+160;paparazzi/paparazzi;1360;https://github.com/paparazzi/paparazzi/pull/1360;HITL initial commit;FALSE;YES;YES;;Simulators_Limited Functionality;Resources_Evolve simulator;
+161;paparazzi/paparazzi;1612;https://github.com/paparazzi/paparazzi/pull/1612;flight plans add call_once and run aliases;FALSE;NO;;;;;
+162;paparazzi/paparazzi;1587;https://github.com/paparazzi/paparazzi/pull/1587;PX4 motor random spin up issues;FALSE;YES;YES;;Simulators_Functional Correctness;Resources_Change simulator settings;
+163;paparazzi/paparazzi;1453;https://github.com/paparazzi/paparazzi/pull/1453;Increase buffer size so larger messages can be sent;FALSE;NO;;;;;
+164;paparazzi/paparazzi;1371;https://github.com/paparazzi/paparazzi/pull/1371;spi fixed spi initialization stm32f1;FALSE;NO;;;;;
+165;paparazzi/paparazzi;275;https://github.com/paparazzi/paparazzi/pull/275;Fixed lisa m 2 0 battery voltage calculation;FALSE;YES;YES;;Simulators_Functional Correctness;Resources_Change simulator settings;
+166;paparazzi/paparazzi;1116;https://github.com/paparazzi/paparazzi/pull/1116;Setup Actuators Fix telemetry and add more boards;FALSE;NO;;;;;
+167;paparazzi/paparazzi;1242;https://github.com/paparazzi/paparazzi/pull/1242;Fixed unsanctioned yaw unkill problem with uninitialised joysticks;FALSE;NO;;;;;
+168;paparazzi/paparazzi;1165;https://github.com/paparazzi/paparazzi/pull/1165;conf update udev rules;FALSE;NO;;;;;
+169;paparazzi/paparazzi;1191;https://github.com/paparazzi/paparazzi/pull/1191;amsys airspeed sensor;FALSE;NO;;;;;
+170;paparazzi/paparazzi;708;https://github.com/paparazzi/paparazzi/pull/708;airspeed Added MS45XX driver for airspeed;FALSE;YES;YES;;Simulators_Limited Functionality;Resources_Evolve simulator;
+171;paparazzi/paparazzi;1035;https://github.com/paparazzi/paparazzi/pull/1035;autopilot unkill in manual was not possible when;FALSE;NO;;;;;
+172;paparazzi/paparazzi;328;https://github.com/paparazzi/paparazzi/pull/328;Baro MS5611 reading frequency;FALSE;YES;YES;;Simulators_Installation and Setting;Resources_Change simulator settings;
+173;paparazzi/paparazzi;766;https://github.com/paparazzi/paparazzi/pull/766;Failsafe ARDrone;FALSE;NO;;;;;
+174;paparazzi/paparazzi;573;https://github.com/paparazzi/paparazzi/pull/573;add Vagrantfile for VM setup using VirtualBox;FALSE;NO;;;;;
+175;paparazzi/paparazzi;659;https://github.com/paparazzi/paparazzi/pull/659;I2c watchdog;FALSE;NO;;;;;
+176;paparazzi/paparazzi;118;https://github.com/paparazzi/paparazzi/pull/118;Telemetry settings;FALSE;NO;;;;;
+177;paparazzi/paparazzi;292;https://github.com/paparazzi/paparazzi/pull/292;ezosd current sensor integration;FALSE;NO;;;;;
+178;paparazzi/paparazzi;525;https://github.com/paparazzi/paparazzi/pull/525;Baro event handling using ABI interface;FALSE;NO;;;;;
+179;paparazzi/paparazzi;346;https://github.com/paparazzi/paparazzi/pull/346;Mag current calibration;FALSE;NO;;;;;
+180;cyberbotics/webots;3619;https://github.com/cyberbotics/webots/pull/3619;FLU Implement backward compatibility mechanism;TRUE;NO;;;;;
+181;cyberbotics/webots;3699;https://github.com/cyberbotics/webots/pull/3699;Attempt to fix Window CI build;TRUE;YES;NO;Build Dependencies Management_Dependency management is not used (e.g., the same project is rebuilt more than once);;;Build Policy_Change the dependencies' installation policy
+182;cyberbotics/webots;3636;https://github.com/cyberbotics/webots/pull/3636;Clean up Windows CI build;TRUE;NO;;;;;
+183;cyberbotics/webots;3551;https://github.com/cyberbotics/webots/pull/3551;Complete integrity tests for downloaded resources;TRUE;YES;NO;Build Dependencies Management_Including unneeded dependencies;;;Performance_Remove Unneeded environments/scripts/tasks
+184;cyberbotics/webots;3478;https://github.com/cyberbotics/webots/pull/3478;Don t publish the libcontroller if it hasn t changed since yesterday;TRUE;YES;NO;Builld Initialization_Inappropriate build environment clean-up strategy (i.e., whether to (not) use incremental builds);;;Build Process Organization_Update checks in the build process
+185;cyberbotics/webots;3449;https://github.com/cyberbotics/webots/pull/3449;Fix robot window linking with an external Python controller;TRUE;NO;;;;;
+186;cyberbotics/webots;3388;https://github.com/cyberbotics/webots/pull/3388;Disable building of packages on develop;TRUE;YES;NO;Build Execution_Tasks are not properly distributed among different build stages (e.g., load testing is done in the commit stage);;;Build Process Organization_Update checks in the build process
+187;cyberbotics/webots;3359;https://github.com/cyberbotics/webots/pull/3359;Fix nightly urls;TRUE;YES;NO;Delivery Process_Missing check for deliverables (e.g., check whether all files are in the delivery);;;Build Process Organization_Update checks in the build process
+188;cyberbotics/webots;2787;https://github.com/cyberbotics/webots/pull/2787;Drastically reduce package size;TRUE;NO;;;;;
+189;cyberbotics/webots;3173;https://github.com/cyberbotics/webots/pull/3173;Fix test ros CI for ubuntu 18;TRUE;YES;NO;Build Dependencies Management_Including unneeded dependencies;;;Performance_Remove Unneeded environments/scripts/tasks
+190;cyberbotics/webots;2999;https://github.com/cyberbotics/webots/pull/2999;Add Fabtino robot;TRUE;NO;;;;;
+191;cyberbotics/webots;3137;https://github.com/cyberbotics/webots/pull/3137;fix matlab makefile;TRUE;NO;;;;;
+192;cyberbotics/webots;3104;https://github.com/cyberbotics/webots/pull/3104;Release python global interpreter lock when running c code;TRUE;NO;;;;;
+193;cyberbotics/webots;2825;https://github.com/cyberbotics/webots/pull/2825;Fix incorrect device limit constraints in Hinge2Joint and BallJoint;TRUE;NO;;;;;
+194;cyberbotics/webots;3056;https://github.com/cyberbotics/webots/pull/3056;Enhancement in Makefile add GDB option;TRUE;YES;NO;Build Output_Build reports contain verbose, irrelevant information;;;Dashboard/Notifications_Improve readability of the build log
+195;cyberbotics/webots;2850;https://github.com/cyberbotics/webots/pull/2850;Addition of a Hinge2JointWithBacklash PROTO;TRUE;NO;;;;;
+196;cyberbotics/webots;2822;https://github.com/cyberbotics/webots/pull/2822;Significantly simplify the usage of the ros controller;TRUE;NO;;;;;
+197;cyberbotics/webots;2525;https://github.com/cyberbotics/webots/pull/2525;Fixed compilation of OpenCV sample controller on Windows;TRUE;NO;;;;;
+198;cyberbotics/webots;2527;https://github.com/cyberbotics/webots/pull/2527;Create Windows nightly builds from GitHub Action;TRUE;NO;;;;;
+199;cyberbotics/webots;2430;https://github.com/cyberbotics/webots/pull/2430;Fix CI tests_sources yml workflow;TRUE;YES;NO;Build Execution_Build steps are not properly ordered (e.g., static analysis could precede testing to avoid failing it very late);;;Build Process Organization_Reorganize build steps order of execution
+199;cyberbotics/webots;2430;https://github.com/cyberbotics/webots/pull/2430;Fix CI tests_sources yml workflow;TRUE;YES;NO;Build Execution_Only the last commit is built, aborting obsolete and queued builds;;;Build Process Organization_Update checks in the build process
+200;cyberbotics/webots;2439;https://github.com/cyberbotics/webots/pull/2439;Improve stability and performance of the IK example;TRUE;NO;;;;;
+201;cyberbotics/webots;2378;https://github.com/cyberbotics/webots/pull/2378;Fix Distance Sensors Reading with Cached Textures;TRUE;NO;;;;;
+202;cyberbotics/webots;2350;https://github.com/cyberbotics/webots/pull/2350;Replace ros test;TRUE;YES;NO;Build Outcome_A build is succeeded when a task is failed or an error is thrown;;;Build Policy_Change how the build outcome is determined
+203;cyberbotics/webots;2271;https://github.com/cyberbotics/webots/pull/2271;Enhancement Docker installation instructions;TRUE;NO;;;;;
+204;cyberbotics/webots;2191;https://github.com/cyberbotics/webots/pull/2191;Avoid duplicating ros files;TRUE;NO;;;;;
+205;cyberbotics/webots;2052;https://github.com/cyberbotics/webots/pull/2052;Remove Workflow Useless Step;TRUE;NO;;;;;
+206;cyberbotics/webots;1929;https://github.com/cyberbotics/webots/pull/1929;Fix travis dependencies;TRUE;NO;;;;;
+207;cyberbotics/webots;1641;https://github.com/cyberbotics/webots/pull/1641;Fix ROS Camera Recognition;TRUE;NO;;;;;
+208;cyberbotics/webots;1594;https://github.com/cyberbotics/webots/pull/1594;Display more warnings when compiling launcher c;TRUE;NO;;;;;
+209;cyberbotics/webots;253;https://github.com/cyberbotics/webots/pull/253;Start controllers from outside of Webots;TRUE;NO;;;;;
+210;cyberbotics/webots;322;https://github.com/cyberbotics/webots/pull/322;Universal Robots ROS Controller;TRUE;NO;;;;;
+211;cyberbotics/webots;536;https://github.com/cyberbotics/webots/pull/536;Speed up cppcheck CI tests;TRUE;YES;NO;Builld Initialization_Inappropriate build environment clean-up strategy (i.e., whether to (not) use incremental builds);;;Performance_Cleanup build matrix
+212;cyberbotics/webots;566;https://github.com/cyberbotics/webots/pull/566;Appveyor Compilation;FALSE;NO;;;;;
+213;cyberbotics/webots;1844;https://github.com/cyberbotics/webots/pull/1844;Improve github Action Source Test;FALSE;YES;NO;Build Execution_Tasks are not properly distributed among different build stages (e.g., load testing is done in the commit stage);;;Build Process Organization_Update checks in the build process
+214;cyberbotics/webots;2917;https://github.com/cyberbotics/webots/pull/2917;Feature robocup controllers tests;FALSE;NO;;;;;
+215;cyberbotics/webots;3487;https://github.com/cyberbotics/webots/pull/3487;Cleanup Lidar isRotating;FALSE;NO;;;;;
+216;PX4/PX4-Autopilot;18447;https://github.com/PX4/PX4-Autopilot/pull/18447;GitHub Actions remove duplicate builds and increase ccache max size slightly to improve hit rate;TRUE;YES;NO;Infrastructure Choices_Software_A task is implemented using an unsuitable tool/plugin;;;Performance_Change Caching configuration
+216;PX4/PX4-Autopilot;18447;https://github.com/PX4/PX4-Autopilot/pull/18447;GitHub Actions remove duplicate builds and increase ccache max size slightly to improve hit rate;TRUE;YES;NO;Build Maintainability_Build configurations are cloned in different environments;;;Performance_Remove Unneeded environments/scripts/tasks
+217;PX4/PX4-Autopilot;17100;https://github.com/PX4/PX4-Autopilot/pull/17100;PX4 board configuration using Kconfig;TRUE;NO;;;;;
+218;PX4/PX4-Autopilot;18372;https://github.com/PX4/PX4-Autopilot/pull/18372;github actions remove ccache from deploy metadata and low priority builds;TRUE;YES;NO;Infrastructure Choices_Software_A task is implemented using an unsuitable tool/plugin;;;Performance_Change Caching configuration
+219;PX4/PX4-Autopilot;18329;https://github.com/PX4/PX4-Autopilot/pull/18329;Jenkins reduce build agent cpu share;TRUE;YES;YES;;Barriers_Resources_Limited Sw/Hw Resources;;
+220;PX4/PX4-Autopilot;18322;https://github.com/PX4/PX4-Autopilot/pull/18322;fix the problem related to the sitl multiple vehicle environment;TRUE;NO;;;;;
+221;PX4/PX4-Autopilot;18189;https://github.com/PX4/PX4-Autopilot/pull/18189;Matrix inversion speedup;TRUE;YES;YES;;Simulators_Real-Time Properties;;
+222;PX4/PX4-Autopilot;17889;https://github.com/PX4/PX4-Autopilot/pull/17889;Add ignition gazebo support for PX4 Software In The Loop simulations;TRUE;NO;;;;;
+223;PX4/PX4-Autopilot;17717;https://github.com/PX4/PX4-Autopilot/pull/17717;Broadcom AFBR S50LV85D Distance Sensor Driver;TRUE;YES;NO;;Simulators_Choose among different simulators;;
+224;PX4/PX4-Autopilot;17504;https://github.com/PX4/PX4-Autopilot/pull/17504;github actions delete MAVROS avoidance tests;TRUE;YES;NO;Build Execution_Pipeline steps/stages are skipped arbitrarily;;;
+225;PX4/PX4-Autopilot;17477;https://github.com/PX4/PX4-Autopilot/pull/17477;CMake Bloaty add static ram usage breakout;TRUE;YES;YES;;Barriers_Resources_Limited Sw/Hw Resources;;
+226;PX4/PX4-Autopilot;17191;https://github.com/PX4/PX4-Autopilot/pull/17191;use github CI to deploy metadata to S3;TRUE;NO;;;;;
+227;PX4/PX4-Autopilot;17211;https://github.com/PX4/PX4-Autopilot/pull/17211;systemcmds tests split out individual module test commands;TRUE;YES;YES;;Barriers_Resources_Limited Sw/Hw Resources;;
+228;PX4/PX4-Autopilot;17131;https://github.com/PX4/PX4-Autopilot/pull/17131;boards px4_fmu v6u_default address flash shortage;TRUE;NO;;;;;
+229;PX4/PX4-Autopilot;17083;https://github.com/PX4/PX4-Autopilot/pull/17083;SITL add iris with fog simulating lidar;TRUE;YES;YES;;Simulators_Limited Functionality;Resources_Evolve simulator;
+230;PX4/PX4-Autopilot;16990;https://github.com/PX4/PX4-Autopilot/pull/16990;Add support for specifying spawn location in Gazebo multi sim;TRUE;YES;YES;;Simulators_Limited Functionality;Resources_Evolve simulator;
+231;PX4/PX4-Autopilot;16142;https://github.com/PX4/PX4-Autopilot/pull/16142;Gazebo simulation tools;TRUE;NO;;;;;
+232;PX4/PX4-Autopilot;16727;https://github.com/PX4/PX4-Autopilot/pull/16727;boards enable UAVCAN sensors by default on F7 H7;TRUE;NO;;;;;
+233;PX4/PX4-Autopilot;16600;https://github.com/PX4/PX4-Autopilot/pull/16600;Add logging of mag calibration data;TRUE;NO;;;;;
+234;PX4/PX4-Autopilot;16416;https://github.com/PX4/PX4-Autopilot/pull/16416;Fix tiltrotor model for SITL Gazebo;TRUE;NO;;;;;
+235;PX4/PX4-Autopilot;16396;https://github.com/PX4/PX4-Autopilot/pull/16396;sitl_gazebo build single threaded;TRUE;YES;YES;;HIL_Parallelization and Resources Blockage;;
+236;PX4/PX4-Autopilot;16210;https://github.com/PX4/PX4-Autopilot/pull/16210;Add typhoon h480 support to gazebo multiple sim;TRUE;YES;YES;;Simulators_Limited Functionality;Resources_Evolve simulator;
+237;PX4/PX4-Autopilot;16191;https://github.com/PX4/PX4-Autopilot/pull/16191;HIL relax command retry for now;TRUE;YES;NO;Build Duration_Unneeded tasks are scheduled in the build process;;;Build Process Organization_Update checks in the build process
+238;PX4/PX4-Autopilot;16117;https://github.com/PX4/PX4-Autopilot/pull/16117;Add HY SRF05 ultrasonic sensor driver;TRUE;NO;;;;;
+239;PX4/PX4-Autopilot;15904;https://github.com/PX4/PX4-Autopilot/pull/15904;Support multivehicle SITL simulations for rover in gazebo;TRUE;NO;;;;;
+240;PX4/PX4-Autopilot;15985;https://github.com/PX4/PX4-Autopilot/pull/15985;Disable secondary power source by default fix battery param migration take 2;TRUE;NO;;;;;
+241;PX4/PX4-Autopilot;15959;https://github.com/PX4/PX4-Autopilot/pull/15959;Cleanup jsbsim run scripts;TRUE;NO;;;;;
+242;PX4/PX4-Autopilot;15819;https://github.com/PX4/PX4-Autopilot/pull/15819;Jenkins remove remaining SITL tests;TRUE;YES;NO;Quality Assurance_Testing_Test suite contains flaky tests (test cases having a non-deterministic behaviour);;;
+242;PX4/PX4-Autopilot;15819;https://github.com/PX4/PX4-Autopilot/pull/15819;Jenkins remove remaining SITL tests;TRUE;YES;NO;Culture_Issue notifications are ignored;;;
+243;PX4/PX4-Autopilot;15681;https://github.com/PX4/PX4-Autopilot/pull/15681;sensors sensor_preflight_imu sensors_status_imu;TRUE;NO;;;;;
+244;PX4/PX4-Autopilot;15330;https://github.com/PX4/PX4-Autopilot/pull/15330;cpuload updates and NuttX optimization;TRUE;NO;;;;;
+245;PX4/PX4-Autopilot;15463;https://github.com/PX4/PX4-Autopilot/pull/15463;add gazebo simulation based on RTPS for multiple UAVs;TRUE;NO;;;;;
+246;PX4/PX4-Autopilot;15399;https://github.com/PX4/PX4-Autopilot/pull/15399;Tools abort SITL start if gzserver fails;TRUE;YES;YES;;Flaky Behaviour_Lack of control over resources;;
+247;PX4/PX4-Autopilot;15309;https://github.com/PX4/PX4-Autopilot/pull/15309;sensors baro aggregator limit publication rate with new parameter SENS_BARO_RATE;TRUE;YES;YES;;Simulators_Functional Correctness;Resources_Change simulator settings;
+248;PX4/PX4-Autopilot;15117;https://github.com/PX4/PX4-Autopilot/pull/15117;simulator create standalone battery simulator module;TRUE;YES;YES;;Simulators_Limited Functionality;Resources_Evolve simulator;
+249;PX4/PX4-Autopilot;15206;https://github.com/PX4/PX4-Autopilot/pull/15206;Fix gzserver hanging from multiple executions of gazebo SITL;TRUE;YES;YES;;Simulators_Installation and Setting;Resources_Change simulator settings;
+250;PX4/PX4-Autopilot;13981;https://github.com/PX4/PX4-Autopilot/pull/13981;Hover thrust estimator;TRUE;YES;YES;;Simulators_Limited Functionality;Resources_Evolve simulator;
+251;PX4/PX4-Autopilot;15038;https://github.com/PX4/PX4-Autopilot/pull/15038;Jenkins HIL test fix sensor timeouts;TRUE;NO;;;;;
+252;PX4/PX4-Autopilot;14932;https://github.com/PX4/PX4-Autopilot/pull/14932;MAVLink latency optimizations;TRUE;NO;;;;;
+253;PX4/PX4-Autopilot;14539;https://github.com/PX4/PX4-Autopilot/pull/14539;FlightGear simulator support;TRUE;YES;YES;;Simulators_Limited Functionality;;
+253;PX4/PX4-Autopilot;14539;https://github.com/PX4/PX4-Autopilot/pull/14539;FlightGear simulator support;TRUE;YES;YES;;Simulators_Choose among different simulators;;
+254;PX4/PX4-Autopilot;14129;https://github.com/PX4/PX4-Autopilot/pull/14129;px4_io-v2 defconfig optimizations;TRUE;YES;YES;;Simulators_Installation and Setting;Resources_Change simulator settings;
+255;PX4/PX4-Autopilot;14519;https://github.com/PX4/PX4-Autopilot/pull/14519;arch sh use community binary repository for gazebo;TRUE;YES;YES;;Simulators_Installation and Setting;Resources_Change simulator settings;
+256;PX4/PX4-Autopilot;14382;https://github.com/PX4/PX4-Autopilot/pull/14382;sensors move to uORB Subscription and reduce CONFIG_NFILE_DESCRIPTORS 20 15;TRUE;NO;;;;;
+257;PX4/PX4-Autopilot;14515;https://github.com/PX4/PX4-Autopilot/pull/14515;Github Actions Add jobs running in Ubuntu 20 04 Focal;TRUE;NO;;;;;
+258;PX4/PX4-Autopilot;14438;https://github.com/PX4/PX4-Autopilot/pull/14438;Drivers SPI I2C config simplifications 3;TRUE;NO;;;;;
+259;PX4/PX4-Autopilot;14392;https://github.com/PX4/PX4-Autopilot/pull/14392;Gazebo Do not run verbose;TRUE;YES;NO;Build Output_Build reports contain verbose, irrelevant information;;;Dashboard/Notifications_Improve readability of the build log
+260;PX4/PX4-Autopilot;14353;https://github.com/PX4/PX4-Autopilot/pull/14353;Add ccache to github actions;TRUE;YES;NO;Build Dependencies Management_Inappropriate choice about what to cache;;;Performance_Change Caching configuration
+261;PX4/PX4-Autopilot;14346;https://github.com/PX4/PX4-Autopilot/pull/14346;boards increase LPWORKSTACKSIZE 1536 1600;TRUE;NO;;;;;
+262;PX4/PX4-Autopilot;14228;https://github.com/PX4/PX4-Autopilot/pull/14228;simulator set sensor update rate according to HIL_SENSOR bitmask;TRUE;YES;YES;;Simulators_Interacting environment;;
+263;PX4/PX4-Autopilot;14215;https://github.com/PX4/PX4-Autopilot/pull/14215;CI exit from failed hardware check with error so the check will fail;TRUE;YES;NO;Build Outcome_Do not fail a build as soon as a failure/error is encountered;;;
+264;PX4/PX4-Autopilot;13871;https://github.com/PX4/PX4-Autopilot/pull/13871;Board config timer config simplifications;TRUE;NO;;;;;
+265;PX4/PX4-Autopilot;14078;https://github.com/PX4/PX4-Autopilot/pull/14078;BACKPORT and maintenance ModalAI fc v1 5a1c46deebbe38de35c7ab656ed78248e91eb850;TRUE;NO;;;;;
+266;PX4/PX4-Autopilot;13916;https://github.com/PX4/PX4-Autopilot/pull/13916;Add SITL target for simulating catapult handlaunching fixed wing;TRUE;NO;;;;;
+267;PX4/PX4-Autopilot;14064;https://github.com/PX4/PX4-Autopilot/pull/14064;Updates to new Invensense IMU drivers;TRUE;NO;;;;;
+268;PX4/PX4-Autopilot;14054;https://github.com/PX4/PX4-Autopilot/pull/14054;Flow mockup;TRUE;YES;YES;;HIL_Interface with HIL;Resources_Use mocking;
+269;PX4/PX4-Autopilot;13933;https://github.com/PX4/PX4-Autopilot/pull/13933;setup Fix ubuntu sh install script;TRUE;NO;;;;;
+270;PX4/PX4-Autopilot;13940;https://github.com/PX4/PX4-Autopilot/pull/13940;CI Jenkins move Cppcheck stage to ROS Melodic container;TRUE;YES;NO;Build Execution_Tasks are not properly distributed among different build stages (e.g., load testing is done in the commit stage);;;
+271;PX4/PX4-Autopilot;13854;https://github.com/PX4/PX4-Autopilot/pull/13854;simulator replace gpssim with simple orb publication;TRUE;YES;YES;;Simulators_Functional Correctness;Resources_Change simulator settings;
+272;PX4/PX4-Autopilot;13872;https://github.com/PX4/PX4-Autopilot/pull/13872;NuttX stackcheck exclude PX4 Matrix Param and stm32_spi driver;TRUE;YES;NO;Build Execution_Tasks are not properly distributed among different build stages (e.g., load testing is done in the commit stage);;;
+273;PX4/PX4-Autopilot;13781;https://github.com/PX4/PX4-Autopilot/pull/13781;MPU9250 failed to start its AK8963 via internal SPI to I2C bridge;TRUE;YES;YES;;Simulators_Installation and Setting;Resources_Change simulator settings;
+274;PX4/PX4-Autopilot;13722;https://github.com/PX4/PX4-Autopilot/pull/13722;px4_raspberrypi cleanup configs and add to Jenkins;TRUE;YES;YES;;Throroughness_Phases_Automated HIL testing impossible dues to too many different real devices;Resources_Change HiL configuration;
+275;PX4/PX4-Autopilot;12511;https://github.com/PX4/PX4-Autopilot/pull/12511;Add calibration parameters for multiple batteries;TRUE;NO;;;;;
+276;PX4/PX4-Autopilot;13632;https://github.com/PX4/PX4-Autopilot/pull/13632;Speed up gyro calibration;TRUE;NO;;;;;
+277;PX4/PX4-Autopilot;13241;https://github.com/PX4/PX4-Autopilot/pull/13241;sensors split rc_update into new standalone module;TRUE;NO;;;;;
+278;PX4/PX4-Autopilot;12650;https://github.com/PX4/PX4-Autopilot/pull/12650;create mc_rate_control split out of mc_att_control;TRUE;NO;;;;;
+279;PX4/PX4-Autopilot;13493;https://github.com/PX4/PX4-Autopilot/pull/13493;NuttX cmake improve dependencies between configure and runtime;TRUE;NO;;;;;
+280;PX4/PX4-Autopilot;13423;https://github.com/PX4/PX4-Autopilot/pull/13423;NuttX use toolchain math h and avoid empty drivers Kconfig;TRUE;NO;;;;;
+281;PX4/PX4-Autopilot;13370;https://github.com/PX4/PX4-Autopilot/pull/13370;Jenkins hardware move to nested stages;TRUE;NO;;;;;
+282;PX4/PX4-Autopilot;13285;https://github.com/PX4/PX4-Autopilot/pull/13285;boards increase CONFIG_MAX_TASKS 32 64 on all F7s;TRUE;NO;;;;;
+283;PX4/PX4-Autopilot;13238;https://github.com/PX4/PX4-Autopilot/pull/13238;Jenkins CI move SITL tests to Melodic container;TRUE;YES;NO;Build Execution_Rely on a wrong image;;;
+284;PX4/PX4-Autopilot;13221;https://github.com/PX4/PX4-Autopilot/pull/13221;arch sh use nproc instead of grepping proc cpuinfo;TRUE;NO;;;;;
+285;PX4/PX4-Autopilot;13160;https://github.com/PX4/PX4-Autopilot/pull/13160;Arch Linux Setup optionally install gazebo from AUR and fix pip Call;TRUE;YES;YES;;Simulators_Limited Functionality;Resources_Add better simulators;
+286;PX4/PX4-Autopilot;13179;https://github.com/PX4/PX4-Autopilot/pull/13179;arch sh switch permissions of pip install again;TRUE;NO;;;;;
+287;PX4/PX4-Autopilot;13066;https://github.com/PX4/PX4-Autopilot/pull/13066;cmake show sitl_gazebo build output and improve rebuild;TRUE;YES;NO;Builld Initialization_Inappropriate build environment clean-up strategy (i.e., whether to (not) use incremental builds);;;
+287;PX4/PX4-Autopilot;13066;https://github.com/PX4/PX4-Autopilot/pull/13066;cmake show sitl_gazebo build output and improve rebuild;TRUE;YES;NO;Build Output_Some tasks are executed without clearly reporting their results in the build output;;;Dashboard/Notifications_Improve readability of the build log
+288;PX4/PX4-Autopilot;8749;https://github.com/PX4/PX4-Autopilot/pull/8749;Mission RTL;TRUE;NO;;;;;
+289;PX4/PX4-Autopilot;6615;https://github.com/PX4/PX4-Autopilot/pull/6615;Add Rover Simulation and sim config;TRUE;NO;;;;;
+290;PX4/PX4-Autopilot;12781;https://github.com/PX4/PX4-Autopilot/pull/12781;jMAVSim disable GUI using HEADLESS 1;TRUE;YES;YES;;Simulators_Installation and Setting;Resources_Change simulator settings;
+291;PX4/PX4-Autopilot;12145;https://github.com/PX4/PX4-Autopilot/pull/12145;introduce sensor_gyro_control message 1 kHz rate controller;TRUE;NO;;;;;
+292;PX4/PX4-Autopilot;12666;https://github.com/PX4/PX4-Autopilot/pull/12666;V5X add networking;TRUE;NO;;;;;
+293;PX4/PX4-Autopilot;12651;https://github.com/PX4/PX4-Autopilot/pull/12651;simple circleci com px4_fmu v5 build archive example;TRUE;NO;;;;;
+294;PX4/PX4-Autopilot;12481;https://github.com/PX4/PX4-Autopilot/pull/12481;jenkins archive catkin test logs on failure;TRUE;YES;NO;Build Output_Some tasks are executed without clearly reporting their results in the build output;;;Dashboard/Notifications_Improve readability of the build log
+295;PX4/PX4-Autopilot;12519;https://github.com/PX4/PX4-Autopilot/pull/12519;Changed timing of actuator_controls_0 message from rover_pos_control;TRUE;YES;YES;;Simulators_Real-Time Properties;;
+296;PX4/PX4-Autopilot;8242;https://github.com/PX4/PX4-Autopilot/pull/8242;SDP3x Airspeed Correction;TRUE;NO;;;;;
+297;PX4/PX4-Autopilot;12415;https://github.com/PX4/PX4-Autopilot/pull/12415;Fix off by one error in multi agent launch files that prevents FCU connection;TRUE;NO;;;;;
+298;PX4/PX4-Autopilot;7415;https://github.com/PX4/PX4-Autopilot/pull/7415;cmake fix airframes xml dependency mavlink include bad whitespace;TRUE;NO;;;;;
+299;PX4/PX4-Autopilot;4932;https://github.com/PX4/PX4-Autopilot/pull/4932;sitl gazebo plane fix land detector startup order;TRUE;YES;YES;;Simulators_Functional Correctness;Resources_Change simulator settings;
+300;PX4/PX4-Autopilot;12373;https://github.com/PX4/PX4-Autopilot/pull/12373;Jenkins HITL exit upload monitor on nsh;TRUE;YES;YES;;Flaky Behaviour_Lack of control over resources;Flakiness_Timeout;
+301;PX4/PX4-Autopilot;7235;https://github.com/PX4/PX4-Autopilot/pull/7235;Support of multi uav simulation in SITL;TRUE;YES;YES;;Simulators_Limited Functionality;Resources_Evolve simulator;
+302;PX4/PX4-Autopilot;12282;https://github.com/PX4/PX4-Autopilot/pull/12282;Jenkins HIL test run various commands to inspect system;TRUE;YES;YES;;Thoroughness_Phases_Lack of HiL specific smoke test;;
+303;PX4/PX4-Autopilot;8149;https://github.com/PX4/PX4-Autopilot/pull/8149;Servo gimbal;TRUE;NO;;;;;
+304;PX4/PX4-Autopilot;12081;https://github.com/PX4/PX4-Autopilot/pull/12081;simulator move to PX4Accelerometer PX4Gyroscope PX4Magnetometer PX4Barometer helpers;TRUE;YES;YES;;Simulators_Installation and Setting;Resources_Change simulator settings;
+305;PX4/PX4-Autopilot;11981;https://github.com/PX4/PX4-Autopilot/pull/11981;sitl_gazebo updates and cleanup;TRUE;NO;;;;;
+306;PX4/PX4-Autopilot;11821;https://github.com/PX4/PX4-Autopilot/pull/11821;cmake fix races without ninja;TRUE;NO;;;;;
+307;PX4/PX4-Autopilot;11808;https://github.com/PX4/PX4-Autopilot/pull/11808;omnibus fix unreliable SD card access;TRUE;NO;;;;;
+308;PX4/PX4-Autopilot;11802;https://github.com/PX4/PX4-Autopilot/pull/11802;Appveyor Enable build matrix for parallel CI targets;TRUE;YES;NO;Build Execution_Independent build jobs are not executed in parallel;;;Performance_Introduce Parallelization
+309;PX4/PX4-Autopilot;7618;https://github.com/PX4/PX4-Autopilot/pull/7618;FMUv2 Hardware identification some mpu9250 fixes mpu9250 deprecated on PXMini;TRUE;NO;;;;;
+310;PX4/PX4-Autopilot;11574;https://github.com/PX4/PX4-Autopilot/pull/11574;containers add Queue and testing;TRUE;NO;;;;;
+311;PX4/PX4-Autopilot;11536;https://github.com/PX4/PX4-Autopilot/pull/11536;Jenkins increase history retention;TRUE;NO;;;;;
+312;PX4/PX4-Autopilot;11534;https://github.com/PX4/PX4-Autopilot/pull/11534;Tools fix style consistency in shell scripts if then;TRUE;NO;;;;;
+313;PX4/PX4-Autopilot;11463;https://github.com/PX4/PX4-Autopilot/pull/11463;Jenkins CI PX4 ROS msgs stage deploy message definitions to the ros1 branch of px4_msgs;TRUE;NO;;;;;
+314;PX4/PX4-Autopilot;11398;https://github.com/PX4/PX4-Autopilot/pull/11398;Jenkins SITL tests increase test history from 2 5;TRUE;YES;NO;Infrastructure Choices_Software_Wrong Choice of the CI/CD framework being used;;;
+315;PX4/PX4-Autopilot;11243;https://github.com/PX4/PX4-Autopilot/pull/11243;Probot attempt to fix configuration;TRUE;NO;;;;;
+316;PX4/PX4-Autopilot;11177;https://github.com/PX4/PX4-Autopilot/pull/11177;SITL perf improvements;TRUE;NO;;;;;
+317;PX4/PX4-Autopilot;11101;https://github.com/PX4/PX4-Autopilot/pull/11101;simulator fix TCP on Cygwin Windows and updated two world files for Gazebo;TRUE;NO;;;;;
+318;PX4/PX4-Autopilot;10945;https://github.com/PX4/PX4-Autopilot/pull/10945;CI add Colcon parallel build;TRUE;NO;;;;;
+319;PX4/PX4-Autopilot;10854;https://github.com/PX4/PX4-Autopilot/pull/10854;Appveyor Switch build cache to the entire PX4 folder;TRUE;YES;NO;Build Dependencies Management_Inappropriate choice about what to cache;;;Performance_Change Caching configuration
+320;PX4/PX4-Autopilot;10689;https://github.com/PX4/PX4-Autopilot/pull/10689;jenkins clang tidy retry;TRUE;YES;NO;Culture_Changes are pulled before fixing a previous build failure;;;
+321;PX4/PX4-Autopilot;10144;https://github.com/PX4/PX4-Autopilot/pull/10144;jenkins split main pipeline;TRUE;YES;NO;Build Process Definition_Monolithic builds (i.e., builds not decomposed into specific, cohesive jobs, when this is appropriate) are used in the pipeline;;;Maintainability_Split build scripts/jobs
+321;PX4/PX4-Autopilot;10144;https://github.com/PX4/PX4-Autopilot/pull/10144;jenkins split main pipeline;TRUE;YES;NO;Build Output_Some tasks are executed without clearly reporting their results in the build output;;;Dashboard/Notifications_Improve readability of the build log
+322;PX4/PX4-Autopilot;2149;https://github.com/PX4/PX4-Autopilot/pull/2149;always recompile sdlog2 and ver command to keep GIT_DESC current;FALSE;NO;;;;;
+323;PX4/PX4-Autopilot;2711;https://github.com/PX4/PX4-Autopilot/pull/2711;Enable ms5611 driver and fix build errors;FALSE;NO;;;;;
+324;PX4/PX4-Autopilot;2885;https://github.com/PX4/PX4-Autopilot/pull/2885;simulator add publishing of HIL_OPTICAL_FLOW as uORB topic;FALSE;NO;;;;;
+325;PX4/PX4-Autopilot;3062;https://github.com/PX4/PX4-Autopilot/pull/3062;Switched Vagrant to use static IP;FALSE;NO;;;;;
+326;PX4/PX4-Autopilot;3170;https://github.com/PX4/PX4-Autopilot/pull/3170;Remove CONFIG_ARCH_BOARD ifdef dependencies from mtd;FALSE;YES;YES;;Barriers_Domain_Complex Non Functional Requirements;;
+327;PX4/PX4-Autopilot;3527;https://github.com/PX4/PX4-Autopilot/pull/3527;Raspberry Pi buildsystem config;FALSE;NO;;;;;
+328;PX4/PX4-Autopilot;3703;https://github.com/PX4/PX4-Autopilot/pull/3703;add Safety switch handling to fmuv4;FALSE;NO;;;;;
+329;PX4/PX4-Autopilot;4458;https://github.com/PX4/PX4-Autopilot/pull/4458;cmake nuttx copy with rsync;FALSE;YES;NO;Builld Initialization_Inappropriate build environment clean-up strategy (i.e., whether to (not) use incremental builds);;;Build Policy_Modify the triggering strategy
+330;PX4/PX4-Autopilot;4709;https://github.com/PX4/PX4-Autopilot/pull/4709;Cut down verbosity;FALSE;NO;;;;;
+331;PX4/PX4-Autopilot;4925;https://github.com/PX4/PX4-Autopilot/pull/4925;SITL mission tests via MAVROS;FALSE;NO;;;;;
+332;PX4/PX4-Autopilot;5384;https://github.com/PX4/PX4-Autopilot/pull/5384;Only compile the Messages specified in msg CMakeLists txt;FALSE;NO;;;;;
+333;PX4/PX4-Autopilot;5492;https://github.com/PX4/PX4-Autopilot/pull/5492;add HIL_STATE message handler and publish to uORB;FALSE;NO;;;;;
+334;PX4/PX4-Autopilot;6166;https://github.com/PX4/PX4-Autopilot/pull/6166;Simulation fixes for fleet mostly VTOL;FALSE;YES;YES;;Simulators_Functional Correctness;Resources_Evolve simulator;
+335;PX4/PX4-Autopilot;6413;https://github.com/PX4/PX4-Autopilot/pull/6413;Onboard Temperature Calibration WIP;FALSE;NO;;;;;
+336;PX4/PX4-Autopilot;6908;https://github.com/PX4/PX4-Autopilot/pull/6908;Critical Fixes Snapdragon Flight parameter synchronization problem;FALSE;NO;;;;;
+337;PX4/PX4-Autopilot;7454;https://github.com/PX4/PX4-Autopilot/pull/7454;Enable Simulation of the Hippocampus AUV from TUHH;FALSE;NO;;;;;
+338;PX4/PX4-Autopilot;8015;https://github.com/PX4/PX4-Autopilot/pull/8015;Move gyro calibration from commander to events;FALSE;NO;;;;;
+339;PX4/PX4-Autopilot;8688;https://github.com/PX4/PX4-Autopilot/pull/8688;circleci OSX builds use ninja;FALSE;YES;NO;Build Execution_Pipeline steps/stages are skipped arbitrarily;;;
+340;PX4/PX4-Autopilot;4170;https://github.com/PX4/PX4-Autopilot/pull/4170;Support for running multiple SITL instances;FALSE;NO;;;;;
+341;PX4/PX4-Autopilot;8731;https://github.com/PX4/PX4-Autopilot/pull/8731;WIP High rate IMU sampling;FALSE;NO;;;;;
+342;PX4/PX4-Autopilot;8738;https://github.com/PX4/PX4-Autopilot/pull/8738;SITL_configs by default disable datalink and RC failsafes;FALSE;YES;YES;;Simulators_Interacting environment;;
+342;PX4/PX4-Autopilot;8738;https://github.com/PX4/PX4-Autopilot/pull/8738;SITL_configs by default disable datalink and RC failsafes;FALSE;YES;YES;;Flaky Behaviour_Lack of control over resources;;
+343;PX4/PX4-Autopilot;9493;https://github.com/PX4/PX4-Autopilot/pull/9493;snapdragon cmake fixes;FALSE;NO;;;;;
+344;PX4/PX4-Autopilot;10166;https://github.com/PX4/PX4-Autopilot/pull/10166;cmake toolchain don t specify both mcpu and march;FALSE;YES;NO;Build Maintainability_Customization over a specific environment (e.g., rework for making the system running on a different OS);;;
+345;PX4/PX4-Autopilot;10447;https://github.com/PX4/PX4-Autopilot/pull/10447;jmavsim_run sh fix issue with Java 10;FALSE;NO;;;;;
+346;PX4/PX4-Autopilot;10931;https://github.com/PX4/PX4-Autopilot/pull/10931;adding avioneo s airframe geometry VTOL Penta Tiltwings;FALSE;NO;;;;;
+347;PX4/PX4-Autopilot;11039;https://github.com/PX4/PX4-Autopilot/pull/11039;mavlink fix uninitialized messages fields;FALSE;NO;;;;;
+348;PX4/PX4-Autopilot;11025;https://github.com/PX4/PX4-Autopilot/pull/11025;fix for HIL;FALSE;NO;;;;;
+349;PX4/PX4-Autopilot;8321;https://github.com/PX4/PX4-Autopilot/pull/8321;WIP Jenkins basic support for hardware testing;FALSE;NO;;;;;
+350;PX4/PX4-Autopilot;9167;https://github.com/PX4/PX4-Autopilot/pull/9167;Enable mavlink forwarding in SITL for all FW VTOL;FALSE;NO;;;;;
+351;PX4/PX4-Autopilot;9631;https://github.com/PX4/PX4-Autopilot/pull/9631;WIP Jenkins codecov io for ecl and matrix;FALSE;NO;;;;;
+352;PX4/PX4-Autopilot;9692;https://github.com/PX4/PX4-Autopilot/pull/9692;WIP jenkins multiple pipelines;FALSE;YES;NO;Build Process Definition_Monolithic builds (i.e., builds not decomposed into specific, cohesive jobs, when this is appropriate) are used in the pipeline;;;Maintainability_Split build scripts/jobs
+352;PX4/PX4-Autopilot;9692;https://github.com/PX4/PX4-Autopilot/pull/9692;WIP jenkins multiple pipelines;FALSE;YES;NO;Build Output_Some tasks are executed without clearly reporting their results in the build output;;;Dashboard/Notifications_Improve readability of the build log
+353;PX4/PX4-Autopilot;6396;https://github.com/PX4/PX4-Autopilot/pull/6396;Events interface;FALSE;NO;;;;;
+354;PX4/PX4-Autopilot;10998;https://github.com/PX4/PX4-Autopilot/pull/10998;Collision prevention with distance_sensor data;FALSE;YES;YES;;Simulators_Limited Functionality;Resources_Evolve simulator;
+355;PX4/PX4-Autopilot;11294;https://github.com/PX4/PX4-Autopilot/pull/11294;Jenkins allow test to specify docker image with default;FALSE;NO;;;;;
+356;PX4/PX4-Autopilot;13753;https://github.com/PX4/PX4-Autopilot/pull/13753;New cross platform PCA9685 driver;FALSE;NO;;;;;
+357;PX4/PX4-Autopilot;14196;https://github.com/PX4/PX4-Autopilot/pull/14196;sitl_gazebo update submodule;FALSE;NO;;;;;
+358;PX4/PX4-Autopilot;14156;https://github.com/PX4/PX4-Autopilot/pull/14156;RFC Board config SPI I2C config simplifications;FALSE;YES;YES;;HIL_Interface with HIL;;
+359;PX4/PX4-Autopilot;13584;https://github.com/PX4/PX4-Autopilot/pull/13584;move GPS aggregation and blending to sensors;FALSE;NO;;;;;
+360;PX4/PX4-Autopilot;15119;https://github.com/PX4/PX4-Autopilot/pull/15119;fixing sitl bug;FALSE;NO;;;;;
+361;PX4/PX4-Autopilot;15465;https://github.com/PX4/PX4-Autopilot/pull/15465;Fix STM32H7 bootloader upgrade process judgment error;FALSE;NO;;;;;
+362;PX4/PX4-Autopilot;15059;https://github.com/PX4/PX4-Autopilot/pull/15059;RFC online mag calibration using UKF;FALSE;NO;;;;;
+363;PX4/PX4-Autopilot;14497;https://github.com/PX4/PX4-Autopilot/pull/14497;Add SITL target for starting airsim;FALSE;YES;YES;;Simulators_Integration issues with the CPS;;
+364;PX4/PX4-Autopilot;16780;https://github.com/PX4/PX4-Autopilot/pull/16780;RC input selection;FALSE;YES;YES;;Throroughness_Phases_Automated HIL testing impossible dues to too many different real devices;;
+365;PX4/PX4-SITL_gazebo;36;https://github.com/PX4/PX4-SITL_gazebo/pull/36;General Improvements to Gazebo SITL plugins;TRUE;NO;;;;;
+366;PX4/PX4-SITL_gazebo;77;https://github.com/PX4/PX4-SITL_gazebo/pull/77;update submodule Optical flow fixed cmake policy warning;TRUE;YES;YES;;Simulators_Functional Correctness;;
+367;PX4/PX4-SITL_gazebo;106;https://github.com/PX4/PX4-SITL_gazebo/pull/106;Enable Simulation of the Hippocampus AUV from TUHH;TRUE;NO;;;;;
+368;PX4/PX4-SITL_gazebo;143;https://github.com/PX4/PX4-SITL_gazebo/pull/143;build add FindMAVLink cmake module and enhance Mavlink dir search;TRUE;NO;;;;;
+369;PX4/PX4-SITL_gazebo;136;https://github.com/PX4/PX4-SITL_gazebo/pull/136;initial travis ci configuration;TRUE;YES;NO;Build Dependencies Management;;;Build Policy_Change the dependencies' installation policy
+370;PX4/PX4-SITL_gazebo;185;https://github.com/PX4/PX4-SITL_gazebo/pull/185;Let travis fail on error and fix build;TRUE;YES;NO;Build Outcome_A build is succeeded when a task is failed or an error is thrown;;;Build Policy_Change how the build outcome is determined
+371;PX4/PX4-SITL_gazebo;200;https://github.com/PX4/PX4-SITL_gazebo/pull/200;Update sitl_gazebo to allow use in a catkin workspace;TRUE;NO;;;;;
+372;PX4/PX4-SITL_gazebo;203;https://github.com/PX4/PX4-SITL_gazebo/pull/203;plugins vision use complete visual odometry msg to send to the FCU;TRUE;NO;;;;;
+373;PX4/PX4-SITL_gazebo;220;https://github.com/PX4/PX4-SITL_gazebo/pull/220;travis use catkin build tools;TRUE;NO;;;;;
+374;PX4/PX4-SITL_gazebo;243;https://github.com/PX4/PX4-SITL_gazebo/pull/243;Set CMAKE_CXX_STANDARD so cmake does not duplicate std setting;TRUE;NO;;;;;
+375;PX4/PX4-SITL_gazebo;311;https://github.com/PX4/PX4-SITL_gazebo/pull/311;Fix macOS CI;TRUE;NO;;;;;
+376;PX4/PX4-SITL_gazebo;351;https://github.com/PX4/PX4-SITL_gazebo/pull/351;Update CI container tags;TRUE;NO;;;;;
+377;PX4/PX4-SITL_gazebo;395;https://github.com/PX4/PX4-SITL_gazebo/pull/395;Build only look for Python3 if not building with Catkin;TRUE;NO;;;;;
+378;PX4/PX4-SITL_gazebo;393;https://github.com/PX4/PX4-SITL_gazebo/pull/393;Catapult plugin for simulating catapult handlaunching fixed wing;TRUE;NO;;;;;
+379;PX4/PX4-SITL_gazebo;412;https://github.com/PX4/PX4-SITL_gazebo/pull/412;travis remove unnecessary failing pip checks;TRUE;YES;NO;Build Duration_Unneeded tasks are scheduled in the build process;;;Performance_Remove Unneeded environments/scripts/tasks
+380;PX4/PX4-SITL_gazebo;502;https://github.com/PX4/PX4-SITL_gazebo/pull/502;Travis CI add pipelines to build and test with Gazebo 11 over Ubuntu 20 04;TRUE;NO;;;;;
+381;PX4/PX4-SITL_gazebo;528;https://github.com/PX4/PX4-SITL_gazebo/pull/528;range sensors lidar add simple signal quality model and propagate it to Mavlink;TRUE;NO;;;;;
+382;PX4/PX4-SITL_gazebo;570;https://github.com/PX4/PX4-SITL_gazebo/pull/570;Move testing to github actions from travis;TRUE;NO;;;;;
+383;PX4/PX4-SITL_gazebo;576;https://github.com/PX4/PX4-SITL_gazebo/pull/576;Run on separate sitl configs with firmware;TRUE;YES;YES;;Flaky Behaviour_Lack of control over resources;Flakiness_Adjust Pipeline Configuration;
+384;PX4/PX4-SITL_gazebo;574;https://github.com/PX4/PX4-SITL_gazebo/pull/574;Fix SITL tests failing on master;TRUE;YES;NO;Build Outcome_A build is succeeded when a task is failed or an error is thrown;;;Maintainability_Replace tools/methods for accomplishing a specific task
+385;PX4/PX4-SITL_gazebo;630;https://github.com/PX4/PX4-SITL_gazebo/pull/630;cmake support ccache explicitly;TRUE;NO;;;;;
+386;PX4/PX4-SITL_gazebo;663;https://github.com/PX4/PX4-SITL_gazebo/pull/663;Add macos build tests for Big Sur;TRUE;NO;;;;;
+387;PX4/PX4-SITL_gazebo;731;https://github.com/PX4/PX4-SITL_gazebo/pull/731;Multiple airspeed sensors in SITL with multi HIL_SENSOR instances;TRUE;NO;;;;;
+388;PX4/PX4-SITL_gazebo;146;https://github.com/PX4/PX4-SITL_gazebo/pull/146;HIL integration for Gazebo;FALSE;NO;;;;;
+389;PX4/PX4-SITL_gazebo;240;https://github.com/PX4/PX4-SITL_gazebo/pull/240;Feature add ROS NavSatFix and PoseWithCovarianceStamped topic publishers;FALSE;NO;;;;;
+390;PX4/PX4-SITL_gazebo;357;https://github.com/PX4/PX4-SITL_gazebo/pull/357;Support SITL simulation for boat with usv_gazebo plugin;FALSE;NO;;;;;
+391;PX4/PX4-SITL_gazebo;473;https://github.com/PX4/PX4-SITL_gazebo/pull/473;Fix CI breaking on macOS;FALSE;YES;NO;Builld Initialization_Inappropriate build environment clean-up strategy (i.e., whether to (not) use incremental builds);;;Performance_Change Caching configuration
+391;PX4/PX4-SITL_gazebo;473;https://github.com/PX4/PX4-SITL_gazebo/pull/473;Fix CI breaking on macOS;FALSE;YES;NO;Build Dependencies Management_Inappropriate choice about what to cache;;;Performance_Change Caching configuration
+392;PX4/PX4-SITL_gazebo;547;https://github.com/PX4/PX4-SITL_gazebo/pull/547;Add firmware build test;FALSE;NO;;;;;
+393;PX4/PX4-SITL_gazebo;578;https://github.com/PX4/PX4-SITL_gazebo/pull/578;Placeholder Run on separate sitl configs with firmware 577;FALSE;NO;;;;;
+394;PX4/PX4-SITL_gazebo;505;https://github.com/PX4/PX4-SITL_gazebo/pull/505;Travis CI add MacOS Catalina build stage;FALSE;NO;;;;;
+395;PX4/PX4-SITL_gazebo;589;https://github.com/PX4/PX4-SITL_gazebo/pull/589;Fix tiltrotor model and add to SITL testing;FALSE;NO;;;;;
+396;PX4/PX4-SITL_gazebo;749;https://github.com/PX4/PX4-SITL_gazebo/pull/749;Add gazebo dual rotor tailsitter;FALSE;NO;;;;;
+397;linux-can/can-utils;97;https://github.com/linux-can/can-utils/pull/97;CI treat gcc warnings as errors;TRUE;YES;NO;Build Outcome_A build is succeeded when a task is failed or an error is thrown;;;Build Policy_Change how the build outcome is determined
+398;linux-can/can-utils;254;https://github.com/linux-can/can-utils/pull/254;can utils import PTX cansequence utility;TRUE;NO;;;;;
+399;linux-can/can-utils;325;https://github.com/linux-can/can-utils/pull/325;mcp251xfd add missing libgen h header;TRUE;NO;;;;;
+400;linux-can/can-utils;243;https://github.com/linux-can/can-utils/pull/243;travis add archs to build matrix;FALSE;NO;;;;;
+401;linux-can/can-utils;320;https://github.com/linux-can/can-utils/pull/320;Create codeql analysis yml;FALSE;NO;;;;;
+402;ArduPilot/apm_planner;1046;https://github.com/ArduPilot/apm_planner/pull/1046;Vagrant add vagrant file;TRUE;YES;YES;;Simulators_Functional Correctness;Resources_Change simulator settings;
+403;ArduPilot/apm_planner;1070;https://github.com/ArduPilot/apm_planner/pull/1070;Avoid downloading deprecated apm pdef xml;TRUE;YES;NO;Build Dependencies Management_Including unneeded dependencies;;;Performance_Remove Unneeded environments/scripts/tasks
+404;ArduPilot/apm_planner;1135;https://github.com/ArduPilot/apm_planner/pull/1135;Build Fedora 26 build scripts and spec files;TRUE;NO;;;;;
+405;ArduPilot/apm_planner;1191;https://github.com/ArduPilot/apm_planner/pull/1191;Adjust for ardupilot s move to https;TRUE;NO;;;;;
+406;ArduPilot/apm_planner;1192;https://github.com/ArduPilot/apm_planner/pull/1192;Vagrantfile move to xenial64 write scripts for compilation;TRUE;NO;;;;;
+407;ArduPilot/apm_planner;10;https://github.com/ArduPilot/apm_planner/pull/10;Bugfix missing updates PrimaryFlightDisplay now connecting to UASCreated and UASDeleted signals;FALSE;NO;;;;;
+408;ArduPilot/apm_planner;94;https://github.com/ArduPilot/apm_planner/pull/94;qmake install now working under Linux;FALSE;NO;;;;;
+409;ArduPilot/apm_planner;171;https://github.com/ArduPilot/apm_planner/pull/171;Linux Forced usage of libudev for serial ports Also minor build fixes;FALSE;YES;YES;;HIL_Interface with HIL;Resources_Change HiL configuration;
+410;ArduPilot/apm_planner;588;https://github.com/ArduPilot/apm_planner/pull/588;Spec file and scripts to build RPM;FALSE;NO;;;;;
+411;ArduPilot/apm_planner;775;https://github.com/ArduPilot/apm_planner/pull/775;Update MAVLink library for APM 3 3;FALSE;NO;;;;;
+412;ArduPilot/apm_planner;954;https://github.com/ArduPilot/apm_planner/pull/954;Added docker file for issue 953;FALSE;NO;;;;;
+413;simbody/simbody;25;https://github.com/simbody/simbody/pull/25;Automated testing using Travis CI;TRUE;NO;;;;;
+414;simbody/simbody;200;https://github.com/simbody/simbody/pull/200;travis CMake not needed on OSX;TRUE;NO;;;;;
+415;simbody/simbody;202;https://github.com/simbody/simbody/pull/202;SimbodyConfig cmake says where SimbodyDoxygenTagfile is;TRUE;NO;;;;;
+416;simbody/simbody;269;https://github.com/simbody/simbody/pull/269;Support appveyor testing;TRUE;NO;;;;;
+417;simbody/simbody;286;https://github.com/simbody/simbody/pull/286;Add feedback in Travis builds about tab check when successful or not performed;TRUE;YES;NO;Build Output_Some tasks are executed without clearly reporting their results in the build output;;;Dashboard/Notifications_Improve readability of the build log
+418;simbody/simbody;339;https://github.com/simbody/simbody/pull/339;SimbodyConfig cmake allows relocation of installation;TRUE;YES;NO;Build Maintainability_Absolute/machine-dependent paths are used;;;Maintainability_Replace tools/methods for accomplishing a specific task
+419;simbody/simbody;417;https://github.com/simbody/simbody/pull/417;Add NullOnCopyUniquePtr and regression tests;TRUE;NO;;;;;
+420;simbody/simbody;445;https://github.com/simbody/simbody/pull/445;Upload binaries from travis to bintray;TRUE;NO;;;;;
+421;simbody/simbody;481;https://github.com/simbody/simbody/pull/481;Added second AppVeyor job for CI testing of OpenSim on 32 bit;TRUE;YES;NO;Build Maintainability_Customization over a specific environment (e.g., rework for making the system running on a different OS);;;Build Process Organization_Add new build matrix environment
+422;simbody/simbody;551;https://github.com/simbody/simbody/pull/551;Add coverage status of simbody with gcov and codecov io;TRUE;YES;NO;Build Output_Some tasks are executed without clearly reporting their results in the build output;;;Dashboard/Notifications_Improve readability of the build log
+423;simbody/simbody;615;https://github.com/simbody/simbody/pull/615;travis Comment out osx_image line;TRUE;NO;;;;;
+424;simbody/simbody;698;https://github.com/simbody/simbody/pull/698;Continuous integration using GitHub Actions;TRUE;NO;;;;;
+425;simbody/simbody;421;https://github.com/simbody/simbody/pull/421;travis Use Travis CI s container based infrastructure;FALSE;NO;;;;;
+426;ompl/ompl;89;https://github.com/ompl/ompl/pull/89;Dockerized Travis build;TRUE;NO;;;;;
+427;ompl/ompl;96;https://github.com/ompl/ompl/pull/96;Flann CMakeModule needs to include libs in 1 1 1;FALSE;YES;NO;Build Dependencies Management;;;Build Policy_Change the dependencies' installation policy
+428;ros-planning/navigation2;159;https://github.com/ros-planning/navigation2/pull/159;Fix dockerfile for new repo structure;TRUE;NO;;;;;
+429;ros-planning/navigation2;205;https://github.com/ros-planning/navigation2/pull/205;Build CI using ros2 master nightly build;TRUE;YES;NO;"Build Duration_Build time for the ""commit stage"" overcomes the 10-minutes rule";;;Maintainability_Replace tools/methods for accomplishing a specific task
+430;ros-planning/navigation2;237;https://github.com/ros-planning/navigation2/pull/237;Dockerfile update to fix build fails;TRUE;NO;;;;;
+431;ros-planning/navigation2;244;https://github.com/ros-planning/navigation2/pull/244;Update gazebo_ros_pkgs branch to ros2;TRUE;NO;;;;;
+432;ros-planning/navigation2;388;https://github.com/ros-planning/navigation2/pull/388;Amcl integration test;TRUE;NO;;;;;
+433;ros-planning/navigation2;368;https://github.com/ros-planning/navigation2/pull/368;Add top level system test;TRUE;YES;NO;;Flaky Behaviour_Interaction between different features;Flakiness_Retry;
+434;ros-planning/navigation2;458;https://github.com/ros-planning/navigation2/pull/458;Getting Build Farm CI on track;TRUE;YES;NO;Build Dependencies Management;;;Build Policy_Change the dependencies' installation policy
+435;ros-planning/navigation2;437;https://github.com/ros-planning/navigation2/pull/437;Use new ros2 branch of the BehaviorTree CPP library;TRUE;NO;;;;;
+436;ros-planning/navigation2;475;https://github.com/ros-planning/navigation2/pull/475;Fix Travis build remove gazebo_ros_pkgs dependency;TRUE;NO;;;;;
+437;ros-planning/navigation2;139;https://github.com/ros-planning/navigation2/pull/139;Adding time delays to launch script;TRUE;NO;;;;;
+438;ros-planning/navigation2;513;https://github.com/ros-planning/navigation2/pull/513;uploading and tagging docker images to pull;TRUE;NO;;;;;
+439;ros-planning/navigation2;553;https://github.com/ros-planning/navigation2/pull/553;Adding code coverage report to build;TRUE;YES;NO;Build Output_Some tasks are executed without clearly reporting their results in the build output;;;Dashboard/Notifications_Improve readability of the build log
+439;ros-planning/navigation2;553;https://github.com/ros-planning/navigation2/pull/553;Adding code coverage report to build;TRUE;YES;NO;Build Process Definition_Monolithic builds (i.e., builds not decomposed into specific, cohesive jobs, when this is appropriate) are used in the pipeline;;;Maintainability_Split build scripts/jobs
+440;ros-planning/navigation2;598;https://github.com/ros-planning/navigation2/pull/598;Adding retries to dynamic params test;TRUE;YES;NO;;Flaky Behaviour_Interaction between different features;Flakiness_Retry;
+441;ros-planning/navigation2;670;https://github.com/ros-planning/navigation2/pull/670;Enable Behavior Tree navigator with recovery and retry;TRUE;NO;;;;;
+442;ros-planning/navigation2;693;https://github.com/ros-planning/navigation2/pull/693;Default to a release build if unspecified;TRUE;NO;;;;;
+443;ros-planning/navigation2;797;https://github.com/ros-planning/navigation2/pull/797;Remove apt key from Dockerfile;TRUE;YES;NO;Build Dependencies Management_Inappropriate choice about what to cache;;;
+444;ros-planning/navigation2;843;https://github.com/ros-planning/navigation2/pull/843;Use_sim_time missing from a couple nodes in the params file;TRUE;YES;YES;;Simulators_Real-Time Properties;;
+445;ros-planning/navigation2;606;https://github.com/ros-planning/navigation2/pull/606;Adding a docker file to help test for missing package xml dependencies;TRUE;NO;;;;;
+446;ros-planning/navigation2;962;https://github.com/ros-planning/navigation2/pull/962;Build tools Run build_all sh from any nested repo workspace rename dependencies workspace for nav autocomplete;TRUE;NO;;;;;
+447;ros-planning/navigation2;1088;https://github.com/ros-planning/navigation2/pull/1088;Update to latest v2 BT Library;TRUE;NO;;;;;
+448;ros-planning/navigation2;1118;https://github.com/ros-planning/navigation2/pull/1118;Refactored launch files;TRUE;NO;;;;;
+449;ros-planning/navigation2;1122;https://github.com/ros-planning/navigation2/pull/1122;Cache per packge xml via multistage build;TRUE;YES;NO;Build Dependencies Management_Inappropriate choice about what to cache;;;Performance_Change Caching configuration
+450;ros-planning/navigation2;1146;https://github.com/ros-planning/navigation2/pull/1146;multirobot Part 1 Spawn multiple robots into Gazebo;TRUE;NO;;;;;
+451;ros-planning/navigation2;1176;https://github.com/ros-planning/navigation2/pull/1176;Wait recovery;TRUE;NO;;;;;
+452;ros-planning/navigation2;1119;https://github.com/ros-planning/navigation2/pull/1119;Build navigation2 in the same workspace as ROS2;TRUE;YES;NO;Build Dependencies Management_Inappropriate choice about what to cache;;;Performance_Change Caching configuration
+453;ros-planning/navigation2;1243;https://github.com/ros-planning/navigation2/pull/1243;Refactor System Tests;TRUE;NO;;;;;
+454;ros-planning/navigation2;1287;https://github.com/ros-planning/navigation2/pull/1287;Cause build output to be sent to screen to prevent Travis timeouts;TRUE;YES;NO;Build Duration_Time-out is not properly configured;;;
+455;ros-planning/navigation2;1249;https://github.com/ros-planning/navigation2/pull/1249;Turtlebot 3 Waffle Gazebo model with ROS2 depth camera plugin;TRUE;NO;;;;;
+456;ros-planning/navigation2;1313;https://github.com/ros-planning/navigation2/pull/1313;Script to run the thread and address sanitizers;TRUE;NO;;;;;
+457;ros-planning/navigation2;1045;https://github.com/ros-planning/navigation2/pull/1045;Planner interface and action interface for local planners;TRUE;NO;;;;;
+458;ros-planning/navigation2;1425;https://github.com/ros-planning/navigation2/pull/1425;Dependency test related fixes needed for eloquent release;TRUE;YES;NO;Build Maintainability_Missing smoke test (tests to verify the testability of the build);;;Build Process Organization_Add/Evolve smoke test
+459;ros-planning/navigation2;1510;https://github.com/ros-planning/navigation2/pull/1510;Remove OpenSplice test jobs;TRUE;NO;;;;;
+460;ros-planning/navigation2;1509;https://github.com/ros-planning/navigation2/pull/1509;Fixing system tests in CI;TRUE;YES;YES;;Flaky Behaviour_Interaction between different features;;
+461;ros-planning/navigation2;1573;https://github.com/ros-planning/navigation2/pull/1573;Is transform available BT condition node plugin;TRUE;NO;;;;;
+462;ros-planning/navigation2;1691;https://github.com/ros-planning/navigation2/pull/1691;Add ignoring code cov any files named test_;TRUE;NO;;;;;
+463;ros-planning/navigation2;1684;https://github.com/ros-planning/navigation2/pull/1684;Update CI for ROS2 Foxy;TRUE;NO;;;;;
+464;ros-planning/navigation2;1728;https://github.com/ros-planning/navigation2/pull/1728;Fix uninitialized variable warnings and change default value;TRUE;NO;;;;;
+465;ros-planning/navigation2;1760;https://github.com/ros-planning/navigation2/pull/1760;Re enable nightly debug builds for codecov;TRUE;YES;NO;Build Execution_Tasks are not properly distributed among different build stages (e.g., load testing is done in the commit stage);;;
+466;ros-planning/navigation2;1806;https://github.com/ros-planning/navigation2/pull/1806;Replace eloquent with foxy in the install scripts;TRUE;NO;;;;;
+467;ros-planning/navigation2;1835;https://github.com/ros-planning/navigation2/pull/1835;attempt to resolve issues with mixins in CI;TRUE;NO;;;;;
+468;ros-planning/navigation2;1808;https://github.com/ros-planning/navigation2/pull/1808;Refactor parameter interface for plugins;TRUE;NO;;;;;
+469;ros-planning/navigation2;1934;https://github.com/ros-planning/navigation2/pull/1934;Cleanup CircleCI config;TRUE;YES;NO;Build Duration_Unneeded tasks are scheduled in the build process;;;Performance_Remove Unneeded environments/scripts/tasks
+470;ros-planning/navigation2;1956;https://github.com/ros-planning/navigation2/pull/1956;Trigger Dockerhub from cron job rather than Autobuild;TRUE;YES;NO;Build Execution_Build steps are not properly ordered (e.g., static analysis could precede testing to avoid failing it very late);;;Build Policy_Modify the triggering strategy
+471;ros-planning/navigation2;1900;https://github.com/ros-planning/navigation2/pull/1900;Fix memory leak;TRUE;NO;;;;;
+472;ros-planning/navigation2;2034;https://github.com/ros-planning/navigation2/pull/2034;WIP fixing CI changing gazebo base to my fork for testing;TRUE;YES;YES;;Simulators_Functional Correctness;Resources_Change simulator settings;
+473;ros-planning/navigation2;2037;https://github.com/ros-planning/navigation2/pull/2037;Reverting to ros simulation from stevemacenski after patch merged;TRUE;YES;YES;;Simulators_Functional Correctness;Resources_Add better simulators;
+474;ros-planning/navigation2;1942;https://github.com/ros-planning/navigation2/pull/1942;Update Dockerfiles and CI;TRUE;NO;;;;;
+475;ros-planning/navigation2;2115;https://github.com/ros-planning/navigation2/pull/2115;Revert bond core to ros2 from my fork after merging fix;TRUE;NO;;;;;
+476;ros-planning/navigation2;2170;https://github.com/ros-planning/navigation2/pull/2170;attempt at bringing up CI 2158;TRUE;YES;NO;;Flaky Behaviour_Netowork Issues;Flakiness_Fix the code;
+477;ros-planning/navigation2;2172;https://github.com/ros-planning/navigation2/pull/2172;CI resolution Part 3;TRUE;YES;YES;;Flaky Behaviour_Lack of control over resources;Resources_Change simulator settings;
+478;ros-planning/navigation2;2258;https://github.com/ros-planning/navigation2/pull/2258;Reduce RAM usage in CI;TRUE;YES;YES;;Flaky Behaviour_Lack of control over resources;;
+479;ros-planning/navigation2;2263;https://github.com/ros-planning/navigation2/pull/2263;Replaced sensor_msgs PointCloud to sensor_msgs PointCloud2;TRUE;NO;;;;;
+480;ros-planning/navigation2;2295;https://github.com/ros-planning/navigation2/pull/2295;audited and removed unnecessarily complex launch configurations;TRUE;NO;;;;;
+481;ros-planning/navigation2;2335;https://github.com/ros-planning/navigation2/pull/2335;Fix script error in codecov validation;TRUE;NO;;;;;
+482;ros-planning/navigation2;2269;https://github.com/ros-planning/navigation2/pull/2269;Goal Checker selector;TRUE;NO;;;;;
+483;ros-planning/navigation2;2344;https://github.com/ros-planning/navigation2/pull/2344;Rebuild CI images when there are dependency updates;TRUE;YES;NO;Build Duration_Unneeded tasks are scheduled in the build process;;;Performance_Remove Unneeded environments/scripts/tasks
+484;ros-planning/navigation2;2371;https://github.com/ros-planning/navigation2/pull/2371;Initialize environment for when no trigger is tripped;TRUE;YES;NO;Build Triggering;;;
+485;ros-planning/navigation2;2391;https://github.com/ros-planning/navigation2/pull/2391;Use fastcov to speed up coverage for CI;TRUE;YES;NO;Infrastructure Choices_Software_A task is implemented using an unsuitable tool/plugin;;;Maintainability_Replace tools/methods for accomplishing a specific task
+486;ros-planning/navigation2;2401;https://github.com/ros-planning/navigation2/pull/2401;Cache ccache folder in CI workspace;TRUE;YES;NO;Build Dependencies Management_Inappropriate choice about what to cache;;;Performance_Change Caching configuration
+487;ros-planning/navigation2;2392;https://github.com/ros-planning/navigation2/pull/2392;Revert CI image to build from osrf ros2 testing;TRUE;NO;;;;;
+488;ros-planning/navigation2;2405;https://github.com/ros-planning/navigation2/pull/2405;Refactor actions to rebuild CI image from CI;TRUE;YES;NO;Infrastructure Choices_Software_Wrong Choice of the CI/CD framework being used;;;Maintainability_Replace tools/methods for accomplishing a specific task
+489;ros-planning/navigation2;2532;https://github.com/ros-planning/navigation2/pull/2532;remove old build tools;TRUE;YES;NO;Build Execution_Include unneeded environment;;;Performance_Remove Unneeded environments/scripts/tasks
+490;ros-planning/navigation2;2473;https://github.com/ros-planning/navigation2/pull/2473;Spawn turtlebot3 separately;TRUE;YES;YES;;Simulators_Interacting environment;Resources_Change simulator settings;
+491;ros-planning/navigation2;2735;https://github.com/ros-planning/navigation2/pull/2735;increase general test coverage;TRUE;NO;;;;;
+492;ros-planning/navigation2;208;https://github.com/ros-planning/navigation2/pull/208;changing build script language to be more clear;FALSE;YES;NO;Build Output_Build reports contain verbose, irrelevant information;;;Dashboard/Notifications_Improve readability of the build log
+493;ros-planning/navigation2;293;https://github.com/ros-planning/navigation2/pull/293;Small fixes in build_all sh;FALSE;NO;;;;;
+494;ros-planning/navigation2;269;https://github.com/ros-planning/navigation2/pull/269;Move tolerance to param;FALSE;NO;;;;;
+495;ros-planning/navigation2;527;https://github.com/ros-planning/navigation2/pull/527;Disable unstable system test in Travis;FALSE;YES;NO;Build Execution_Pipeline steps/stages are skipped arbitrarily;;;
+496;ros-planning/navigation2;558;https://github.com/ros-planning/navigation2/pull/558;WIP Remove unneccessary additional ROS 2 dependencies;FALSE;YES;NO;Build Dependencies Management_Including unneeded dependencies;;;Performance_Remove Unneeded environments/scripts/tasks
+497;ros-planning/navigation2;984;https://github.com/ros-planning/navigation2/pull/984;WIP Change retry count to 100 for system tests;FALSE;YES;NO;;Flaky Behaviour_Interaction between different features;Flakiness_Retry;
+498;ros-planning/navigation2;1038;https://github.com/ros-planning/navigation2/pull/1038;Split robot specific parameters into separate yaml;FALSE;YES;NO;Build Maintainability_Lengthy build scripts;;;Maintainability_Split build scripts/jobs
+498;ros-planning/navigation2;1038;https://github.com/ros-planning/navigation2/pull/1038;Split robot specific parameters into separate yaml;FALSE;YES;YES;;Throroughness_Phases_Automated HIL testing impossible dues to too many different real devices;;
+499;ros-planning/navigation2;1144;https://github.com/ros-planning/navigation2/pull/1144;multirobot Part1 Spawn multiple robots into Gazebo;FALSE;NO;;;;;
+500;ros-planning/navigation2;1058;https://github.com/ros-planning/navigation2/pull/1058;Add support for multi robot nav2 simulation;FALSE;NO;;;;;
+501;ros-planning/navigation2;1644;https://github.com/ros-planning/navigation2/pull/1644;Added preemption to recovery server;FALSE;NO;;;;;
+502;ros-planning/navigation2;1586;https://github.com/ros-planning/navigation2/pull/1586;Feedback in navigation2 actions;FALSE;NO;;;;;
+503;ros-planning/navigation2;1927;https://github.com/ros-planning/navigation2/pull/1927;test sprint generate report for nav2_system_tests included in coverage report;FALSE;YES;NO;Quality Assurance_Testing_Code coverage tools are run only while performing testing different from unit and integration (e.g., performance testing);;;
+504;ros-planning/navigation2;1928;https://github.com/ros-planning/navigation2/pull/1928;Add BT based implementation of waypoint_follower;FALSE;NO;;;;;
+505;ros-planning/navigation2;2679;https://github.com/ros-planning/navigation2/pull/2679;Fix Multirobot demo add waypoint follower section to params;FALSE;NO;;;;;
+506;ros-planning/navigation2;2579;https://github.com/ros-planning/navigation2/pull/2579;Shim controller;FALSE;NO;;;;;
+507;UAVCAN/libcanard;10;https://github.com/UAVCAN/libcanard/pull/10;Fix clang build Switch to container based build infrastructure;TRUE;NO;;;;;
+508;UAVCAN/libcanard;140;https://github.com/UAVCAN/libcanard/pull/140;SonarQube integration;TRUE;NO;;;;;
+509;UAVCAN/libcanard;187;https://github.com/UAVCAN/libcanard/pull/187;Add docker utility;TRUE;NO;;;;;
+510;UAVCAN/libcanard;180;https://github.com/UAVCAN/libcanard/pull/180;Fix issues with actions;FALSE;NO;;;;;
+511;CopterExpress/clover;34;https://github.com/CopterExpress/clover/pull/34;Image builder ROS environment fix arguments support in chroot scrip;TRUE;NO;;;;;
+512;CopterExpress/clover;62;https://github.com/CopterExpress/clover/pull/62;Add UART article new UART configure of image;TRUE;NO;;;;;
+513;CopterExpress/clover;91;https://github.com/CopterExpress/clover/pull/91;ros Add compressed_image_transport installation;TRUE;NO;;;;;
+514;CopterExpress/clover;102;https://github.com/CopterExpress/clover/pull/102;Use official Raspbian mirror cache downloaded image;TRUE;YES;NO;Build Execution_Rely on a wrong image;;;
+515;CopterExpress/clover;163;https://github.com/CopterExpress/clover/pull/163;Rework gitbook add Clever 4 instruction;TRUE;NO;;;;;
+516;CopterExpress/clover;225;https://github.com/CopterExpress/clover/pull/225;Install pyzbar to image;TRUE;NO;;;;;
+517;CopterExpress/clover;216;https://github.com/CopterExpress/clover/pull/216;Average camera calibration;TRUE;NO;;;;;
+518;CopterExpress/clover;193;https://github.com/CopterExpress/clover/pull/193;Move to Raspbian Buster;TRUE;YES;YES;;Throroughness_Phases_Testing Discrepancies between SIL and HIL;;
+519;CopterExpress/clover;237;https://github.com/CopterExpress/clover/pull/237;My changes to simulator config;TRUE;YES;YES;;Simulators_Integration issues with the CPS;Resources_Change simulator settings;
+520;CopterExpress/clover;254;https://github.com/CopterExpress/clover/pull/254;Add official Clover simulation config;TRUE;NO;;;;;
+521;CopterExpress/clover;300;https://github.com/CopterExpress/clover/pull/300;Simulator Add default ArUco map based on cmit txt;TRUE;NO;;;;;
+522;CopterExpress/clover;335;https://github.com/CopterExpress/clover/pull/335;GitHub Actions image build;TRUE;YES;NO;Build Triggering_Poor build triggering strategy (e.g., build each single commit or, on the contrary, build less than once a day);;;Build Policy_Modify the triggering strategy
+523;CopterExpress/clover;135;https://github.com/CopterExpress/clover/pull/135;ROS Melodic compatibility for aruco_pose package;FALSE;YES;YES;;Throroughness_Phases_Testing Discrepancies between SIL and HIL;;
+523;CopterExpress/clover;135;https://github.com/CopterExpress/clover/pull/135;ROS Melodic compatibility for aruco_pose package;FALSE;YES;NO;Build Maintainability_Customization over a specific environment (e.g., rework for making the system running on a different OS);;;
+524;CopterExpress/clover;103;https://github.com/CopterExpress/clover/pull/103;Echo executing commands in builder;FALSE;NO;;;;;
+525;CopterExpress/clover;333;https://github.com/CopterExpress/clover/pull/333;Github Actions image;FALSE;YES;NO;Build Output_Build reports contain verbose, irrelevant information;;;Dashboard/Notifications_Improve readability of the build log
+526;dartsim/dart;130;https://github.com/dartsim/dart/pull/130;Installing 3rd party library packages from ppa instead of building the sources directly;TRUE;YES;NO;Builld Initialization_Inappropriate build environment clean-up strategy (i.e., whether to (not) use incremental builds);;;Build Process Organization_Update checks in the build process
+527;dartsim/dart;269;https://github.com/dartsim/dart/pull/269;Build test on Windows using AppVeyor;TRUE;NO;;;;;
+528;dartsim/dart;309;https://github.com/dartsim/dart/pull/309;Fix API compatibility of dart 4 3;TRUE;NO;;;;;
+529;dartsim/dart;365;https://github.com/dartsim/dart/pull/365;Add appveyor options for parallel build and detailed log;TRUE;NO;;;;;
+530;dartsim/dart;468;https://github.com/dartsim/dart/pull/468;Update homebrew formula before installing pacakges;TRUE;NO;;;;;
+531;dartsim/dart;486;https://github.com/dartsim/dart/pull/486;Fix build issues on Windows;TRUE;NO;;;;;
+532;dartsim/dart;529;https://github.com/dartsim/dart/pull/529;Reduce Travis CI build log on Mac;TRUE;YES;NO;Build Output_Build reports contain verbose, irrelevant information;;;Dashboard/Notifications_Improve readability of the build log
+533;dartsim/dart;543;https://github.com/dartsim/dart/pull/543;Add cmake option DART_MSVC_DEFAULT_OPTIONS for Visual Studio build;TRUE;YES;NO;Infrastructure Choices_Software_External tools are used with their default configurations;;;Maintainability_Replace tools/methods for accomplishing a specific task
+534;dartsim/dart;638;https://github.com/dartsim/dart/pull/638;Fix invalid coveralls report file generation with multiline commit message;TRUE;NO;;;;;
+535;dartsim/dart;650;https://github.com/dartsim/dart/pull/650;Travis build test with Bullet;TRUE;NO;;;;;
+536;dartsim/dart;682;https://github.com/dartsim/dart/pull/682;Configure Travis to treat warnings as errors;TRUE;YES;NO;Build Outcome_A build is succeeded when a task is failed or an error is thrown;;;Build Policy_Change how the build outcome is determined
+537;dartsim/dart;884;https://github.com/dartsim/dart/pull/884;Install libccd enabled ODE on macOS;TRUE;NO;;;;;
+538;dartsim/dart;932;https://github.com/dartsim/dart/pull/932;Cache apt and Homebrew to speed up Travis CI;TRUE;YES;NO;Infrastructure Choices_Software_A task is implemented using an unsuitable tool/plugin;;;Performance_Change Caching configuration
+539;dartsim/dart;956;https://github.com/dartsim/dart/pull/956;Fix various build issues with Visual Studio 2017 15 5 3;TRUE;YES;NO;Build Output_Build reports contain verbose, irrelevant information;;;Dashboard/Notifications_Improve readability of the build log
+539;dartsim/dart;956;https://github.com/dartsim/dart/pull/956;Fix various build issues with Visual Studio 2017 15 5 3;TRUE;YES;NO;Build Maintainability_Customization over a specific environment (e.g., rework for making the system running on a different OS);;;
+540;dartsim/dart;998;https://github.com/dartsim/dart/pull/998;Add installation test to Travis;TRUE;NO;;;;;
+541;dartsim/dart;1018;https://github.com/dartsim/dart/pull/1018;Update vcpkg before installing packages;TRUE;NO;;;;;
+542;dartsim/dart;1015;https://github.com/dartsim/dart/pull/1015;Add in source build script for examples tutorials;TRUE;NO;;;;;
+543;dartsim/dart;1041;https://github.com/dartsim/dart/pull/1041;Update CI scripts to exit immediately on failure;TRUE;YES;NO;Build Outcome_A build is succeeded when a task is failed or an error is thrown;;;Build Policy_Change how the build outcome is determined
+544;dartsim/dart;887;https://github.com/dartsim/dart/pull/887;Add an analytic IK solver IkFast;TRUE;NO;;;;;
+545;dartsim/dart;1196;https://github.com/dartsim/dart/pull/1196;Setup Azure Pipelines;TRUE;NO;;;;;
+546;dartsim/dart;1212;https://github.com/dartsim/dart/pull/1212;Drop supporting Trusty and use imported targets for dependencies;TRUE;NO;;;;;
+547;dartsim/dart;1219;https://github.com/dartsim/dart/pull/1219;Fix failure of ContactConstraint ContactWithKinematicJoint on Ubuntu 32 bit;TRUE;NO;;;;;
+548;dartsim/dart;1223;https://github.com/dartsim/dart/pull/1223;Fail to find a component if one of its external dependencies is missing;TRUE;YES;NO;Build Output_Some tasks are executed without clearly reporting their results in the build output;;;Build Policy_Change how the build outcome is determined
+549;dartsim/dart;1225;https://github.com/dartsim/dart/pull/1225;Support multiple CMake conventions for _FOUND variable;TRUE;NO;;;;;
+550;dartsim/dart;1269;https://github.com/dartsim/dart/pull/1269;Add mojave test case;TRUE;NO;;;;;
+551;dartsim/dart;1296;https://github.com/dartsim/dart/pull/1296;Disable building on Appveyor until CMake 3 14 installed;TRUE;NO;;;;;
+552;dartsim/dart;1307;https://github.com/dartsim/dart/pull/1307;Switch to pybind11 for dartpy;TRUE;NO;;;;;
+553;dartsim/dart;1341;https://github.com/dartsim/dart/pull/1341;Update build scripts for uploading dartpy to PyPI;TRUE;NO;;;;;
+554;dartsim/dart;1390;https://github.com/dartsim/dart/pull/1390;Set Azure timeout to 2 hours for all the jobs;TRUE;NO;;;;;
+555;dartsim/dart;1400;https://github.com/dartsim/dart/pull/1400;Azure install vcpkg dependencies for utils component;TRUE;NO;;;;;
+556;dartsim/dart;1419;https://github.com/dartsim/dart/pull/1419;Split build tests to balance loads on CI services;TRUE;YES;NO;"Build Duration_Build time for the ""commit stage"" overcomes the 10-minutes rule";;;Performance_Introduce Parallelization
+557;dartsim/dart;1458;https://github.com/dartsim/dart/pull/1458;Use pre built vcpkg packages to reduce build time;TRUE;YES;NO;Builld Initialization_Inappropriate build environment clean-up strategy (i.e., whether to (not) use incremental builds);;;Build Policy_Modify the triggering strategy
+558;dartsim/dart;1486;https://github.com/dartsim/dart/pull/1486;Add build on Groovy to GitHub Actions;TRUE;NO;;;;;
+559;dartsim/dart;1509;https://github.com/dartsim/dart/pull/1509;Fix compatibility with clang cl;TRUE;NO;;;;;
+560;dartsim/dart;1510;https://github.com/dartsim/dart/pull/1510;Fix MSVC linking for assimp and fcl;TRUE;NO;;;;;
+561;dartsim/dart;1515;https://github.com/dartsim/dart/pull/1515;Fix dartpy build in Dockerfile;TRUE;NO;;;;;
+562;dartsim/dart;1518;https://github.com/dartsim/dart/pull/1518;Cleanup CI settings;TRUE;NO;;;;;
+563;dartsim/dart;1530;https://github.com/dartsim/dart/pull/1530;Fix installing dependencies on macOS image;TRUE;NO;;;;;
+564;dartsim/dart;1541;https://github.com/dartsim/dart/pull/1541;Fix Aspect Composite relate tests on Windows MSVC by marking every class with virtual base with appropriate pragmas;TRUE;NO;;;;;
+565;dartsim/dart;1552;https://github.com/dartsim/dart/pull/1552;Replace OpenGL dependency CMake variables with targets;TRUE;NO;;;;;
+566;dartsim/dart;1560;https://github.com/dartsim/dart/pull/1560;Update required minimum versions CMake 3 10 2 and C C 17;TRUE;NO;;;;;
+567;dartsim/dart;1566;https://github.com/dartsim/dart/pull/1566;Move gh pages deploy from Travis to GitHub Actions;TRUE;NO;;;;;
+568;dartsim/dart;1582;https://github.com/dartsim/dart/pull/1582;Add archlinux to CI;TRUE;NO;;;;;
+569;dartsim/dart;1600;https://github.com/dartsim/dart/pull/1600;Increase required C standard to C 17;TRUE;NO;;;;;
+570;dartsim/dart;1629;https://github.com/dartsim/dart/pull/1629;Treat warnings as errors on release mode;TRUE;YES;NO;Build Outcome_A build is succeeded when a task is failed or an error is thrown;;;Build Policy_Change how the build outcome is determined
+571;dartsim/dart;1635;https://github.com/dartsim/dart/pull/1635;Clean up unit tests;TRUE;YES;NO;Repository Structure_Test cases are not organized in folders based on their purposes;;;
+572;dartsim/dart;1640;https://github.com/dartsim/dart/pull/1640;Use fclConfig cmake;TRUE;NO;;;;;
+573;dartsim/dart;913;https://github.com/dartsim/dart/pull/913;Switch to vcpkg for installing DART dependencies on Windows;FALSE;YES;NO;Build Dependencies Management;;;Build Policy_Change the dependencies' installation policy
+574;dartsim/dart;995;https://github.com/dartsim/dart/pull/995;Install dependencies only when not installed;FALSE;YES;NO;Build Dependencies Management;;;Build Process Organization_Update checks in the build process
+575;dartsim/dart;1097;https://github.com/dartsim/dart/pull/1097;Add CI scripts for automatic API document generation;FALSE;NO;;;;;
+576;dartsim/dart;1194;https://github.com/dartsim/dart/pull/1194;Set up CI with Azure Pipelines;FALSE;NO;;;;;
+577;dartsim/dart;1356;https://github.com/dartsim/dart/pull/1356;Add memcheck to build script and CI test;FALSE;NO;;;;;
+578;rusefi/rusefi;389;https://github.com/rusefi/rusefi/pull/389;Fixed Posix simulator;TRUE;NO;;;;;
+579;rusefi/rusefi;622;https://github.com/rusefi/rusefi/pull/622;Simulator make add r option;TRUE;NO;;;;;
+580;rusefi/rusefi;953;https://github.com/rusefi/rusefi/pull/953;Sensors composition inheritance;TRUE;NO;;;;;
+581;rusefi/rusefi;825;https://github.com/rusefi/rusefi/pull/825;Enable link time optimization;TRUE;NO;;;;;
+582;rusefi/rusefi;1018;https://github.com/rusefi/rusefi/pull/1018;Add workflow for firmware fix simulator build trigger builds on PR;TRUE;NO;;;;;
+583;rusefi/rusefi;1148;https://github.com/rusefi/rusefi/pull/1148;LGTM configuration file;TRUE;NO;;;;;
+584;rusefi/rusefi;1211;https://github.com/rusefi/rusefi/pull/1211;save some ram;TRUE;NO;;;;;
+585;rusefi/rusefi;1414;https://github.com/rusefi/rusefi/pull/1414;board subaru ej20g remove;TRUE;NO;;;;;
+586;rusefi/rusefi;1507;https://github.com/rusefi/rusefi/pull/1507;Remove duplicated workflow;TRUE;YES;NO;Build Execution_Include unneeded environment;;;Performance_Remove Unneeded environments/scripts/tasks
+587;rusefi/rusefi;1543;https://github.com/rusefi/rusefi/pull/1543;gen_config cache;TRUE;NO;;;;;
+588;rusefi/rusefi;1555;https://github.com/rusefi/rusefi/pull/1555;fix signature;TRUE;NO;;;;;
+589;rusefi/rusefi;1583;https://github.com/rusefi/rusefi/pull/1583;Use github actions to build and upload bundles;TRUE;NO;;;;;
+590;rusefi/rusefi;1619;https://github.com/rusefi/rusefi/pull/1619;Only run push job if commit found no changes;TRUE;YES;NO;Build Triggering_Poor build triggering strategy (e.g., build each single commit or, on the contrary, build less than once a day);;;Build Process Organization_Update checks in the build process
+591;rusefi/rusefi;716;https://github.com/rusefi/rusefi/pull/716;More compatibility for ADC_inputs etc;TRUE;NO;;;;;
+592;rusefi/rusefi;1820;https://github.com/rusefi/rusefi/pull/1820;Cypress CI;TRUE;NO;;;;;
+593;rusefi/rusefi;1891;https://github.com/rusefi/rusefi/pull/1891;disable i2c other unused features;TRUE;NO;;;;;
+594;rusefi/rusefi;1905;https://github.com/rusefi/rusefi/pull/1905;daily builds;TRUE;NO;;;;;
+595;rusefi/rusefi;2106;https://github.com/rusefi/rusefi/pull/2106;Partition configs by board type;TRUE;NO;;;;;
+596;rusefi/rusefi;2070;https://github.com/rusefi/rusefi/pull/2070;Trigger action;TRUE;YES;NO;Build Triggering_Some pipeline's tasks are started manually;;;
+597;rusefi/rusefi;2256;https://github.com/rusefi/rusefi/pull/2256;improve build time by 40;TRUE;NO;;;;;
+598;rusefi/rusefi;2311;https://github.com/rusefi/rusefi/pull/2311;include board c from hw_ports mk;TRUE;YES;YES;;Throroughness_Phases_Automated HIL testing impossible dues to too many different real devices;;
+599;rusefi/rusefi;2304;https://github.com/rusefi/rusefi/pull/2304;add proteus hw ci yaml;TRUE;NO;;;;;
+600;rusefi/rusefi;2371;https://github.com/rusefi/rusefi/pull/2371;set MCU type properly;TRUE;NO;;;;;
+601;rusefi/rusefi;2377;https://github.com/rusefi/rusefi/pull/2377;deduplication in halconf;TRUE;NO;;;;;
+602;rusefi/rusefi;1081;https://github.com/rusefi/rusefi/pull/1081;scripts add scripts for linux;TRUE;NO;;;;;
+603;rusefi/rusefi;2588;https://github.com/rusefi/rusefi/pull/2588;add option for manually running workflow;TRUE;YES;NO;Build Triggering_Poor build triggering strategy (e.g., build each single commit or, on the contrary, build less than once a day);;;Build Policy_Modify the triggering strategy
+604;rusefi/rusefi;2657;https://github.com/rusefi/rusefi/pull/2657;Proteus legacy vs non legacy F7;TRUE;NO;;;;;
+605;rusefi/rusefi;2688;https://github.com/rusefi/rusefi/pull/2688;Update main yaml;TRUE;NO;;;;;
+606;rusefi/rusefi;2717;https://github.com/rusefi/rusefi/pull/2717;make the simulator usable;TRUE;NO;;;;;
+607;rusefi/rusefi;2738;https://github.com/rusefi/rusefi/pull/2738;Update main yaml;TRUE;NO;;;;;
+608;rusefi/rusefi;2794;https://github.com/rusefi/rusefi/pull/2794;simulator usability;TRUE;YES;YES;;Simulators_Installation and Setting;Resources_Change simulator settings;
+609;rusefi/rusefi;2798;https://github.com/rusefi/rusefi/pull/2798;don t include simulator debug info;TRUE;YES;YES;;Simulators_Installation and Setting;Resources_Change simulator settings;
+610;rusefi/rusefi;2843;https://github.com/rusefi/rusefi/pull/2843;try something with hardware ci;TRUE;YES;NO;Build Maintainability_Build configurations are cloned in different environments;;;Maintainability_Use matrix expansion feature or list job configuration explicitly
+611;rusefi/rusefi;2977;https://github.com/rusefi/rusefi/pull/2977;Sensor pins;TRUE;NO;;;;;
+612;rusefi/rusefi;2985;https://github.com/rusefi/rusefi/pull/2985;O2 input;TRUE;NO;;;;;
+613;rusefi/rusefi;3042;https://github.com/rusefi/rusefi/pull/3042;Fix Pinouts bug;TRUE;NO;;;;;
+614;rusefi/rusefi;3056;https://github.com/rusefi/rusefi/pull/3056;shorter CI names;TRUE;YES;NO;Build Maintainability_Missing/Poor strict naming convention for build jobs;;;Maintainability_Rename steps/tasks/scripts/jobs
+615;rusefi/rusefi;3079;https://github.com/rusefi/rusefi/pull/3079;Feature 3014 migrating to gradle;TRUE;NO;;;;;
+616;rusefi/rusefi;3142;https://github.com/rusefi/rusefi/pull/3142;Update options port usage and pin location;TRUE;NO;;;;;
+617;rusefi/rusefi;3188;https://github.com/rusefi/rusefi/pull/3188;Bunch of small fixes related to EG33 board;TRUE;NO;;;;;
+618;rusefi/rusefi;3204;https://github.com/rusefi/rusefi/pull/3204;Update main yaml;TRUE;NO;;;;;
+619;rusefi/rusefi;3203;https://github.com/rusefi/rusefi/pull/3203;Board subaru fix pinout again and again;TRUE;NO;;;;;
+620;rusefi/rusefi;3297;https://github.com/rusefi/rusefi/pull/3297;Make Proteus B23P14 ground;TRUE;YES;YES;;HIL_Interface with HIL;;
+621;rusefi/rusefi;3316;https://github.com/rusefi/rusefi/pull/3316;dead code from MAP;TRUE;NO;;;;;
+622;rusefi/rusefi;3342;https://github.com/rusefi/rusefi/pull/3342;ethernet;TRUE;NO;;;;;
+623;rusefi/rusefi;3360;https://github.com/rusefi/rusefi/pull/3360;Fix simulator;TRUE;YES;YES;;Simulators_Installation and Setting;Resources_Change simulator settings;
+624;rusefi/rusefi;3348;https://github.com/rusefi/rusefi/pull/3348;enable ethernet on atlas;TRUE;NO;;;;;
+625;rusefi/rusefi;3394;https://github.com/rusefi/rusefi/pull/3394;Use SSH to upload firmware;TRUE;NO;;;;;
+626;rusefi/rusefi;3407;https://github.com/rusefi/rusefi/pull/3407;Use SSH for remaining workflows;TRUE;NO;;;;;
+627;rusefi/rusefi;3445;https://github.com/rusefi/rusefi/pull/3445;Prepare for openblt;TRUE;NO;;;;;
+628;rusefi/rusefi;3489;https://github.com/rusefi/rusefi/pull/3489;unit test build times;TRUE;YES;NO;Build Duration_Unneeded tasks are scheduled in the build process;;;Build Process Organization_Update checks in the build process
+629;rusefi/rusefi;3486;https://github.com/rusefi/rusefi/pull/3486;Openblt deliver;TRUE;NO;;;;;
+630;rusefi/rusefi;3505;https://github.com/rusefi/rusefi/pull/3505;Compile each project s PCH to a separate file to reduce developer friction;TRUE;YES;NO;Builld Initialization_Inappropriate build environment clean-up strategy (i.e., whether to (not) use incremental builds);;;Build Process Organization_Reorganize build steps order of execution
+631;rusefi/rusefi;3555;https://github.com/rusefi/rusefi/pull/3555;Use Valgrind to detect unitialized variable references;TRUE;YES;NO;Build Execution_Build steps are not properly ordered (e.g., static analysis could precede testing to avoid failing it very late);;;Build Process Organization_Reorganize build steps order of execution
+632;rusefi/rusefi;3563;https://github.com/rusefi/rusefi/pull/3563;simulator gets a heap;TRUE;YES;YES;;Simulators_Installation and Setting;Resources_Change simulator settings;
+633;rusefi/rusefi;3476;https://github.com/rusefi/rusefi/pull/3476;Basic framework for high pressure fuel pump control;TRUE;NO;;;;;
+634;rusefi/rusefi;3582;https://github.com/rusefi/rusefi/pull/3582;detect more overflows with asan;TRUE;YES;NO;Quality Assurance_Quality checks/gates_Lacking relevant quality gates (e.g., memory issues);;;
+635;rusefi/rusefi;3598;https://github.com/rusefi/rusefi/pull/3598;simulator writes binary log;TRUE;YES;YES;;Barriers_Resources_Limited Sw/Hw Resources;;
+636;rusefi/rusefi;3600;https://github.com/rusefi/rusefi/pull/3600;Update the simulator TS port macros to match the rest of the product;TRUE;NO;;;;;
+637;rusefi/rusefi;3610;https://github.com/rusefi/rusefi/pull/3610;setup script adjustments;TRUE;NO;;;;;
+638;rusefi/rusefi;3641;https://github.com/rusefi/rusefi/pull/3641;Hellen 64 connector image;TRUE;NO;;;;;
+639;rusefi/rusefi;3651;https://github.com/rusefi/rusefi/pull/3651;fix commit on every push;TRUE;YES;YES;;HIL_Interface with HIL;;
+640;rusefi/rusefi;3706;https://github.com/rusefi/rusefi/pull/3706;Do compiler check first;TRUE;YES;NO;Build Outcome_Do not fail a build as soon as a failure/error is encountered;;;Build Process Organization_Reorganize build steps order of execution
+641;rusefi/rusefi;3729;https://github.com/rusefi/rusefi/pull/3729;Update main yaml;TRUE;NO;;;;;
+642;rusefi/rusefi;3731;https://github.com/rusefi/rusefi/pull/3731;96 00 miata connector site pic;TRUE;NO;;;;;
+643;rusefi/rusefi;406;https://github.com/rusefi/rusefi/pull/406;BOARDSRC_CPP and compatibility issues pull request;TRUE;NO;;;;;
+644;rusefi/rusefi;520;https://github.com/rusefi/rusefi/pull/520;Idle with incremental PID CIC EFI_IDLE_INCREMENTAL_PID_CIC;TRUE;NO;;;;;
+645;rusefi/rusefi;687;https://github.com/rusefi/rusefi/pull/687;Migrating to chibios18;TRUE;YES;NO;Build Execution_Include unneeded environment;;;Performance_Cleanup build matrix
+646;rusefi/rusefi;929;https://github.com/rusefi/rusefi/pull/929;add sensor framework tests;TRUE;YES;YES;;Throroughness_Phases_Automated HIL testing impossible dues to too many different real devices;;
+647;rusefi/rusefi;1020;https://github.com/rusefi/rusefi/pull/1020;Build prometheus with makefiles instead of batch scripts;TRUE;NO;;;;;
+648;rusefi/rusefi;1132;https://github.com/rusefi/rusefi/pull/1132;Stricter compile options;TRUE;YES;NO;Build Outcome_A build is succeeded when a task is failed or an error is thrown;;;Build Policy_Change how the build outcome is determined
+649;rusefi/rusefi;1128;https://github.com/rusefi/rusefi/pull/1128;Switch to GitHub hosted compiler;TRUE;YES;NO;Build Dependencies Management;;;Build Policy_Change the dependencies' installation policy
+650;rusefi/rusefi;1184;https://github.com/rusefi/rusefi/pull/1184;Move can_hw cpp in to drivers folder;TRUE;NO;;;;;
+651;rusefi/rusefi;1520;https://github.com/rusefi/rusefi/pull/1520;Fix boards;TRUE;NO;;;;;
+652;rusefi/rusefi;1544;https://github.com/rusefi/rusefi/pull/1544;gen_live_documentation cache;TRUE;NO;;;;;
+653;rusefi/rusefi;1562;https://github.com/rusefi/rusefi/pull/1562;Convert integration_and_primary_bundle scripts to sh;TRUE;NO;;;;;
+654;rusefi/rusefi;1618;https://github.com/rusefi/rusefi/pull/1618;Upload build artifacts;TRUE;YES;NO;Build Execution_Tasks are not properly distributed among different build stages (e.g., load testing is done in the commit stage);;;Build Process Organization_Reorganize build steps order of execution
+655;rusefi/rusefi;1691;https://github.com/rusefi/rusefi/pull/1691;Kicad diff action;TRUE;NO;;;;;
+656;rusefi/rusefi;1582;https://github.com/rusefi/rusefi/pull/1582;trace global lock unlock;TRUE;NO;;;;;
+657;rusefi/rusefi;877;https://github.com/rusefi/rusefi/pull/877;Small fix for simulator bootloader;TRUE;NO;;;;;
+658;rusefi/rusefi;1829;https://github.com/rusefi/rusefi/pull/1829;add analog inputs to switches;TRUE;NO;;;;;
+659;rusefi/rusefi;1910;https://github.com/rusefi/rusefi/pull/1910;fix MRE digital input mapping;TRUE;NO;;;;;
+660;rusefi/rusefi;1951;https://github.com/rusefi/rusefi/pull/1951;fix actions;TRUE;NO;;;;;
+661;rusefi/rusefi;2012;https://github.com/rusefi/rusefi/pull/2012;unit tests in clang;TRUE;YES;NO;Build Maintainability_Customization over a specific environment (e.g., rework for making the system running on a different OS);;;
+662;rusefi/rusefi;2185;https://github.com/rusefi/rusefi/pull/2185;Fix EEC IV;TRUE;YES;YES;;HIL_Interface with HIL;;
+663;rusefi/rusefi;2266;https://github.com/rusefi/rusefi/pull/2266;hardware ci tweaks;TRUE;YES;NO;Build Maintainability_Missing/Poor strict naming convention for build jobs;;;Maintainability_Rename steps/tasks/scripts/jobs
+664;rusefi/rusefi;2239;https://github.com/rusefi/rusefi/pull/2239;iBOM improvements;TRUE;NO;;;;;
+665;rusefi/rusefi;701;https://github.com/rusefi/rusefi/pull/701;tle6240 and external gpio chips API preliminary;FALSE;NO;;;;;
+666;rusefi/rusefi;1135;https://github.com/rusefi/rusefi/pull/1135;Do deep clones for ci builds;FALSE;NO;;;;;
+667;rusefi/rusefi;971;https://github.com/rusefi/rusefi/pull/971;Remove ICU;FALSE;NO;;;;;
+668;rusefi/rusefi;2014;https://github.com/rusefi/rusefi/pull/2014;fix warnings found by clang;FALSE;NO;;;;;
+669;rusefi/rusefi;2908;https://github.com/rusefi/rusefi/pull/2908;Hw crc;FALSE;NO;;;;;
+670;rusefi/rusefi;2922;https://github.com/rusefi/rusefi/pull/2922;Update main yaml;FALSE;NO;;;;;

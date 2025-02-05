@@ -1,0 +1,311 @@
+Project;Pull Number;Contain a Challenge or Barrier? First;Contain a Challenge or Barrier? Second;Is CPS Specific? Fisrt;Is CPS Specific? Second;Bad Practice First;Bad Practice Second;Challenge/Barrier First;Challenge/Barrier Second;Mitigation Fisrt;Mitigation Second;Restructuring First;Restructuring Second
+PX4/PX4-SITL_gazebo;36;NO;NO;;;;;;;;;;
+PX4/PX4-SITL_gazebo;77;NO;NO;;;;;;;;;;
+PX4/PX4-SITL_gazebo;106;NO;NO;;;;;;;;;;
+PX4/PX4-SITL_gazebo;143;NO;NO;;;;;;;;;;
+PX4/PX4-SITL_gazebo;136;NO;YES;;NO;;Build Dependencies Management;;;;;;
+PX4/PX4-SITL_gazebo;185;YES;NO;NO;;Build Outcome_A build is succeeded when a task is failed or an error is thrown;;;;;;Build Policy_Change how the build outcome is determined;
+PX4/PX4-SITL_gazebo;200;NO;NO;;;;;;;;;;
+PX4/PX4-SITL_gazebo;203;NO;NO;;;;;;;;;;
+PX4/PX4-SITL_gazebo;220;NO;NO;;;;;;;;;;
+PX4/PX4-SITL_gazebo;243;NO;YES;;NO;;Build Dependencies Management_Including unneeded dependencies;;;;;;Build Process Organization_Update checks in the build process
+PX4/PX4-SITL_gazebo;311;NO;NO;;;;;;;;;;
+PX4/PX4-SITL_gazebo;351;NO;NO;;;;;;;;;;
+PX4/PX4-SITL_gazebo;395;YES;NO;NO;;Build Dependencies Management;;;;;;Build Process Organization_Update checks in the build process;
+PX4/PX4-SITL_gazebo;393;NO;NO;;;;;;;;;;
+PX4/PX4-SITL_gazebo;412;NO;NO;;;;;;;;;;
+PX4/PX4-SITL_gazebo;502;NO;NO;;;;;;;;;;
+PX4/PX4-SITL_gazebo;528;NO;NO;;;;;;;;;;
+PX4/PX4-SITL_gazebo;570;YES;NO;YES;;;;Hard to interface CI service with simulator;;;;Build Infrastructure_Add new CI service;
+PX4/PX4-SITL_gazebo;576;YES;YES;YES;YES;;;Flaky Behaviour_Lack of control over resources;Flaky Behaviour_Lack of control over resources;Flakiness_Adjust Pipeline Configuration;Flakiness_Adjust Pipeline Configuration
+PX4/PX4-SITL_gazebo;574;YES;NO;NO;;Build Outcome;;;;;;Build Policy_Change how the build outcome is determined;
+PX4/PX4-SITL_gazebo;630;NO;NO;;;;;;;;;;
+PX4/PX4-SITL_gazebo;663;NO;NO;;;;;;;;;;
+PX4/PX4-SITL_gazebo;731;YES;YES;YES;YES;;;Simulators_Interacting environment;Simulators_Limited Functionality;Resources_Evolve simulator;;;
+PX4/PX4-SITL_gazebo;146;NO;NO;;;;;;;;;;
+PX4/PX4-SITL_gazebo;240;NO;NO;;;;;;;;;;
+PX4/PX4-SITL_gazebo;357;NO;NO;;;;;;;;;;
+PX4/PX4-SITL_gazebo;473;NO;YES;;NO;;Builld Initialization_Inappropriate build environment clean-up strategy (i.e., whether to (not) use incremental builds);;;;;;
+PX4/PX4-SITL_gazebo;473;YES;YES;NO;NO;Build Dependencies Management_Inappropriate choice about what to cache;Build Dependencies Management_Inappropriate choice about what to cache;;;;;;
+PX4/PX4-SITL_gazebo;547;NO;NO;;;;;;;;;;
+PX4/PX4-SITL_gazebo;578;NO;NO;;;;;;;;;;
+PX4/PX4-SITL_gazebo;505;NO;NO;;;;;;;;;;
+PX4/PX4-SITL_gazebo;589;NO;NO;;;;;;;;;;
+PX4/PX4-SITL_gazebo;749;NO;NO;;;;;;;;;;
+linux-can/can-utils;97;NO;YES;;NO;;Build Outcome_A build is succeeded when a task is failed or an error is thrown;;;;;;
+linux-can/can-utils;254;NO;NO;;;;;;;;;;
+linux-can/can-utils;325;NO;NO;;;;;;;;;;
+linux-can/can-utils;243;NO;NO;;;;;;;;;;
+linux-can/can-utils;320;NO;NO;;;;;;;;;;
+ArduPilot/apm_planner;1046;YES;NO;YES;;;;Simulators_Functional Correctness;;Resources_Change simulator settings;;;
+ArduPilot/apm_planner;1070;YES;YES;NO;NO;Build Dependencies Management_Including unneeded dependencies;Build Dependencies Management_Including unneeded dependencies;;;;;Build Policy_Change the dependencies' installation policy;Performance_Remove Unneeded environments/scripts/tasks
+ArduPilot/apm_planner;1135;NO;NO;;;;;;;;;;
+ArduPilot/apm_planner;1191;NO;NO;;;;;;;;;;
+ArduPilot/apm_planner;1192;NO;NO;;;;;;;;;;
+ArduPilot/apm_planner;10;NO;NO;;;;;;;;;;
+ArduPilot/apm_planner;94;NO;NO;;;;;;;;;;
+ArduPilot/apm_planner;171;YES;YES;YES;YES;;;HiL interfacing issue;Simulators_Functional Correctness;Resources_Change HiL configuration;;;
+ArduPilot/apm_planner;588;NO;NO;;;;;;;;;;
+ArduPilot/apm_planner;775;NO;NO;;;;;;;;;;
+ArduPilot/apm_planner;954;YES;NO;NO;;;;Pipeline Properties_Time_Build time too long;;;;Infrastructure_Introduce Containerization;
+simbody/simbody;25;YES;NO;NO;;;;Pipeline Properties_Time_Build time too long;;;;Performance_Remove Unneeded environments/scripts/tasks;
+simbody/simbody;200;NO;NO;;;;;;;;;;
+simbody/simbody;202;NO;NO;;;;;;;;;;
+simbody/simbody;269;NO;NO;;;;;;;;;;
+simbody/simbody;286;YES;NO;NO;;Build Output_Some tasks are executed without clearly reporting their results in the build output;;;;;;Dashboard/Notifications_Improve readability of the build log;
+simbody/simbody;339;YES;YES;NO;NO;Build Maintainability_Absolute/machine-dependent paths are used;Build Maintainability_Absolute/machine-dependent paths are used;;;;;Maintainability_Replace tools/methods for accomplishing a specific task;Maintainability_Replace tools/methods for accomplishing a specific task
+simbody/simbody;417;NO;NO;;;;;;;;;;
+simbody/simbody;445;NO;NO;;;;;;;;;;
+simbody/simbody;481;YES;NO;YES;;Build Maintainability_Customization over a specific environment (e.g., rework for making the system running on a different OS);;;;;;Build Process Organization_Add new build matrix environment;
+simbody/simbody;551;YES;NO;NO;;Build Output_Some tasks are executed without clearly reporting their results in the build output;Build Output_Some tasks are executed without clearly reporting their results in the build output;;;;;Dashboard/Notifications_Improve readability of the build log;Dashboard/Notifications_Improve readability of the build log
+simbody/simbody;615;NO;NO;;;;;;;;;;
+simbody/simbody;698;YES;NO;YES;;Infrastructure Choices_Software_Wrong Choice of the CI/CD framework being used;;;;;;Build Infrastructure_Add new CI service;
+simbody/simbody;421;YES;YES;NO;NO;;;Pipeline Properties_Time_Build time too long;Pipeline Properties_Time_Build time too long;;;Infrastructure_Introduce Containerization;Infrastructure_Introduce Containerization
+ompl/ompl;89;NO;NO;;;;;;;;;;
+ompl/ompl;96;YES;YES;NO;NO;Build Dependencies Management;Build Dependencies Management;;;;;Build Policy_Change the dependencies' installation policy;Build Policy_Change the dependencies' installation policy
+ros-planning/navigation2;159;NO;NO;;;;;;;;;;
+ros-planning/navigation2;205;YES;YES;YES;NO;;;Pipeline Properties_Time_Build time too long;Pipeline Properties_Time_Build time too long;;;Build Policy_Introduce/Remove nightly builds;
+ros-planning/navigation2;237;NO;YES;;NO;;Build Dependencies Management;;;;;;
+ros-planning/navigation2;244;NO;NO;;;;;;;;;;
+ros-planning/navigation2;388;NO;NO;;;;;;;;;;
+ros-planning/navigation2;368;YES;NO;NO;;;;Flaky Behaviour_Interaction between different features;;Flakiness_Retry;;;
+ros-planning/navigation2;458;YES;YES;NO;NO;Build Dependencies Management;Build Dependencies Management;;;;;Build Policy_Change the dependencies' installation policy;Build Policy_Change the dependencies' installation policy
+ros-planning/navigation2;437;NO;NO;;;;;;;;;;
+ros-planning/navigation2;475;NO;NO;;;;;;;;;;
+ros-planning/navigation2;139;NO;NO;;;;;;;;;;
+ros-planning/navigation2;513;NO;NO;;;;;;;;;;
+ros-planning/navigation2;553;YES;YES;NO;NO;Build Output_Some tasks are executed without clearly reporting their results in the build output;Build Process Definition_Monolithic builds (i.e., builds not decomposed into specific, cohesive jobs, when this is appropriate) are used in the pipeline;;;;;Dashboard/Notifications_Improve readability of the build log;Maintainability_Split build scripts/jobs
+ros-planning/navigation2;598;YES;YES;NO;NO;;;Flaky Behaviour_Interaction between different features;Flaky Behaviour_Interaction between different features;Flakiness_Retry;;;
+ros-planning/navigation2;670;YES;NO;YES;;;;Simulators_Limited Functionality;;Resources_Change simulator settings;;;
+ros-planning/navigation2;693;NO;NO;;;;;;;;;;
+ros-planning/navigation2;797;NO;YES;;NO;;Build Dependencies Management_Inappropriate choice about what to cache;;;;;;
+ros-planning/navigation2;843;YES;YES;YES;YES;;;Simulators_Real-Time Properties;Simulators_Real-Time Properties;Resources_Change simulator settings;Resources_Change simulator settings;;
+ros-planning/navigation2;606;NO;NO;;;;;;;;;;
+ros-planning/navigation2;962;NO;NO;;;;;;;;;;
+ros-planning/navigation2;1088;NO;NO;;;;;;;;;;
+ros-planning/navigation2;1118;NO;NO;;;;;;;;;;
+ros-planning/navigation2;1122;YES;YES;NO;NO;Build Process Definition_Monolithic builds (i.e., builds not decomposed into specific, cohesive jobs, when this is appropriate) are used in the pipeline;Build Process Definition_Monolithic builds (i.e., builds not decomposed into specific, cohesive jobs, when this is appropriate) are used in the pipeline;;;;;Build Process Organization_Restructure jobs and/or stages;Infrastructure_Introduce Containerization
+ros-planning/navigation2;1146;NO;YES;;YES;;;;Simulators_Limited Functionality;;;;
+ros-planning/navigation2;1176;NO;NO;;;;;;;;;;
+ros-planning/navigation2;1119;NO;YES;;NO;;;;Pipeline Properties_Time_Build time too long;;;;Performance_Change Caching configuration
+ros-planning/navigation2;1243;NO;NO;;;;;;;;;;
+ros-planning/navigation2;1287;YES;YES;NO;NO;;;Flaky Behaviour_Timing Issues;Pipeline Properties_Time_Timeout Estimation;Flakiness_Fix the code;;;
+ros-planning/navigation2;1249;NO;NO;;;;;;;;;;
+ros-planning/navigation2;1313;NO;NO;;;;;;;;;;
+ros-planning/navigation2;1045;NO;NO;;;;;;;;;;
+ros-planning/navigation2;1425;YES;YES;NO;NO;Build Maintainability_Missing smoke test (tests to verify the testability of the build);Build Dependencies Management;;;;;Build Process Organization_Repair smoke test;
+ros-planning/navigation2;1510;NO;NO;;;;;;;;;;
+ros-planning/navigation2;1509;NO;YES;;NO;;;;Flaky Behaviour_Interaction between different features;;;;
+ros-planning/navigation2;1573;NO;NO;;;;;;;;;;
+ros-planning/navigation2;1691;NO;NO;;;;;;;;;;
+ros-planning/navigation2;1684;NO;NO;;;;;;;;;;
+ros-planning/navigation2;1728;NO;NO;;;;;;;;;;
+ros-planning/navigation2;1760;YES;NO;NO;;Limited/missing analytics in the notification;;;;;;Build Policy_Introduce/Remove nightly builds;
+ros-planning/navigation2;1806;YES;NO;YES;;;;Simulators_Limited Functionality;;Resources_Add better simulators;;;
+ros-planning/navigation2;1835;NO;NO;;;;;;;;;;
+ros-planning/navigation2;1808;NO;NO;;;;;;;;;;
+ros-planning/navigation2;1934;YES;NO;NO;;;;Pipeline Properties_Time_Build time too long;;;;Performance_Cleanup build matrix;
+ros-planning/navigation2;1956;YES;YES;NO;NO;;Build Execution_Docker images updated before a CI workflow has finished;Pipeline Properties_Time_Build time too long;;Slow_Builds_Use Nightly builds;;Build Policy_Introduce/Remove nightly builds;Build Policy_Modify the triggering strategy for image updates
+ros-planning/navigation2;1900;NO;NO;;;;;;;;;;
+ros-planning/navigation2;2034;YES;YES;NO;YES;Culture_Changes are pulled before fixing a previous build failure;;;Simulators_Functional Correctness;;Resources_Change simulator settings;Build Policy_Change the dependencies' installation policy;
+ros-planning/navigation2;2037;NO;YES;;YES;;;;Simulators_Functional Correctness;;Resources_Add better simulators;;
+ros-planning/navigation2;1942;NO;NO;;;;;;;;;;
+ros-planning/navigation2;2115;NO;NO;;;;;;;;;;
+ros-planning/navigation2;2170;YES;YES;YES;NO;;;Flaky Behaviour_Interaction between different features;Flaky Behaviour_Netowork Issues;Flakiness_Fix the code;;;
+ros-planning/navigation2;2172;YES;YES;NO;YES;;;Flaky Behaviour_Timing Issues;Flaky Behaviour_Lack of control over resources;Flakiness_Fix the code;Resources_Change simulator settings;;
+ros-planning/navigation2;2258;YES;YES;YES;NO;;;Barriers_Resources_Limited Sw/Hw Resources;Flaky Behaviour_Lack of control over resources;;;Performance_Introduce Parallelization;Performance_Change Caching configuration
+ros-planning/navigation2;2263;NO;NO;;;;;;;;;;
+ros-planning/navigation2;2295;NO;NO;;;;;;;;;;
+ros-planning/navigation2;2335;NO;NO;;;;;;;;;;
+ros-planning/navigation2;2269;NO;NO;;;;;;;;;;
+ros-planning/navigation2;2344;YES;YES;NO;NO;Build Duration_Unneeded tasks are scheduled in the build process;Build Duration_Unneeded tasks are scheduled in the build process;;;;;Build Policy_Modify the triggering strategy for image updates;Build Policy_Modify the triggering strategy for image updates
+ros-planning/navigation2;2371;YES;YES;NO;NO;Build Triggering;Builld Initialization_Inappropriate build environment clean-up strategy (i.e., whether to (not) use incremental builds);;;;;Maintainability_Extract Environment Variables;
+ros-planning/navigation2;2391;YES;YES;NO;NO;;;Pipeline Properties_Time_Build time too long;Pipeline Properties_Time_Build time too long;;;Maintainability_Replace tools/methods for accomplishing a specific task;Maintainability_Replace tools/methods for accomplishing a specific task
+ros-planning/navigation2;2401;YES;YES;NO;NO;Infrastructure Choices_Software_A task is implemented using an unsuitable tool/plugin;Infrastructure Choices_Software_A task is implemented using an unsuitable tool/plugin;;;;;Performance_Change Caching configuration;Maintainability_Replace tools/methods for accomplishing a specific task
+ros-planning/navigation2;2392;YES;YES;YES;NO;;Build Dependencies Management_Inappropriate choice about what to cache;Pipeline Properties_Time_Build time too long;;;;Infrastructure_Introduce Containerization;
+ros-planning/navigation2;2405;YES;YES;NO;NO;Infrastructure Choices_Software_Wrong Choice of the CI/CD framework being used;Infrastructure Choices_Software_Wrong Choice of the CI/CD framework being used;;;;Build Infrastructure_Add new CI service;Build Infrastructure_Add new CI service;
+ros-planning/navigation2;2532;YES;YES;NO;NO;Build Maintainability_Unused build scripts;Build Maintainability_Unused build scripts;;;;;Performance_Remove Unneeded environments/scripts/tasks;Performance_Remove Unneeded environments/scripts/tasks
+ros-planning/navigation2;2473;NO;YES;;YES;;;;Simulators_Interacting environment;;Resources_Change simulator settings;;
+ros-planning/navigation2;2735;NO;NO;;;;;;;;;;
+ros-planning/navigation2;208;YES;YES;NO;NO;Build Output_Build reports contain verbose, irrelevant information;Build Maintainability_Build Artifacts scattered across different locations;;;;;Dashboard/Notifications_Improve readability of the build log;
+ros-planning/navigation2;293;NO;NO;;;;;;;;;;
+ros-planning/navigation2;269;NO;NO;;;;;;;;;;
+ros-planning/navigation2;527;NO;YES;;NO;;Build Execution_Pipeline steps/stages are skipped arbitrarily;;;;;;
+ros-planning/navigation2;558;YES;YES;NO;NO;Build Dependencies Management_Including unneeded dependencies;Build Dependencies Management_Including unneeded dependencies;;;;;Build Policy_Change the dependencies' installation policy;Build Policy_Change the dependencies' installation policy
+ros-planning/navigation2;984;YES;NO;YES;;;;Flaky Behaviour_Interaction between different features;;;;Build Process Organization_Introduce/Remove retry for commands;
+ros-planning/navigation2;1038;YES;YES;NO;YES;Build Maintainability_Lengthy build scripts;;;HIL_Many devices each one with device specific parameters;;;Maintainability_Split build scripts/jobs;
+ros-planning/navigation2;1144;NO;NO;;;;;;;;;;
+ros-planning/navigation2;1058;NO;NO;;;;;;;;;;
+ros-planning/navigation2;1644;NO;NO;;;;;;;;;;
+ros-planning/navigation2;1586;NO;NO;;;;;;;;;;
+ros-planning/navigation2;1927;YES;YES;NO;NO;Quality Assurance_Testing_Code coverage tools are run only while performing unit and integration testing;Quality Assurance_Testing_Code coverage tools are run only while performing unit and integration testing;;;;;;
+ros-planning/navigation2;1928;NO;NO;;;;;;;;;;
+ros-planning/navigation2;2679;NO;NO;;;;;;;;;;
+ros-planning/navigation2;2579;NO;NO;;;;;;;;;;
+UAVCAN/libcanard;10;NO;NO;;;;;;;;;;
+UAVCAN/libcanard;140;YES;NO;NO;;Limited/missing analytics in the notification;;;;;;Dashboard/Notifications_Add analytics;
+UAVCAN/libcanard;187;NO;NO;;;;;;;;;;
+UAVCAN/libcanard;180;NO;NO;;;;;;;;;;
+CopterExpress/clover;34;NO;NO;;;;;;;;;;
+CopterExpress/clover;62;NO;NO;;;;;;;;;;
+CopterExpress/clover;91;NO;NO;;;;;;;;;;
+CopterExpress/clover;102;YES;YES;NO;NO;;Build Execution_Rely on a wrong image;Pipeline Properties_Time_Build time too long;;;;Performance_Change Caching configuration;
+CopterExpress/clover;102;;YES;;NO;;Build Dependencies Management_Inappropriate choice about what to cache;;;;;;Performance_Change Caching configuration
+CopterExpress/clover;163;NO;NO;;;;;;;;;;
+CopterExpress/clover;225;NO;NO;;;;;;;;;;
+CopterExpress/clover;216;NO;NO;;;;;;;;;;
+CopterExpress/clover;193;YES;YES;YES;YES;;;Throroughness_Phases_Testing Discrepancies between SIL and HIL;Throroughness_Phases_Testing Discrepancies between SIL and HIL;;;;
+CopterExpress/clover;237;YES;NO;YES;;;;Simulators_Integration issues with the CPS;;Resources_Change simulator settings;;;
+CopterExpress/clover;254;NO;NO;;;;;;;;;;
+CopterExpress/clover;300;NO;NO;;;;;;;;;;
+CopterExpress/clover;335;YES;NO;NO;;Build Triggering_Poor build triggering strategy (e.g., build each single commit or, on the contrary, build less than once a day);;;;;;Change build triggering;
+CopterExpress/clover;135;NO;YES;;YES;;;;Throroughness_Phases_Testing Discrepancies between SIL and HIL;;;;
+CopterExpress/clover;135;NO;YES;;YES;;;;Pipeline Properties_Configuration_Vary based on the environment;;;;
+CopterExpress/clover;103;YES;NO;NO;;Build Output_Some tasks are executed without clearly reporting their results in the build output;;;;;;Dashboard/Notifications_Improve readability of the build log;
+CopterExpress/clover;333;NO;YES;;NO;;Build Output_Build reports contain verbose, irrelevant information;;;;;;
+dartsim/dart;130;YES;YES;NO;NO;Builld Initialization_Inappropriate build environment clean-up strategy (i.e., whether to (not) use incremental builds);Builld Initialization_Inappropriate build environment clean-up strategy (i.e., whether to (not) use incremental builds);;;;;Build Policy_Change the dependencies' installation policy;Build Policy_Change the dependencies' installation policy
+dartsim/dart;269;NO;NO;;;;;;;;;;
+dartsim/dart;309;NO;NO;;;;;;;;;;
+dartsim/dart;365;YES;NO;NO;;;;Pipeline Properties_Time_Build time too long;;;;Performance_Introduce Parallelization;
+dartsim/dart;365;YES;NO;NO;;;Build Output_Some tasks are executed without clearly reporting their results in the build output;;;;;;Dashboard/Notifications_Improve readability of the build log;
+dartsim/dart;468;NO;NO;;;;;;;;;;
+dartsim/dart;486;NO;NO;;;;;;;;;;
+dartsim/dart;529;YES;YES;NO;NO;Build Output_Build reports contain verbose, irrelevant information;Build Output_Build reports contain verbose, irrelevant information;;;;;Dashboard/Notifications_Improve readability of the build log;Dashboard/Notifications_Improve readability of the build log
+dartsim/dart;543;YES;YES;NO;NO;;;Pipeline Properties_Time_Build time too long;Pipeline Properties_Time_Build time too long;;;Performance_Change overall buil settings/options;Performance_Change overall buil settings/options
+dartsim/dart;638;NO;NO;;;;;;;;;;
+dartsim/dart;650;NO;NO;;;;;;;;;;
+dartsim/dart;682;YES;YES;NO;NO;Build Outcome_Warnings do not fail the build;Build Outcome_Warnings do not fail the build;;;;;Build Policy_Change how the build outcome is determined;Build Policy_Change how the build outcome is determined
+dartsim/dart;884;NO;NO;;;;;;;;;;
+dartsim/dart;932;YES;YES;NO;NO;;;Pipeline Properties_Time_Build time too long;Pipeline Properties_Time_Build time too long;;;Performance_Change Caching configuration;Performance_Change Caching configuration
+dartsim/dart;956;YES;YES;NO;NO;Build Output_Build reports contain verbose, irrelevant information;Build Maintainability_Customization over a specific environment (e.g., rework for making the system running on a different OS);;;;;Maintainability_Improve readability of code snippets;
+dartsim/dart;998;NO;NO;;;;;;;;;;
+dartsim/dart;1018;NO;NO;;;;;;;;;;
+dartsim/dart;1015;NO;YES;;NO;;Build Maintainability_Lengthy build scripts;;;;;;Maintainability_Split build scripts/jobs
+dartsim/dart;1041;YES;YES;NO;NO;Build Outcome_A build is succeeded when a task is failed or an error is thrown;Build Outcome_A build is succeeded when a task is failed or an error is thrown;;;;;Build Policy_Change how the build outcome is determined;Build Policy_Change how the build outcome is determined
+dartsim/dart;887;NO;NO;;;;;;;;;;
+dartsim/dart;1196;YES;YES;NO;NO;;;Pipeline Properties_Time_Build time too long;Pipeline Properties_Time_Build time too long;;;Build Infrastructure_Add new CI service;Build Infrastructure_Add new CI service
+dartsim/dart;1212;NO;NO;;;;;;;;;;
+dartsim/dart;1219;NO;NO;;;;;;;;;;
+dartsim/dart;1223;YES;YES;NO;NO;Build Outcome;Build Outcome;;;;;Build Policy_Change how the build outcome is determined;Build Policy_Change how the build outcome is determined
+dartsim/dart;1225;NO;NO;;;;;;;;;;
+dartsim/dart;1269;NO;NO;;;;;;;;;;
+dartsim/dart;1296;NO;NO;;;;;;;;;;
+dartsim/dart;1307;NO;NO;;;;;;;;;;
+dartsim/dart;1341;NO;NO;;;;;;;;;;
+dartsim/dart;1390;NO;NO;;;;;;;;;;
+dartsim/dart;1400;NO;NO;;;;;;;;;;
+dartsim/dart;1419;YES;YES;NO;NO;;;Pipeline Properties_Time_Build time too long;Pipeline Properties_Time_Build time too long;;;Performance_Introduce Parallelization;Performance_Introduce Parallelization
+dartsim/dart;1458;YES;YES;NO;NO;Builld Initialization_Inappropriate build environment clean-up strategy (i.e., whether to (not) use incremental builds);Builld Initialization_Inappropriate build environment clean-up strategy (i.e., whether to (not) use incremental builds);;;;;Build Policy_Rely on Incremental builds;Build Policy_Rely on Incremental builds
+dartsim/dart;1486;NO;NO;;;;;;;;;;
+dartsim/dart;1509;NO;NO;;;;;;;;;;
+dartsim/dart;1510;NO;NO;;;;;;;;;;
+dartsim/dart;1515;NO;NO;;;;;;;;;;
+dartsim/dart;1518;NO;NO;;;;;;;;;;
+dartsim/dart;1530;NO;NO;;;;;;;;;;
+dartsim/dart;1541;NO;NO;;;;;;;;;;
+dartsim/dart;1552;NO;NO;;;;;;;;;;
+dartsim/dart;1560;NO;NO;;;;;;;;;;
+dartsim/dart;1566;NO;NO;;;;;;;;;;
+dartsim/dart;1582;NO;NO;;;;;;;;;;
+dartsim/dart;1600;NO;NO;;;;;;;;;;
+dartsim/dart;1629;YES;YES;NO;NO;Build Outcome_Warnings do not fail the build;Build Outcome_Warnings do not fail the build;;;;;Build Policy_Change how the build outcome is determined;Build Policy_Change how the build outcome is determined
+dartsim/dart;1635;YES;NO;NO;;Repository Structure_Test cases are not organized in folders based on their purposes;;;;;;;
+dartsim/dart;1640;NO;NO;;;;;;;;;;
+dartsim/dart;913;YES;YES;NO;NO;Build Dependencies Management;;;Pipeline Properties_Time_Build time too long;;;Build Policy_Change the dependencies' installation policy;
+dartsim/dart;995;YES;NO;NO;;Build Dependencies Management;;;;;;Build Process Organization_Update checks in the build process;
+dartsim/dart;1097;NO;NO;;;;;;;;;;
+dartsim/dart;1194;NO;NO;;;;;;;;;;
+dartsim/dart;1356;NO;NO;;;;;;;;;;
+rusefi/rusefi;389;NO;NO;;;;;;;;;;
+rusefi/rusefi;622;NO;NO;;;;;;;;;;
+rusefi/rusefi;953;NO;NO;;;;;;;;;;
+rusefi/rusefi;825;NO;NO;;;;;;;;;;
+rusefi/rusefi;1018;NO;NO;;;;;;;;;;
+rusefi/rusefi;1148;NO;NO;;;;;;;;;;
+rusefi/rusefi;1211;NO;NO;;;;;;;;;;
+rusefi/rusefi;1414;NO;NO;;;;;;;;;;
+rusefi/rusefi;1507;YES;NO;NO;;Build Process Definition_Include unneeded environment;;;;;;Performance_Remove Unneeded environments/scripts/tasks;
+rusefi/rusefi;1543;NO;NO;;;;;;;;;;
+rusefi/rusefi;1555;NO;NO;;;;;;;;;;
+rusefi/rusefi;1583;NO;NO;;;;;;;;;;
+rusefi/rusefi;1619;YES;YES;NO;NO;Build Triggering_Poor build triggering strategy (e.g., build each single commit or, on the contrary, build less than once a day);Build Triggering_Poor build triggering strategy (e.g., build each single commit or, on the contrary, build less than once a day);;;;;Build Process Organization_Update checks in the build process;Build Process Organization_Update checks in the build process
+rusefi/rusefi;716;NO;NO;;;;;;;;;;
+rusefi/rusefi;1820;NO;NO;;;;;;;;;;
+rusefi/rusefi;1891;NO;NO;;;;;;;;;;
+rusefi/rusefi;1905;NO;NO;;;;;;;;;;
+rusefi/rusefi;2106;NO;NO;;;;;;;;;;
+rusefi/rusefi;2070;YES;NO;NO;;Build Triggering_Some pipeline's tasks are started manually;;;;;;;
+rusefi/rusefi;2256;NO;NO;;;;;;;;;;
+rusefi/rusefi;2311;YES;YES;YES;YES;;HIL_Many devices each one with device specific parameters;HIL_Many devices each one with device specific parameters;;;;;
+rusefi/rusefi;2304;NO;NO;;;;;;;;;;
+rusefi/rusefi;2371;NO;NO;;;;;;;;;;
+rusefi/rusefi;2377;NO;NO;;;;;;;;;;
+rusefi/rusefi;1081;NO;NO;;;;;;;;;;
+rusefi/rusefi;2588;YES;YES;NO;NO;Build Triggering_Poor build triggering strategy (e.g., build each single commit or, on the contrary, build less than once a day);Build Triggering_Poor build triggering strategy (e.g., build each single commit or, on the contrary, build less than once a day);;;;;Build Policy_Modify the triggering strategy for image updates;Build Policy_Modify the triggering strategy for image updates
+rusefi/rusefi;2657;NO;NO;;;;;;;;;;
+rusefi/rusefi;2688;NO;NO;;;;;;;;;;
+rusefi/rusefi;2717;NO;NO;;;;;;;;;;
+rusefi/rusefi;2738;NO;NO;;;;;;;;;;
+rusefi/rusefi;2794;YES;YES;YES;YES;;;Simulators_Configuration during installation;Simulators_Configuration during installation;Resources_Change simulator settings;Resources_Change simulator settings;;
+rusefi/rusefi;2798;YES;YES;YES;YES;;;Simulators_Configuration during installation;Simulators_Configuration during installation;Resources_Change simulator settings;Resources_Change simulator settings;;
+rusefi/rusefi;2843;YES;YES;NO;NO;Build Maintainability_Build configurations are cloned in different environments;Build Maintainability_Build configurations are cloned in different environments;;;;;Maintainability_Use matrix expansion feature or list job configuration explicitly;Maintainability_Use matrix expansion feature or list job configuration explicitly
+rusefi/rusefi;2977;NO;NO;;;;;;;;;;
+rusefi/rusefi;2985;NO;NO;;;;;;;;;;
+rusefi/rusefi;3042;NO;NO;;;;;;;;;;
+rusefi/rusefi;3056;YES;NO;NO;;Build Maintainability_Missing/Poor strict naming convention for build jobs;;;;;;Maintainability_Rename steps/tasks/scripts/jobs;
+rusefi/rusefi;3079;NO;NO;;;;;;;;;;
+rusefi/rusefi;3142;NO;NO;;;;;;;;;;
+rusefi/rusefi;3188;NO;NO;;;;;;;;;;
+rusefi/rusefi;3204;NO;NO;;;;;;;;;;
+rusefi/rusefi;3203;NO;NO;;;;;;;;;;
+rusefi/rusefi;3297;YES;YES;YES;YES;;;HIL_Interface with HIL;HIL_Interface with HIL;;;;
+rusefi/rusefi;3316;NO;NO;;;;;;;;;;
+rusefi/rusefi;3342;YES;NO;YES;;;;Simulators_Change needed to interface with update in 3-party simulators;;;;;
+rusefi/rusefi;3360;YES;YES;YES;YES;;;Simulators_Configuration during installation;Simulators_Configuration during installation;Resources_Change simulator settings;Resources_Change simulator settings;;
+rusefi/rusefi;3348;YES;NO;YES;;;;Simulators_Change needed to interface with update in 3-party simulators;;;;;
+rusefi/rusefi;3394;NO;NO;;;;;;;;;;
+rusefi/rusefi;3407;NO;NO;;;;;;;;;;
+rusefi/rusefi;3445;NO;NO;;;;;;;;;;
+rusefi/rusefi;3489;YES;YES;NO;NO;Build Duration_Unneeded tasks are scheduled in the build process;Build Duration_Unneeded tasks are scheduled in the build process;;;;;Build Process Organization_Update checks in the build process;
+rusefi/rusefi;3486;NO;NO;;;;;;;;;;
+rusefi/rusefi;3505;YES;NO;NO;;Builld Initialization_Inappropriate build environment clean-up strategy (i.e., whether to (not) use incremental builds);;;;;;Performance_Centralize code compilation;
+rusefi/rusefi;3555;YES;YES;NO;NO;Build Execution_Tasks are not properly distributed among different build stages (e.g., load testing is done in the commit stage);Build Execution_Tasks are not properly distributed among different build stages (e.g., load testing is done in the commit stage);;;;;;
+rusefi/rusefi;3563;YES;YES;YES;YES;;;Simulators_Configuration during installation;Simulators_Configuration during installation;;Resources_Change simulator settings;;;
+rusefi/rusefi;3476;NO;NO;;;;;;;;;;
+rusefi/rusefi;3582;YES;YES;NO;NO;Quality Assurance_Quality checks/gates_Lacking relevant quality gates (e.g., memory issues);Quality Assurance_Quality checks/gates_Lacking relevant quality gates (e.g., memory issues);;;;;;
+rusefi/rusefi;3598;YES;NO;YES;;;;HIL_Poor memory management;;;;;
+rusefi/rusefi;3600;NO;NO;;;;;;;;;;
+rusefi/rusefi;3610;NO;NO;;;;;;;;;;
+rusefi/rusefi;3641;NO;NO;;;;;;;;;;
+rusefi/rusefi;3651;YES;YES;YES;YES;;;Simulators_Interacting environment;Simulators_Interacting environment;Resources_Change simulator settings;Resources_Change simulator settings;;
+rusefi/rusefi;3706;YES;NO;NO;;Build Outcome_Do not fail a build as soon as a failure/error is encountered;;;;;;Build Process Organization_Reorganize build steps order of execution;
+rusefi/rusefi;3729;NO;NO;;;;;;;;;;
+rusefi/rusefi;3731;NO;NO;;;;;;;;;;
+rusefi/rusefi;406;NO;NO;;;;;;;;;;
+rusefi/rusefi;520;NO;NO;;;;;;;;;;
+rusefi/rusefi;687;YES;YES;NO;NO;Build Process Definition_ Rely on a wrong environment;Build Process Definition_ Rely on a wrong environment;;;;;Performance_Cleanup build matrix;Performance_Cleanup build matrix
+rusefi/rusefi;929;YES;NO;YES;;;;HIL_Many devices each one with device specific parameters;;;;;
+rusefi/rusefi;1020;NO;NO;;;;;;;;;;
+rusefi/rusefi;1132;YES;YES;NO;NO;Build Outcome_Warnings do not fail the build;Build Outcome_Warnings do not fail the build;;;;;Build Policy_Change how the build outcome is determined;Build Policy_Change how the build outcome is determined
+rusefi/rusefi;1128;YES;YES;NO;NO;Build Dependencies Management;Build Dependencies Management;;;;;Build Policy_Change the dependencies' installation policy;Build Policy_Change the dependencies' installation policy
+rusefi/rusefi;1184;NO;NO;;;;;;;;;;
+rusefi/rusefi;1520;NO;NO;;;;;;;;;;
+rusefi/rusefi;1544;NO;NO;;;;;;;;;;
+rusefi/rusefi;1562;NO;NO;;;;;;;;;;
+rusefi/rusefi;1618;YES;NO;NO;;Delivery Process_Inappropriate strategy to create the build artifacts;;;;;;Build Process Organization_Reorganize build steps order of execution;
+rusefi/rusefi;1691;NO;NO;;;;;;;;;;
+rusefi/rusefi;1582;NO;NO;;;;;;;;;;
+rusefi/rusefi;877;NO;NO;;;;;;;;;;
+rusefi/rusefi;1829;NO;NO;;;;;;;;;;
+rusefi/rusefi;1910;NO;NO;;;;;;;;;;
+rusefi/rusefi;1951;NO;NO;;;;;;;;;;
+rusefi/rusefi;2012;YES;YES;NO;NO;Build Maintainability_Customization over a specific environment (e.g., rework for making the system running on a different OS);Build Maintainability_Customization over a specific environment (e.g., rework for making the system running on a different OS);;;;;;
+rusefi/rusefi;2185;YES;NO;YES;;;;HIL_Interface with HIL;;;;;
+rusefi/rusefi;2266;YES;NO;NO;;Build Maintainability_Missing/Poor strict naming convention for build jobs;;;;;;Maintainability_Rename steps/tasks/scripts/jobs;
+rusefi/rusefi;2239;NO;NO;;;;;;;;;;
+rusefi/rusefi;701;NO;NO;;;;;;;;;;
+rusefi/rusefi;1135;NO;YES;;NO;;Build Dependencies Management;;;;;;
+rusefi/rusefi;971;NO;NO;;;;;;;;;;
+rusefi/rusefi;2014;NO;NO;;;;;;;;;;
+rusefi/rusefi;2908;NO;NO;;;;;;;;;;
+rusefi/rusefi;2922;NO;NO;;;;;;;;;;

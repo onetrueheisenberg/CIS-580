@@ -1,0 +1,52 @@
+Bad Practice;Restructuring;Occurrences
+Infrastructure Choices_Software_External tools are used with their default configurations;Maintainability_Replace tools/methods for accomplishing a specific task;1
+Infrastructure Choices_Software_A task is implemented using an unsuitable tool/plugin;Performance_Change Caching configuration;5
+;Infrastructure_Introduce Containerization;1
+;Maintainability_Replace tools/methods for accomplishing a specific task;1
+Builld Initialization_Inappropriate build environment clean-up strategy (i.e., whether to (not) use incremental builds);Build Process Organization_Update checks in the build process;2
+;Performance_Cleanup build matrix;1
+;Build Policy_Modify the triggering strategy;2
+;Performance_Change Caching configuration;1
+;Build Process Organization_Reorganize build steps order of execution;1
+Build Process Definition_Wide and incohesive build jobs are used (e.g., a build job mixes up testing and static analysis activities);Maintainability_Split build scripts/jobs;2
+Build Process Definition_Monolithic builds (i.e., builds not decomposed into specific, cohesive jobs, when this is appropriate) are used in the pipeline;Maintainability_Split build scripts/jobs;3
+;Maintainability_Simplify build matrix;1
+Build Execution_Independent build jobs are not executed in parallel;Performance_Introduce Parallelization;5
+;Build Process Organization_Reorganize build steps order of execution;1
+Build Execution_Only the last commit is built, aborting obsolete and queued builds;Build Process Organization_Update checks in the build process;1
+Build Execution_Build steps are not properly ordered (e.g., static analysis could precede testing to avoid failing it very late);Build Process Organization_Add/Evolve smoke test;1
+;Build Process Organization_Reorganize build steps order of execution;2
+;Build Policy_Modify the triggering strategy;1
+Build Execution_Tasks are not properly distributed among different build stages (e.g., load testing is done in the commit stage);Build Process Organization_Update checks in the build process;2
+;Build Process Organization_Reorganize build steps order of execution;1
+Build Triggering_Poor build triggering strategy (e.g., build each single commit or, on the contrary, build less than once a day);Build Process Organization_Update checks in the build process;1
+;Build Policy_Modify the triggering strategy;2
+Build Outcome_A build is succeeded when a task is failed or an error is thrown;Build Policy_Change how the build outcome is determined;7
+;Maintainability_Replace tools/methods for accomplishing a specific task;1
+Build Dependencies Management;Build Process Organization_Update checks in the build process;1
+;Build Policy_Change the dependencies' installation policy;5
+Build Dependencies Management_Dependency management is not used (e.g., the same project is rebuilt more than once);Build Policy_Change the dependencies' installation policy;1
+Build Dependencies Management_Including unneeded dependencies;Performance_Remove Unneeded environments/scripts/tasks;7
+Build Output_Some tasks are executed without clearly reporting their results in the build output;Dashboard/Notifications_Improve readability of the build log;7
+;Build Policy_Change how the build outcome is determined;1
+Build Output_Build reports contain verbose, irrelevant information;Dashboard/Notifications_Improve readability of the build log;6
+Build Duration_Unneeded tasks are scheduled in the build process;Build Process Organization_Update checks in the build process;2
+;Performance_Remove Unneeded environments/scripts/tasks;4
+"Build Duration_Build time for the ""commit stage"" overcomes the 10-minutes rule";Performance_Cleanup build matrix;1
+;Maintainability_Replace tools/methods for accomplishing a specific task;1
+;Performance_Introduce Parallelization;1
+Build Maintainability_Absolute/machine-dependent paths are used;Maintainability_Replace tools/methods for accomplishing a specific task;1
+Build Maintainability_Build configurations are cloned in different environments;Performance_Remove Unneeded environments/scripts/tasks;1
+;Maintainability_Use matrix expansion feature or list job configuration explicitly;1
+Build Maintainability_Lengthy build scripts;Maintainability_Split build scripts/jobs;1
+Build Maintainability_Missing smoke test (tests to verify the testability of the build);Build Process Organization_Add/Evolve smoke test;1
+Build Maintainability_Missing/Poor strict naming convention for build jobs;Maintainability_Rename steps/tasks/scripts/jobs;2
+Delivery Process_Missing check for deliverables (e.g., check whether all files are in the delivery);Build Process Organization_Update checks in the build process;1
+Security_Use sudo for accessing Docker;Security_Introduce/Remove sudo in commands;2
+Build Execution_Include unneeded environment;Performance_Remove Unneeded environments/scripts/tasks;4
+;Performance_Cleanup build matrix;1
+Build Outcome_Do not fail a build as soon as a failure/error is encountered;Build Process Organization_Update checks in the build process;1
+;Build Process Organization_Reorganize build steps order of execution;1
+Infrastructure Choices_Software_Wrong Choice of the CI/CD framework being used;Maintainability_Replace tools/methods for accomplishing a specific task;2
+Build Dependencies Management_Inappropriate choice about what to cache;Performance_Change Caching configuration;9
+Build Maintainability_Customization over a specific environment (e.g., rework for making the system running on a different OS);Build Process Organization_Add new build matrix environment;1

@@ -1,0 +1,11 @@
+Mitigation Name;Frequency;Is New?
+Flakiness_Adjust Pipeline Configuration;1;YES
+Flakiness_Fix the code;1;YES
+Flakiness_Retry;4;YES
+Flakiness_Timeout;2;YES
+Resources_Use Both Simulators and Real Hardware;1;YES
+Resources_Change simulator settings;27;YES
+Resources_Add better simulators;3;YES
+Resources_Use mocking;1;YES
+Resources_Change HiL configuration;2;YES
+Resources_Evolve simulator;21;YES

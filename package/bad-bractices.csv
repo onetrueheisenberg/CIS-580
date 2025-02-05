@@ -1,0 +1,43 @@
+Bad Practice Name;Frequency;Is New?
+Repository Structure_The project decomposition in the repository does not follow modularization principles;1;NO
+Repository Structure_Test cases are not organized in folders based on their purposes;1;NO
+Infrastructure Choices_Software_External tools are used with their default configurations;1;NO
+Infrastructure Choices_Software_A task is implemented using an unsuitable tool/plugin;7;NO
+Builld Initialization_Inappropriate build environment clean-up strategy (i.e., whether to (not) use incremental builds);8;NO
+Build Process Definition_Wide and incohesive build jobs are used (e.g., a build job mixes up testing and static analysis activities);2;NO
+Build Process Definition_Monolithic builds (i.e., builds not decomposed into specific, cohesive jobs, when this is appropriate) are used in the pipeline;4;NO
+Build Execution_Independent build jobs are not executed in parallel;6;NO
+Build Execution_Only the last commit is built, aborting obsolete and queued builds;1;NO
+Build Execution_Build steps are not properly ordered (e.g., static analysis could precede testing to avoid failing it very late);4;NO
+Build Execution_Pipeline steps/stages are skipped arbitrarily;4;NO
+Build Execution_Tasks are not properly distributed among different build stages (e.g., load testing is done in the commit stage);6;NO
+Build Triggering;1;NO
+Build Triggering_Poor build triggering strategy (e.g., build each single commit or, on the contrary, build less than once a day);3;NO
+Build Triggering_Some pipeline's tasks are started manually;1;NO
+Build Outcome_A build is succeeded when a task is failed or an error is thrown;8;NO
+Build Dependencies Management;6;NO
+Build Dependencies Management_Dependency management is not used (e.g., the same project is rebuilt more than once);1;NO
+Build Dependencies Management_Including unneeded dependencies;7;NO
+Build Output_Some tasks are executed without clearly reporting their results in the build output;9;NO
+Build Output_Build reports contain verbose, irrelevant information;6;NO
+Build Duration_Time-out is not properly configured;1;NO
+Build Duration_Unneeded tasks are scheduled in the build process;6;NO
+"Build Duration_Build time for the ""commit stage"" overcomes the 10-minutes rule";3;NO
+Build Maintainability_Absolute/machine-dependent paths are used;1;NO
+Build Maintainability_Build configurations are cloned in different environments;3;NO
+Build Maintainability_Lengthy build scripts;1;NO
+Build Maintainability_Missing smoke test (tests to verify the testability of the build);1;NO
+Build Maintainability_Missing/Poor strict naming convention for build jobs;2;NO
+Quality Assurance_Testing_Code coverage tools are run only while performing testing different from unit and integration (e.g., performance testing);1;NO
+Quality Assurance_Testing_Test suite contains flaky tests (test cases having a non-deterministic behaviour);1;NO
+Delivery Process_Missing check for deliverables (e.g., check whether all files are in the delivery);1;NO
+Culture_Changes are pulled before fixing a previous build failure;2;NO
+Culture_Issue notifications are ignored;1;NO
+Security_Use sudo for accessing Docker;2;YES
+Build Execution_Include unneeded environment;5;YES
+Build Outcome_Do not fail a build as soon as a failure/error is encountered;3;YES
+Infrastructure Choices_Software_Wrong Choice of the CI/CD framework being used;3;YES
+Build Dependencies Management_Inappropriate choice about what to cache;10;YES
+Build Maintainability_Customization over a specific environment (e.g., rework for making the system running on a different OS);10;YES
+Build Execution_Rely on a wrong image;2;YES
+Quality Assurance_Quality checks/gates_Lacking relevant quality gates (e.g., memory issues);1;YES

@@ -1,0 +1,5 @@
+.github/workflows/
+include/ode/ode/
+resources/webots_ros
+src/ode/
+.atom-build.json
