@@ -21,7 +21,7 @@ for repo in repos:
             matches = [file for file in commit.modified_files if pattern.search(file.new_path or "")]
             # print(f"Files changed in PR #{pr_number}: {changed_files}")
             if matches:
-                print(f"Commit with container-related file changes: {path}/commit/{commit.hash}")
+                print(f"Commit with container-related file changes: {path[:-4]}/commit/{commit.hash}")
         except Exception:
             print('Could not read files for commit ' + hash)
             continue
