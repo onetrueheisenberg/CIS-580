@@ -1,0 +1,6 @@
+.github/workflows/
+conf/simulator/
+conf/
+docker/
+sw/simulator/
+

@@ -1,0 +1,6 @@
+.bazelci/
+bazel/
+cmake/
+configuration_files/
+.bazelrc
+BUILD.bazel

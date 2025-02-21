@@ -1,0 +1,4 @@
+.github/workflows/
+cmake/
+external/
+resources/

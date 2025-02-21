@@ -1,0 +1,21 @@
+Challenge;Mitigation;Occurrences
+HIL_Interface with HIL;Resources_Use mocking;1
+Flaky Behaviour_Interaction between different features;Flakiness_Retry;3
+Flaky Behaviour_Netowork Issues;Flakiness_Retry;1
+;Flakiness_Timeout;1
+;Flakiness_Fix the code;1
+Flaky Behaviour_Lack of control over resources;Flakiness_Timeout;1
+;Flakiness_Adjust Pipeline Configuration;1
+;Resources_Change simulator settings;1
+Simulators_Limited Functionality;Resources_Evolve simulator;16
+;Resources_Add better simulators;2
+Simulators_Functional Correctness;Resources_Evolve simulator;5
+;Resources_Change simulator settings;11
+;Resources_Add better simulators;1
+Simulators_Real-Time Properties;Resources_Change simulator settings;1
+Simulators_Interacting environment;Resources_Change simulator settings;1
+HIL_Costs and Scalability for testing;Resources_Use Both Simulators and Real Hardware;1
+Simulators_Installation and Setting;Resources_Change simulator settings;12
+Throroughness_Phases_Automated HIL testing impossible dues to too many different real devices;Resources_Change HiL configuration;1
+Simulators_Integration issues with the CPS;Resources_Change simulator settings;1
+HIL_Interface with HIL;Resources_Change HiL configuration;1

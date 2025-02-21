@@ -1,0 +1,5 @@
+.github/workflows/
+.semaphore/
+Tools/scripts/
+Tools/environment_install/
+Tools/vagrant/

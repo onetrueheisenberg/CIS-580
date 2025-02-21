@@ -1,0 +1,19 @@
+Challenge Name;Frequency;Is New?
+Flaky Behaviour_Interaction between different features;4;YES
+Flaky Behaviour_Netowork Issues;3;YES
+Flaky Behaviour_Lack of control over resources;6;YES
+Simulators_Limited Functionality;20;YES
+Simulators_Functional Correctness;18;YES
+Simulators_Real-Time Properties;5;YES
+Simulators_Interacting environment;5;YES
+HIL_Costs and Scalability for testing;1;YES
+Barriers_Resources_Limited Sw/Hw Resources;5;YES
+Barriers_Domain_Complex Non Functional Requirements;1;YES
+Simulators_Choose among different simulators;3;YES
+Simulators_Installation and Setting;12;YES
+HIL_Parallelization and Resources Blockage;1;YES
+Throroughness_Phases_Automated HIL testing impossible dues to too many different real devices;6;YES
+Thoroughness_Phases_Lack of HiL specific smoke test;1;YES
+Simulators_Integration issues with the CPS;2;YES
+Throroughness_Phases_Testing Discrepancies between SIL and HIL;2;YES
+HIL_Interface with HIL;6;YES
