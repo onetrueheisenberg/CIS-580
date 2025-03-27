@@ -87,9 +87,9 @@
 from github import Github
 import requests
 
-ACCESS_TOKEN = "<<TOKEN>>"
+ACCESS_TOKEN = "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"
 
-urltemp = "https://api.github.com/search/repositories?q=topic:"
+urltemp = "https://api.github.com/search/code?q=topic:"
 # Headers
 headers = {
     "Accept": "application/vnd.github+json",
@@ -99,16 +99,22 @@ headers = {
 g = Github(ACCESS_TOKEN)
 repos = set()
 
-topics = ['automotive', 'autonomous-driving', 'autonomous-vehicles', 'cyber-physical-systems', 'drone', 'drones', 'embedded', 'embedded-systems', 'robot', 'robotics', 'ros', 'self-driving-car', 'self-driving cars'];
+topics = ['automotive', 'autonomous-driving',  'embedded-systems', 'robot', 'robotics', 'ros', 'autonomous-vehicles', 'cyber-physical-systems', 'drone', 'drones', 'embedded', 'self-driving-car', 'self-driving cars'];
 unique_set = set()
 for topic in topics:
-    url = urltemp + topic + '+topic:docker+topic:dockerfile+topic:ci+fork:false'
+    url = urltemp + topic + '+filename:Dockerfile'
+    print(url)
     response = requests.get(url, headers=headers).json()
     # response = requests.get(url + topic + '+topic:docker' + '&fork=False', headers=headers).json()
-    # print(response.items())
+    print(response.items())
     if "items" in response:  # Ensure 'items' key exists
         for i in response["items"]:
-            if isinstance(i, dict) and "html_url" in i and i['stargazers_count'] >= 10:  # Use 'html_url' instead of 'url'
+            # print(isinstance(i, dict))
+            if isinstance(i, dict) and "html_url" in i and i['stargazers_count'] >= 10 and i['fork'] is False:  # Use 'html_url' instead of 'url'
                 unique_set.add(i["html_url"])
+                print(i["html_url"])
 
-print(unique_set)
+# print(unique_set)
+1. checkout
+2. local pydriller commit analysis -> list of commit ids
+3. delete

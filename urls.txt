@@ -1,0 +1,26 @@
+https://api.github.com/search/code?q=topic:automotive+filename:Dockerfile
+dict_items([('total_count', 0), ('incomplete_results', False), ('items', [])])
+https://api.github.com/search/code?q=topic:autonomous-driving+filename:Dockerfile
+dict_items([('total_count', 0), ('incomplete_results', False), ('items', [])])
+https://api.github.com/search/code?q=topic:autonomous-vehicles+filename:Dockerfile
+dict_items([('total_count', 0), ('incomplete_results', False), ('items', [])])
+https://api.github.com/search/code?q=topic:cyber-physical-systems+filename:Dockerfile
+dict_items([('total_count', 0), ('incomplete_results', False), ('items', [])])
+https://api.github.com/search/code?q=topic:drone+filename:Dockerfile
+dict_items([('total_count', 0), ('incomplete_results', False), ('items', [])])
+https://api.github.com/search/code?q=topic:drones+filename:Dockerfile
+dict_items([('total_count', 0), ('incomplete_results', False), ('items', [])])
+https://api.github.com/search/code?q=topic:embedded+filename:Dockerfile
+dict_items([('total_count', 0), ('incomplete_results', False), ('items', [])])
+https://api.github.com/search/code?q=topic:embedded-systems+filename:Dockerfile
+dict_items([('total_count', 0), ('incomplete_results', False), ('items', [])])
+https://api.github.com/search/code?q=topic:robot+filename:Dockerfile
+dict_items([('total_count', 0), ('incomplete_results', False), ('items', [])])
+https://api.github.com/search/code?q=topic:robotics+filename:Dockerfile
+dict_items([('message', 'API rate limit exceeded for user ID 203103583. If you reach out to GitHub Support for help, please include the request ID D578:1DED72:1F1AF79:3EBDF87:67D2C542 and timestamp 2025-03-13 11:45:06 UTC.'), ('documentation_url', 'https://docs.github.com/rest/overview/rate-limits-for-the-rest-api'), ('status', '403')])
+https://api.github.com/search/code?q=topic:ros+filename:Dockerfile
+dict_items([('message', 'API rate limit exceeded for user ID 203103583. If you reach out to GitHub Support for help, please include the request ID D579:1D1531:22CB5B6:45F0EEA:67D2C542 and timestamp 2025-03-13 11:45:06 UTC.'), ('documentation_url', 'https://docs.github.com/rest/overview/rate-limits-for-the-rest-api'), ('status', '403')])
+https://api.github.com/search/code?q=topic:self-driving-car+filename:Dockerfile
+dict_items([('message', 'API rate limit exceeded for user ID 203103583. If you reach out to GitHub Support for help, please include the request ID D57A:1DED72:1F1B107:3EBE2A9:67D2C542 and timestamp 2025-03-13 11:45:07 UTC.'), ('documentation_url', 'https://docs.github.com/rest/overview/rate-limits-for-the-rest-api'), ('status', '403')])
+https://api.github.com/search/code?q=topic:self-driving cars+filename:Dockerfile
+dict_items([('message', 'API rate limit exceeded for user ID 203103583. If you reach out to GitHub Support for help, please include the request ID D57B:201727:20661DE:4144EFA:67D2C543 and timestamp 2025-03-13 11:45:07 UTC.'), ('documentation_url', 'https://docs.github.com/rest/overview/rate-limits-for-the-rest-api'), ('status', '403')])
