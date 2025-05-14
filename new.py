@@ -29,7 +29,7 @@ for url in sampled_list:
         continue
 
     try:
-        print(f"\n==> Fetching {repo_url}@{sha} into {local_path}")
+        print(f"\nFetching {repo_url}@{sha} into {local_path}")
 
         # Set large buffer to avoid clone failures
         subprocess.run(["git", "config", "--global", "http.postBuffer", "524288000"], check=True)
@@ -43,7 +43,7 @@ for url in sampled_list:
         print(f"✔ Checked out {sha} at {local_path}")
 
     except subprocess.CalledProcessError as e:
-        print(f"❌ Failed to fetch {repo_url}@{sha}: {e}")
+        print(f"Failed to fetch {repo_url}@{sha}: {e}")
 
 
 

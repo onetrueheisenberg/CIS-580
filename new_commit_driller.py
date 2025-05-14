@@ -18,7 +18,7 @@ with open(csv_file, "r", newline="", encoding="utf-8") as file:
         if row["Uses Docker ?"] == "Yes" and row["Is CPS related/specific"] == "Yes":
             urls.append(row["Repo"])
 
-docker_commits = set()
+docker_commits = SortedSet()
 for url in urls:
     repo_name = url.split("/")[-1].replace(".git", "")
     repo_path = os.path.join(clone_dir, repo_name)
@@ -37,7 +37,7 @@ for url in urls:
                 docker_commits.add(commit_url)
     shutil.rmtree(repo_path, ignore_errors=True)
 with open(output_file, "w", encoding="utf-8") as f:
-    for commit_url in docker_commits:
+    for commit_url in sorted(docker_commits):
         f.write(commit_url + "\n")
 
 
