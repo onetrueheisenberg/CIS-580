@@ -50,23 +50,60 @@
 #     history += [{"role": "user", "content": message.content}]
 #     print(groq_llm(history))
 # print(groq_app("Hello"))
-import os
+# import os
 
-from groq import Groq
+# from groq import Groq
 
-client = Groq(
-    api_key="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",
-)
+# client = Groq(
+#     api_key="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",
+# )
 
-chat_completion = client.chat.completions.create(
-    messages=[
-        {
-            "role": "user",
-            "content": "Explain what is being donr in this commit: https://github.com/OpenDroneMap/WebODM/commit/04aa66c47803707ad3aff50978e1347818ac29f2",
+# chat_completion = client.chat.completions.create(
+#     messages=[
+#         {
+#             "role": "user",
+#             "content": "Explain what is being donr in this commit: https://github.com/OpenDroneMap/WebODM/commit/04aa66c47803707ad3aff50978e1347818ac29f2",
+#         }
+#     ],
+#     model="llama-3.3-70b-versatile",
+# )
+
+# print(chat_completion.choices[0].message.content)
+curl https://api.groq.com/openai/v1/chat/completions \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer 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" \
+-d '{
+  "model": "llama-3.3-70b-versatile",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Explain what is being donr in this commit: https://github.com/OpenDroneMap/WebODM/commit/04aa66c47803707ad3aff50978e1347818ac29f2"
+    }
+  ],
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "get_current_weather",
+        "description": "Get the current weather in a given location",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "The city and state, e.g. San Francisco, CA"
+            },
+            "unit": {
+              "type": "string",
+              "enum": ["celsius", "fahrenheit"]
+            }
+          },
+          "required": ["location"]
         }
-    ],
-    model="llama-3.3-70b-versatile",
-)
+      }
+    }
+  ],
+  "tool_choice": "auto"
+}'
 
-print(chat_completion.choices[0].message.content)
 # cycls.push()

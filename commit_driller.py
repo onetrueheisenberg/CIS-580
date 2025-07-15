@@ -115,6 +115,6 @@ for topic in topics:
                 print(i["html_url"])
 
 # print(unique_set)
-1. checkout
-2. local pydriller commit analysis -> list of commit ids
-3. delete
+# 1. checkout
+# 2. local pydriller commit analysis -> list of commit ids
+# 3. delete
