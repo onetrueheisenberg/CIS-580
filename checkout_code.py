@@ -6,7 +6,7 @@ from pydriller import Repository, ModificationType
 from sortedcontainers import SortedSet
 
 # File paths
-csv_file = "RQ1_Manual_Analysis_Repo_List.csv"  # Replace with your actual CSV file
+csv_file = "RQ1_Manual_Analysis_Repo_List.csv"
 output_file = "docker_repos.txt"
 clone_dir = "cloned_repos"
 
