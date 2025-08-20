@@ -1,0 +1,24 @@
+Image observations,Optimizations tried,Optimisation results
+Contains Dockerfile.dev for development,"Optimize by squashing layers, using smaller base image",20% size reduction
+PaddlePaddle/Paddle-Lite,"Use slimmer base image, multi-stage builds, remove compiler toolchain from runtime",25-35% size reduction
+bytecodealliance/wasm-micro-runtime,"Switch to Alpine base, strip binaries, multi-stage builds",Drastic shrink (~90% smaller possible)
+nanopb/nanopb,Multi-stage builds to separate build and runtime,No meaningful improvement (already small)
+apache/nuttx,"Merge redundant layers, use caching for package installs",Moderate size & build time improvement
+INTO-CPS-Association/DTaaS,"Slim base image, squash layers, remove build tools","Faster builds, leaner dev image"
+autowarefoundation/autoware,"Consolidate images, combine install commands, remove duplicate deps","Reduced maintenance, disk space savings"
+microsoft/AirSim,"Cache big deps, multi-stage if possible","Faster local rebuilds, minor size change"
+lgsvl/simulator,"Multi-stage build, strip debug symbols, slim runtime base",Significant runtime size reduction
+erdos-project/pylot,"Multi-stage, cache pip deps, remove apt caches","Lean image, faster rebuilds"
+Fields2Cover/Fields2Cover,"Combine install steps, clean caches","Smaller image, fewer layers"
+ApolloAuto/apollo,"Multi-stage, slim CUDA runtime images, remove dev files","Smaller runtime, faster startup"
+autorope/donkeycar,"Combine steps, cache pip downloads, remove caches","More compact image, efficient builds"
+sigmaai/self-driving-golf-cart,"Slim ROS base, combine apt installs, clean caches",Significantly slimmer image
+amov-lab/Prometheus,"Multi-stage, slim Ubuntu/ROS base, remove dev packages",30-40% reduction possible
+drone-plugins/drone-docker,"Cache Docker binaries, combine RUN steps","Faster CI runs, already minimal"
+mavlink/qgroundcontrol,"Multi-stage Qt build, strip binaries",25% smaller runtime image
+harness/drone-cli,"Use scratch base, minimal image","Already minimal, no gain"
+Call-for-Code/DroneAid,"Slim Python base, multi-stage, clean pip cache",35% smaller image
+amymcgovern/pyparrot,"Slim Python base, remove unused deps","Already minimal, no gain"
+OpenDroneMap/WebODM,"Multi-stage for Node+Python, clean caches",Negligible improvement (few %)
+drone/docs,Use scratch/Alpine base with static server,<10MB final size
+OpenDroneMap/NodeODM,"Remove build tools, clean caches",1.7% reduction (engine dominates size)
