@@ -612,7 +612,9 @@ def main():
                                     tpm_limit=250000,
                                     rpd_limit=1000,
                                     progress_callback=progress_callback,
-                                    fallback_model=fallback_model
+                                    fallback_model=fallback_model,
+                                    auto_cleanup_docker=True,
+                                    docker_cleanup_interval=10
                                 )
                                 results_container["results"] = results
                                 progress_queue.put({"done": True})

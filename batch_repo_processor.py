@@ -6,6 +6,8 @@ Docker images, and runs comprehensive analysis on them.
 
 import os
 import sys
+import subprocess
+import shutil
 from pathlib import Path
 from typing import Dict, List, Any, Optional, Callable
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -22,9 +24,45 @@ from llm_agents.dockerfile_pipeline import (
 )
 from llm_agents.dockerfile_llm_analyzer import find_dockerfiles
 from docker_image_analyzer import list_images, analyze_image, compare_images
-from dive_analyzer import analyze_image_with_dive, compare_images_with_dive
+from dive_analyzer import analyze_image_with_dive, compare_images_with_dive, DiveUnavailableError
 from image_builder import build_image_from_dockerfile, image_exists, remove_image
 from rate_limiter import get_rate_limiter, reset_rate_limiter
+
+
+def cleanup_docker_if_needed(disk_usage_threshold: float = 0.85, progress_callback: Optional[Callable[[str], None]] = None) -> bool:
+    try:
+        stat = shutil.disk_usage("/")
+        total = stat.total
+        used = stat.used
+        usage_percent = used / total if total > 0 else 0
+        
+        if usage_percent >= disk_usage_threshold:
+            if progress_callback:
+                progress_callback(f"⚠️ Disk usage at {usage_percent:.1%}, cleaning Docker build cache...")
+            
+            result = subprocess.run(
+                ["docker", "builder", "prune", "-a", "-f"],
+                capture_output=True,
+                text=True,
+                timeout=60
+            )
+            
+            if result.returncode == 0:
+                stat_after = shutil.disk_usage("/")
+                freed = (used - stat_after.used) / (1024**3)
+                if progress_callback:
+                    progress_callback(f"✅ Freed {freed:.2f}GB from Docker cleanup")
+                return True
+            else:
+                if progress_callback:
+                    progress_callback(f"⚠️ Docker cleanup warning: {result.stderr[:100]}")
+                return False
+    except Exception as e:
+        if progress_callback:
+            progress_callback(f"⚠️ Docker cleanup error: {str(e)[:100]}")
+        return False
+    
+    return False
 
 
 def sanitize_repo_name(repo_url: str) -> str:
@@ -275,9 +313,19 @@ def process_single_repo(
                     result["original_image"]["dive_analysis"] = original_dive
                     result["optimized_image"]["dive_analysis"] = optimized_dive
                     result["comparison"]["dive_analysis"] = dive_comparison
+                except DiveUnavailableError as e:
+                    error_msg = "dive CLI not available. Install dive: https://github.com/wagoodman/dive"
+                    if progress_callback:
+                        progress_callback(f"⚠️ {error_msg}")
+                    result["original_image"]["dive_analysis"] = {"success": False, "error": error_msg}
+                    result["optimized_image"]["dive_analysis"] = {"success": False, "error": error_msg}
+                    result["comparison"]["dive_analysis"] = {"success": False, "error": error_msg}
                 except Exception as e:
-                    result["original_image"]["dive_analysis"] = {"success": False, "error": str(e)}
-                    result["optimized_image"]["dive_analysis"] = {"success": False, "error": str(e)}
+                    error_msg = f"dive analysis failed: {str(e)}"
+                    if progress_callback:
+                        progress_callback(f"⚠️ {error_msg}")
+                    result["original_image"]["dive_analysis"] = {"success": False, "error": error_msg}
+                    result["optimized_image"]["dive_analysis"] = {"success": False, "error": error_msg}
                 
                 if result["original_image"].get("size_bytes") and result["optimized_image"].get("size_bytes"):
                     orig_size = result["original_image"]["size_bytes"]
@@ -335,7 +383,9 @@ def process_all_repos(
     tpm_limit: int = 250000,
     rpd_limit: int = 1000,
     progress_callback: Optional[Callable[[str, int, int], None]] = None,
-    fallback_model: Optional[str] = None
+    fallback_model: Optional[str] = None,
+    auto_cleanup_docker: bool = True,
+    docker_cleanup_interval: int = 10
 ) -> List[Dict[str, Any]]:
     """Process all repositories from a file with parallel processing.
     
@@ -354,6 +404,8 @@ def process_all_repos(
         rpd_limit: Requests per day limit (default: 1000)
         progress_callback: Optional callback function(progress_msg, current, total)
         fallback_model: Optional fallback model if quota exceeded (e.g., "gemini-2.0-flash-lite")
+        auto_cleanup_docker: Whether to automatically clean Docker build cache when disk usage is high (default: True)
+        docker_cleanup_interval: Clean up Docker after every N repos (default: 10)
         
     Returns:
         List of analysis results, one per repository
@@ -382,12 +434,20 @@ def process_all_repos(
     repos_dir = os.path.join(current_file_dir, "cloned_repos")
     os.makedirs(repos_dir, exist_ok=True)
     
+    if auto_cleanup_docker:
+        cleanup_docker_if_needed(
+            progress_callback=lambda msg: (
+                progress_callback(msg, 0, len(repos)) if progress_callback else None
+            )
+        )
+    
     total = len(repos)
     results = []
     
     completed_lock = Lock()
     completed_count = [0]
     active_workers = [0]
+    last_cleanup_count = [0]
     
     current_model = [model]
     model_switched = [False]
@@ -480,9 +540,21 @@ def process_all_repos(
                 with completed_lock:
                     active_workers[0] -= 1
                     completed_count[0] += 1
+                    current_count = completed_count[0]
+                    
+                    if (auto_cleanup_docker and 
+                        current_count - last_cleanup_count[0] >= docker_cleanup_interval):
+                        last_cleanup_count[0] = current_count
+                        cleanup_docker_if_needed(
+                            progress_callback=lambda msg: (
+                                progress_callback(f"[Cleanup] {msg}", current_count, total)
+                                if progress_callback else None
+                            )
+                        )
+                    
                     progress_callback(
-                        f"Completed {completed_count[0]}/{total} ({repo_url}) [Active: {active_workers[0]}]", 
-                        completed_count[0], 
+                        f"Completed {current_count}/{total} ({repo_url}) [Active: {active_workers[0]}]", 
+                        current_count, 
                         total
                     )
             
@@ -502,12 +574,31 @@ def process_all_repos(
                 with completed_lock:
                     active_workers[0] -= 1
                     completed_count[0] += 1
+                    current_count = completed_count[0]
+                    
+                    if (auto_cleanup_docker and 
+                        current_count - last_cleanup_count[0] >= docker_cleanup_interval):
+                        last_cleanup_count[0] = current_count
+                        cleanup_docker_if_needed(
+                            progress_callback=lambda msg: (
+                                progress_callback(f"[Cleanup] {msg}", current_count, total)
+                                if progress_callback else None
+                            )
+                        )
             return error_result
     
     if max_workers == 1:
         for i, repo_url in enumerate(repos, 1):
             result = process_with_pipeline(repo_url, i)
             results.append(result)
+            
+            if auto_cleanup_docker and i % docker_cleanup_interval == 0:
+                cleanup_docker_if_needed(
+                    progress_callback=lambda msg: (
+                        progress_callback(f"[Cleanup] {msg}", i, total)
+                        if progress_callback else None
+                    )
+                )
     else:
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
             future_to_repo = {
@@ -536,6 +627,14 @@ def process_all_repos(
                     results_dict[index] = error_result
             
             results = [results_dict[i] for i in sorted(results_dict.keys())]
+    
+    if auto_cleanup_docker:
+        cleanup_docker_if_needed(
+            progress_callback=lambda msg: (
+                progress_callback(f"[Final Cleanup] {msg}", total, total)
+                if progress_callback else None
+            )
+        )
     
     try:
         rate_status = rate_limiter.get_status()
