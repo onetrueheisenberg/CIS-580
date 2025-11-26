@@ -381,6 +381,8 @@ def main():
         st.session_state.batch_running = False
     if "processing_mode" not in st.session_state:
         st.session_state.processing_mode = "single"
+    if "max_workers" not in st.session_state:
+        st.session_state.max_workers = 1
     
     with st.sidebar:
         st.header("Configuration")
@@ -403,10 +405,14 @@ def main():
         
         model = st.selectbox(
             "Model",
-            options=["gemini-2.0-flash-lite","gemini-3-pro-preview", "gemini-2.5-flash-lite", "gemini-1.5-flash", "gemini-1.5-pro"],
+            options=["gemini-2.5-flash-lite", "gemini-2.0-flash-lite", "gemini-3-pro-preview", "gemini-1.5-flash", "gemini-1.5-pro"],
             index=0,
-            help="Select the Gemini model to use (or set GEMINI_MODEL env var)"
+            help="Select the Gemini model to use (or set GEMINI_MODEL env var). If gemini-2.5-flash-lite is selected and quota is exceeded, will automatically fallback to gemini-2.0-flash-lite."
         )
+        
+        # Show fallback info
+        if model == "gemini-2.5-flash-lite":
+            st.info("ℹ️ **Auto-fallback enabled**: If quota is exceeded, will automatically switch to `gemini-2.0-flash-lite`")
         
         skip_test = st.checkbox(
             "Skip Test Stage",
@@ -434,45 +440,15 @@ def main():
                 "Parallel Workers",
                 min_value=1,
                 max_value=10,
-                value=3,
-                help="Number of repositories to process in parallel (higher = faster but more resource intensive). Recommended: 3-5. Set to 1 for sequential processing."
+                value=st.session_state.max_workers,
+                key="max_workers_slider",
+                help="Number of repositories to process in parallel (higher = faster but more resource intensive). ⚠️ WARNING: Values > 1 require more memory. Use 1 for small EC2 instances (<4GB RAM) to prevent OOM errors."
             )
+            st.session_state.max_workers = max_workers
             if max_workers > 1:
-                st.info(f"⚡ Parallel processing enabled: {max_workers} workers. Expected speedup: ~{max_workers}x faster than sequential.")
-            
-            st.markdown("---")
-            st.subheader("API Rate Limits")
-            st.caption("Configure rate limits to match your Gemini API plan")
-            
-            col1, col2, col3 = st.columns(3)
-            with col1:
-                rpm_limit = st.number_input(
-                    "RPM (Requests/Min)",
-                    min_value=1,
-                    max_value=1000,
-                    value=15,
-                    help="Requests per minute limit (default: 15 for gemini-2.5-flash-lite)"
-                )
-            with col2:
-                tpm_limit = st.number_input(
-                    "TPM (Tokens/Min)",
-                    min_value=1000,
-                    max_value=10000000,
-                    value=250000,
-                    step=10000,
-                    help="Tokens per minute limit (default: 250K for gemini-2.5-flash-lite)"
-                )
-            with col3:
-                rpd_limit = st.number_input(
-                    "RPD (Requests/Day)",
-                    min_value=1,
-                    max_value=100000,
-                    value=1000,
-                    help="Requests per day limit (default: 1K for gemini-2.5-flash-lite)"
-                )
-            
-            if max_workers > rpm_limit:
-                st.warning(f"⚠️ Parallel workers ({max_workers}) exceeds RPM limit ({rpm_limit}). Rate limiter will throttle requests automatically.")
+                st.warning(f"⚠️ Parallel processing enabled: {max_workers} workers. Ensure your EC2 instance has sufficient memory (≥4GB RAM recommended). OOM errors may occur on smaller instances.")
+            else:
+                st.info("ℹ️ Sequential processing (1 worker). Safe for all instance sizes, but slower.")
             
             cleanup_images = st.checkbox(
                 "Cleanup Images",
@@ -618,6 +594,10 @@ def main():
                         # Start processing in a separate thread
                         def run_processing():
                             try:
+                                fallback_model = None
+                                if model == "gemini-2.5-flash-lite":
+                                    fallback_model = "gemini-2.0-flash-lite"
+                                
                                 results = process_all_repos(
                                     repos_file=repos_file_path,
                                     api_key=api_key,
@@ -628,10 +608,11 @@ def main():
                                     cleanup_images=cleanup_images,
                                     max_repos=max_repos,
                                     max_workers=max_workers,
-                                    rpm_limit=rpm_limit if 'rpm_limit' in locals() else 15,
-                                    tpm_limit=tpm_limit if 'tpm_limit' in locals() else 250000,
-                                    rpd_limit=rpd_limit if 'rpd_limit' in locals() else 1000,
-                                    progress_callback=progress_callback
+                                    rpm_limit=15,
+                                    tpm_limit=250000,
+                                    rpd_limit=1000,
+                                    progress_callback=progress_callback,
+                                    fallback_model=fallback_model
                                 )
                                 results_container["results"] = results
                                 progress_queue.put({"done": True})
@@ -1008,31 +989,44 @@ def _display_batch_results_tabs(results: List[Dict[str, Any]]):
         st.info("No results to display.")
         return
 
-    # Note about history
     st.info("These results have been saved to history. Expand 'Analysis History' at the top to view and reload past runs.")
 
-    # Summary metrics
     summary = get_results_summary(results)
+    build_summary = results[0].get("batch_summary", {}) if results else {}
+    successful_builds = build_summary.get("successful_builds", 0)
+    failed_builds = build_summary.get("failed_builds", 0)
+    estimated_results = build_summary.get("estimated_results", 0)
+    actual_results = build_summary.get("actual_results", 0)
 
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2, col3, col4, col5 = st.columns(5)
     with col1:
         st.metric("Total Repos", summary["total_repos"])
     with col2:
-        st.metric("Successful", summary["successful_repos"], 
-        delta=f"-{summary['failed_repos']}" if summary['failed_repos'] > 0 else None)
+        st.metric("Successful Builds", successful_builds, 
+                  delta=f"-{failed_builds} failed" if failed_builds > 0 else None)
     with col3:
-        st.metric("Avg Size Reduction", f"{summary['avg_size_reduction_percent']:.1f}%")
+        st.metric("Actual Results", actual_results,
+                  help="Repos with full dive analysis and build comparison")
     with col4:
-        total_saved_mb = summary["total_size_saved_bytes"] / (1024 * 1024) if summary["total_size_saved_bytes"] else 0
-        st.metric("Total Space Saved", f"{total_saved_mb:.1f} MB")
+        st.metric("Estimated Results", estimated_results,
+                  help="Repos with estimated improvements (build failed)")
+    with col5:
+        st.metric("Avg Size Reduction", f"{summary['avg_size_reduction_percent']:.1f}%")
 
-    # Show failed repos if any
+    if build_summary:
+        st.markdown("---")
+        col1, col2 = st.columns(2)
+        with col1:
+            st.info(f"✅ **{successful_builds}** repositories with successful builds (full dive analysis available)")
+        with col2:
+            if estimated_results > 0:
+                st.warning(f"📊 **{estimated_results}** repositories with estimated improvements (builds failed, using LLM analysis)")
+
     failed_repos = [r for r in results if not r.get("success")]
     if failed_repos:
-        with st.expander(f"⚠️ Failed Repositories ({len(failed_repos)})", expanded=True):
+        with st.expander(f"⚠️ Failed Repositories ({len(failed_repos)})", expanded=False):
             st.warning(f"{len(failed_repos)} repositories failed to process. Check errors below:")
 
-    # Create tabs
     tab1, tab2, tab3, tab4 = st.tabs(
         [
             "Static Analysis Results",
@@ -1051,13 +1045,11 @@ def _display_batch_results_tabs(results: List[Dict[str, Any]]):
     with tab3:
         _display_combined_comparison_tab(results)
 
-    # LLM Prompts tab - show prompts for one selected result
     with tab4:
         st.header("LLM Prompts")
         if not results:
             st.info("No results available.")
         else:
-            # Let the user pick which repo's prompts to see
             options = list(range(len(results)))
             def _format_repo(idx: int) -> str:
                 r = results[idx]
@@ -1070,7 +1062,6 @@ def _display_batch_results_tabs(results: List[Dict[str, Any]]):
             )
 
             selected_result = results[selected_idx]
-            # For batch mode we store the LLM pipeline results under "dynamic_analysis"
             dyn_analysis = selected_result.get("dynamic_analysis", {})
             llm_pipeline_results = dyn_analysis.get("llm_pipeline_results")
 
@@ -1083,32 +1074,47 @@ def _display_static_analysis_tab(results: List[Dict[str, Any]]):
     """Display static analysis results tab."""
     st.header("Static Analysis Results")
     
-    # Prepare data for table
     table_data = []
     for result in results:
         if not result.get("success"):
             continue
         
+        is_estimated = result.get("estimated", False)
         orig_img = result.get("original_image", {})
         opt_img = result.get("optimized_image", {})
         comparison = result.get("comparison", {})
         
-        orig_size = orig_img.get("size_bytes", 0)
-        opt_size = opt_img.get("size_bytes", 0)
-        size_reduction_pct = comparison.get("size_reduction_percent", 0)
+        if is_estimated:
+            estimation = comparison.get("estimation", {})
+            size_reduction_pct = estimation.get("size_reduction_percent", 0)
+            size_reduction_bytes = estimation.get("size_reduction_bytes", 0)
+            efficiency_imp = estimation.get("efficiency_improvement")
+            orig_size = None  # Not available for estimated
+            opt_size = None
+            orig_dive = {}
+            opt_dive = {}
+        else:
+            orig_size = orig_img.get("size_bytes", 0)
+            opt_size = opt_img.get("size_bytes", 0)
+            size_reduction_pct = comparison.get("size_reduction_percent", 0)
+            orig_dive = orig_img.get("dive_analysis", {})
+            opt_dive = opt_img.get("dive_analysis", {})
+            efficiency_imp = comparison.get("efficiency_improvement")
+            size_reduction_bytes = comparison.get("size_reduction_bytes", 0)
         
-        orig_dive = orig_img.get("dive_analysis", {})
-        opt_dive = opt_img.get("dive_analysis", {})
-        efficiency_imp = comparison.get("efficiency_improvement")
+        repo_name = result.get("repo_name", result.get("repo_url", "Unknown"))
+        if is_estimated:
+            repo_name = f"📊 {repo_name} (Estimated)"
         
         table_data.append({
-            "Repo": result.get("repo_name", result.get("repo_url", "Unknown")),
-            "Original Size (MB)": round(orig_size / (1024 * 1024), 2) if orig_size else 0,
-            "Optimized Size (MB)": round(opt_size / (1024 * 1024), 2) if opt_size else 0,
-            "Size Reduction %": round(size_reduction_pct, 2) if size_reduction_pct else 0,
+            "Repo": repo_name,
+            "Type": "Estimated" if is_estimated else "Actual",
+            "Original Size (MB)": round(orig_size / (1024 * 1024), 2) if orig_size else "N/A",
+            "Optimized Size (MB)": round(opt_size / (1024 * 1024), 2) if opt_size else "N/A",
+            "Size Reduction %": f"~{round(size_reduction_pct, 2)}" if is_estimated and size_reduction_pct else round(size_reduction_pct, 2) if size_reduction_pct else 0,
             "Efficiency (Original)": f"{orig_dive.get('efficiency', 0):.1f}%" if orig_dive.get('efficiency') else "N/A",
             "Efficiency (Optimized)": f"{opt_dive.get('efficiency', 0):.1f}%" if opt_dive.get('efficiency') else "N/A",
-            "Efficiency Improvement": f"{efficiency_imp:+.1f}%" if efficiency_imp else "N/A",
+            "Efficiency Improvement": f"~{efficiency_imp:+.1f}%" if is_estimated and efficiency_imp else f"{efficiency_imp:+.1f}%" if efficiency_imp else "N/A",
             "Original Layers": orig_dive.get("layer_count", 0),
             "Optimized Layers": opt_dive.get("layer_count", 0),
             "Status": "Success" if result.get("success") else "Failed"
@@ -1118,7 +1124,6 @@ def _display_static_analysis_tab(results: List[Dict[str, Any]]):
         df = pd.DataFrame(table_data)
         st.dataframe(df, width="stretch", hide_index=True)
         
-        # Filters
         st.subheader("Filters")
         col1, col2 = st.columns(2)
         with col1:
@@ -1144,7 +1149,6 @@ def _display_dynamic_analysis_tab(results: List[Dict[str, Any]]):
     """Display dynamic analysis (LLM) results tab."""
     st.header("Dynamic Analysis Results")
     
-    # Prepare data for table
     table_data = []
     for result in results:
         if not result.get("success"):
@@ -1154,11 +1158,9 @@ def _display_dynamic_analysis_tab(results: List[Dict[str, Any]]):
         llm_results = dyn_analysis.get("llm_pipeline_results", {})
         stages = llm_results.get("stages", {})
         
-        # Original scores
         orig_analysis = stages.get("analysis", {}).get("result", {})
         orig_scores = orig_analysis.get("scores", {})
         
-        # Validation scores (optimized)
         validation = stages.get("validation", {}).get("result", {})
         fixed_scores = validation.get("fixed_scores", {})
         improvements = validation.get("improvements", {})
@@ -1211,7 +1213,6 @@ def _display_combined_comparison_tab(results: List[Dict[str, Any]]):
         size_df = pd.DataFrame(size_data)
         st.bar_chart(size_df.set_index("Repo"))
     
-    # Export button
     st.subheader("Export Results")
     col1, col2 = st.columns(2)
     with col1:
@@ -1235,7 +1236,6 @@ def _display_history_section():
         st.info("No analysis history yet. Run batch processing to create history records.")
         return
     
-    # Display summary
     st.subheader("History Summary")
     col1, col2, col3, col4 = st.columns(4)
     with col1:
@@ -1250,11 +1250,9 @@ def _display_history_section():
     st.markdown("---")
     st.subheader("Past Runs")
     
-    # Display history table
     history_data = []
     for record in history:
         timestamp = record.get("timestamp", "")
-        # Parse timestamp for display
         try:
             dt = datetime.fromisoformat(timestamp.replace('Z', '+00:00'))
             display_time = dt.strftime("%Y-%m-%d %H:%M:%S")
@@ -1277,14 +1275,12 @@ def _display_history_section():
     if history_data:
         df = pd.DataFrame(history_data)
         
-        # Display table with selection
         selected_indices = st.selectbox(
             "Select a run to view details:",
             options=range(len(history_data)),
             format_func=lambda x: f"{history_data[x]['Timestamp']} - {history_data[x]['Total Repos']} repos ({history_data[x]['Successful']} successful)"
         )
         
-        # Display selected run details
         if selected_indices is not None:
             selected_record = history[selected_indices]
             st.markdown("---")
@@ -1327,10 +1323,8 @@ def _display_history_section():
                     else:
                         st.error("Failed to delete run.")
         
-        # Display full table
         st.markdown("---")
         st.subheader("All Runs")
-        # Remove the ISO timestamp column for display
         display_df = df.drop(columns=["Timestamp (ISO)"])
         st.dataframe(display_df, width="stretch", hide_index=True)
 

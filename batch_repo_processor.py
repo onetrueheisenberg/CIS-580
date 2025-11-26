@@ -41,6 +41,64 @@ def sanitize_repo_name(repo_url: str) -> str:
     return repo_name
 
 
+def estimate_improvements_from_llm(llm_results: Dict[str, Any]) -> Dict[str, Any]:
+    estimation = {
+        "estimated": True,
+        "size_reduction_bytes": None,
+        "size_reduction_percent": None,
+        "efficiency_improvement": None,
+        "wasted_space_reduction_bytes": None,
+        "wasted_space_reduction_percent": None
+    }
+    
+    if not llm_results.get("success"):
+        return estimation
+    
+    original_analysis = llm_results.get("original_analysis", {})
+    validation_stage = llm_results.get("stages", {}).get("validation", {})
+    optimized_analysis = validation_stage.get("result", {}) if validation_stage.get("success") else {}
+    
+    orig_scores = original_analysis.get("scores", {})
+    opt_scores = optimized_analysis.get("scores", {})
+    
+    orig_wasted_kb = orig_scores.get("estimated_wasted_space_kb", 0)
+    opt_wasted_kb = opt_scores.get("estimated_wasted_space_kb", 0)
+    
+    if orig_wasted_kb > 0:
+        wasted_reduction_kb = orig_wasted_kb - opt_wasted_kb
+        estimation["wasted_space_reduction_bytes"] = int(wasted_reduction_kb * 1024)
+        estimation["wasted_space_reduction_percent"] = round((wasted_reduction_kb / orig_wasted_kb) * 100, 2)
+    
+    # Estimate size reduction based on efficiency score improvement
+    orig_efficiency = orig_scores.get("efficiency_score", 50)
+    opt_efficiency = opt_scores.get("efficiency_score", 50)
+    efficiency_improvement = opt_efficiency - orig_efficiency
+    
+    if efficiency_improvement > 0:
+        estimation["efficiency_improvement"] = round(efficiency_improvement, 2)
+        estimated_size_reduction_pct = efficiency_improvement * 0.5
+        estimation["size_reduction_percent"] = round(estimated_size_reduction_pct, 2)
+    
+    orig_issues = len(original_analysis.get("security_risks", [])) + \
+                  len(original_analysis.get("performance_issues", [])) + \
+                  len(original_analysis.get("best_practices_missing", []))
+    
+    opt_issues = len(optimized_analysis.get("security_risks", [])) + \
+                 len(optimized_analysis.get("performance_issues", [])) + \
+                 len(optimized_analysis.get("best_practices_missing", []))
+    
+    issues_fixed = orig_issues - opt_issues
+    if issues_fixed > 0:
+        estimated_bytes_per_issue = 2 * 1024 * 1024
+        estimated_size_reduction = issues_fixed * estimated_bytes_per_issue
+        if estimation["size_reduction_bytes"] is None:
+            estimation["size_reduction_bytes"] = estimated_size_reduction
+        else:
+            estimation["size_reduction_bytes"] += estimated_size_reduction
+    
+    return estimation
+
+
 def process_single_repo(
     repo_url: str,
     pipeline: DockerfilePipeline,
@@ -120,6 +178,7 @@ def process_single_repo(
             
             if not original_build_success:
                 result["error"] = f"Failed to build original image: {original_build.get('error') or original_build.get('errors')}"
+                result["build_status"] = "original_build_failed"
             
             if progress_callback:
                 progress_callback(f"Running LLM optimization for {repo_name}...")
@@ -129,6 +188,7 @@ def process_single_repo(
             
             if not llm_results.get("success"):
                 result["error"] = "LLM pipeline failed"
+                result["build_status"] = "llm_failed"
                 return result
             
             optimized_dockerfile_content = llm_results.get("fixed_dockerfile", original_dockerfile_content)
@@ -155,8 +215,23 @@ def process_single_repo(
             result["optimized_image"]["size_bytes"] = optimized_build.get("image_size_bytes")
             result["optimized_image"]["build_time"] = optimized_build.get("build_time")
             
-            if not optimized_build_success:
+            if original_build_success and optimized_build_success:
+                result["build_status"] = "success"
+            elif not original_build_success:
+                result["build_status"] = "original_build_failed"
+            elif not optimized_build_success:
+                result["build_status"] = "optimized_build_failed"
                 result["error"] = f"Failed to build optimized image: {optimized_build.get('error') or optimized_build.get('errors')}"
+            
+            if result["build_status"] != "success":
+                if progress_callback:
+                    progress_callback(f"Estimating improvements for {repo_name} (build failed, using LLM analysis)...")
+                
+                estimation = estimate_improvements_from_llm(llm_results)
+                result["comparison"]["estimation"] = estimation
+                result["comparison"]["estimated"] = True
+                result["estimated"] = True
+                result["success"] = True
             
             if original_build_success and optimized_build_success:
                 if progress_callback:
@@ -218,8 +293,14 @@ def process_single_repo(
                 
                 if result["comparison"].get("dive_analysis", {}).get("wasted_space_reduction") is not None:
                     result["comparison"]["wasted_space_reduction_bytes"] = result["comparison"]["dive_analysis"]["wasted_space_reduction"]
+                
+                result["comparison"]["estimated"] = False
+                result["estimated"] = False
             
-            result["success"] = bool(llm_results.get("success"))
+            if result["build_status"] == "success":
+                result["success"] = True
+            else:
+                result["success"] = bool(llm_results.get("success"))
             
         finally:
             if cleanup_repo and os.path.exists(repo_path):
@@ -392,6 +473,7 @@ def process_all_repos(
                         "repo_name": sanitize_repo_name(repo_url),
                         "success": False,
                         "error": f"Execution error: {str(e)}",
+                        "build_status": "error",
                         "original_image": {},
                         "optimized_image": {},
                         "dynamic_analysis": {},
@@ -406,7 +488,18 @@ def process_all_repos(
         if results:
             results[0]["rate_limit_status"] = rate_status
     except:
-        pass  # Rate limiter might not be available
+        pass
+    
+    build_summary = {
+        "total_repos": len(results),
+        "successful_builds": sum(1 for r in results if r.get("build_status") == "success"),
+        "failed_builds": sum(1 for r in results if r.get("build_status") and r.get("build_status") != "success"),
+        "estimated_results": sum(1 for r in results if r.get("estimated", False)),
+        "actual_results": sum(1 for r in results if not r.get("estimated", False) and r.get("build_status") == "success")
+    }
+    
+    for result in results:
+        result["batch_summary"] = build_summary
     
     return results
 
