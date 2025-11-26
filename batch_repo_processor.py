@@ -334,7 +334,8 @@ def process_all_repos(
     rpm_limit: int = 15,
     tpm_limit: int = 250000,
     rpd_limit: int = 1000,
-    progress_callback: Optional[Callable[[str, int, int], None]] = None
+    progress_callback: Optional[Callable[[str, int, int], None]] = None,
+    fallback_model: Optional[str] = None
 ) -> List[Dict[str, Any]]:
     """Process all repositories from a file with parallel processing.
     
@@ -352,6 +353,7 @@ def process_all_repos(
         tpm_limit: Tokens per minute limit (default: 250000)
         rpd_limit: Requests per day limit (default: 1000)
         progress_callback: Optional callback function(progress_msg, current, total)
+        fallback_model: Optional fallback model if quota exceeded (e.g., "gemini-2.0-flash-lite")
         
     Returns:
         List of analysis results, one per repository
@@ -387,6 +389,9 @@ def process_all_repos(
     completed_count = [0]
     active_workers = [0]
     
+    current_model = [model]
+    model_switched = [False]
+    
     def process_with_pipeline(repo_url: str, index: int) -> Dict[str, Any]:
         """Process a single repo with its own pipeline instance (thread-safe).
         
@@ -399,7 +404,7 @@ def process_all_repos(
         """
         pipeline = DockerfilePipeline(
             api_key=api_key,
-            model=model,
+            model=current_model[0],
             build_timeout=build_timeout
         )
         
@@ -421,6 +426,55 @@ def process_all_repos(
                     if progress_callback else None
                 )
             )
+            
+            error_text = ""
+            if result.get("error"):
+                error_text = str(result.get("error"))
+            llm_results = result.get("dynamic_analysis", {}).get("llm_pipeline_results", {})
+            if llm_results:
+                stages = llm_results.get("stages", {})
+                for stage_name, stage_data in stages.items():
+                    if isinstance(stage_data, dict):
+                        stage_error = stage_data.get("error", "")
+                        if stage_error:
+                            error_text += " " + str(stage_error)
+            
+            if (fallback_model and 
+                not model_switched[0] and 
+                error_text and 
+                ("429" in error_text or 
+                 "quota" in error_text.lower() or
+                 "exceeded" in error_text.lower() or
+                 "insufficient_quota" in error_text.lower())):
+                
+                with completed_lock:
+                    if not model_switched[0]:
+                        model_switched[0] = True
+                        current_model[0] = fallback_model
+                        if progress_callback:
+                            progress_callback(
+                                f"⚠️ Quota exceeded. Switching to fallback model: {fallback_model}", 
+                                index, total
+                            )
+                        print(f"\n[INFO] API quota exceeded. Switching from {model} to {fallback_model}")
+                
+                pipeline = DockerfilePipeline(
+                    api_key=api_key,
+                    model=fallback_model,
+                    build_timeout=build_timeout
+                )
+                result = process_single_repo(
+                    repo_url=repo_url,
+                    pipeline=pipeline,
+                    repos_dir=repos_dir,
+                    skip_test=skip_test,
+                    cleanup_repo=cleanup_repo,
+                    cleanup_images=cleanup_images,
+                    progress_callback=lambda msg: (
+                        progress_callback(f"[{index}/{total}] {msg} (using {fallback_model})", index, total) 
+                        if progress_callback else None
+                    )
+                )
             
             if progress_callback:
                 with completed_lock:
