@@ -4,6 +4,7 @@ import subprocess
 import sys
 import tempfile
 import time
+import uuid
 from typing import Dict, List, Optional, Any
 
 
@@ -60,7 +61,8 @@ class DockerfileTester:
                     build_context = os.path.dirname(dockerfile_to_use) or "."
             
             if not image_name:
-                image_name = f"dockerfile-test-{int(time.time())}"
+                unique_id = uuid.uuid4().hex[:8]
+                image_name = f"dockerfile-test-{int(time.time())}-{unique_id}"
             
             print(f"  Building Docker image '{image_name}'...", end="", flush=True)
             build_result = self._build_image(

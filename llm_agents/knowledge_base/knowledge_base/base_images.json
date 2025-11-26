@@ -1,0 +1,98 @@
+{
+  "golang": {
+    "name": "golang",
+    "latest_stable": "golang:1.22-alpine",
+    "recommended": "golang:1.22-alpine",
+    "eol_versions": [
+      "1.12",
+      "1.13",
+      "1.14",
+      "1.15",
+      "1.16",
+      "1.17",
+      "1.18",
+      "1.19",
+      "1.20"
+    ],
+    "security_issues": {
+      "1.12-alpine3.9": "EOL, multiple CVEs, no security patches",
+      "1.13": "EOL, security vulnerabilities",
+      "1.14": "EOL, security vulnerabilities"
+    },
+    "release_date": null,
+    "eol_date": null,
+    "notes": "Use alpine variants for smaller images"
+  },
+  "alpine": {
+    "name": "alpine",
+    "latest_stable": "alpine:3.20",
+    "recommended": "alpine:3.20",
+    "eol_versions": [
+      "3.9",
+      "3.10",
+      "3.11",
+      "3.12",
+      "3.13",
+      "3.14",
+      "3.15",
+      "3.16",
+      "3.17",
+      "3.18"
+    ],
+    "security_issues": {
+      "3.9": "EOL, multiple CVEs",
+      "3.10": "EOL, security vulnerabilities",
+      "3.11": "EOL, security vulnerabilities"
+    },
+    "release_date": null,
+    "eol_date": null,
+    "notes": "Alpine Linux - minimal base image"
+  },
+  "ubuntu": {
+    "name": "ubuntu",
+    "latest_stable": "ubuntu:24.04",
+    "recommended": "ubuntu:22.04",
+    "eol_versions": [
+      "18.04",
+      "20.04"
+    ],
+    "security_issues": {
+      "18.04": "EOL, no security updates",
+      "20.04": "EOL soon"
+    },
+    "release_date": null,
+    "eol_date": null,
+    "notes": "Ubuntu LTS versions recommended"
+  },
+  "node": {
+    "name": "node",
+    "latest_stable": "node:20-alpine",
+    "recommended": "node:20-alpine",
+    "eol_versions": [
+      "10",
+      "12",
+      "14",
+      "16",
+      "18"
+    ],
+    "security_issues": {},
+    "release_date": null,
+    "eol_date": null,
+    "notes": "Use alpine variants for smaller images"
+  },
+  "python": {
+    "name": "python",
+    "latest_stable": "python:3.12-alpine",
+    "recommended": "python:3.12-alpine",
+    "eol_versions": [
+      "3.6",
+      "3.7",
+      "3.8",
+      "3.9"
+    ],
+    "security_issues": {},
+    "release_date": null,
+    "eol_date": null,
+    "notes": "Use alpine variants for smaller images"
+  }
+}

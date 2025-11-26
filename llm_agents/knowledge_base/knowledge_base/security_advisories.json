@@ -1,0 +1,29 @@
+{
+  "golang_1_12_eol": {
+    "id": "golang_1_12_eol",
+    "base_image": "golang:1.12",
+    "package": null,
+    "cve": null,
+    "severity": "critical",
+    "description": "Golang 1.12 is end-of-life and receives no security updates",
+    "affected_versions": [
+      "1.12",
+      "1.12-alpine"
+    ],
+    "fixed_version": "1.22-alpine",
+    "published_date": "2020-02-01"
+  },
+  "alpine_3_9_eol": {
+    "id": "alpine_3_9_eol",
+    "base_image": "alpine:3.9",
+    "package": null,
+    "cve": null,
+    "severity": "critical",
+    "description": "Alpine 3.9 is end-of-life and receives no security updates",
+    "affected_versions": [
+      "3.9"
+    ],
+    "fixed_version": "3.20",
+    "published_date": "2021-11-01"
+  }
+}

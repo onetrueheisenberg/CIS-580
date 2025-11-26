@@ -1,0 +1,272 @@
+{
+  "security_106": {
+    "id": "security_106",
+    "original_pattern": "#\n# ------ Drone-Helm build image ------\n#\nFROM golang:1.12-alpine3.9 as builder\n\nRUN apk update\nRUN apk add dep git\n\nENV GOOS linux \nENV GOARCH=386 \n\nWORKDIR /go/src/github.com/ipedrazas/drone-helm\nC",
+    "fixed_pattern": "FROM golang:1.22-alpine as builder\n\nRUN apk update\nRUN apk add dep git\n\nENV GOOS linux \nENV GOARCH=386 \n\nWORKDIR /go/src/github.com/ipedrazas/drone-helm\nCOPY . .\n\nRUN dep ensure\nRUN go build\n\n#\n# ----",
+    "issue_type": "security",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-20T21:44:29.745015",
+    "notes": null
+  },
+  "performance_8401": {
+    "id": "performance_8401",
+    "original_pattern": "FROM ubuntu:22.04\nSHELL [\"/bin/bash\", \"-xec\"]\nRUN export DEBIAN_FRONTEND=noninteractive;\\\n    apt-get update;\\\n    apt-get dist-upgrade --no-install-recommends --purge --yes\\\n        clang-12\\\n       ",
+    "fixed_pattern": "FROM ubuntu:22.04\nSHELL [\"/bin/bash\", \"-xec\"]\nRUN export DEBIAN_FRONTEND=noninteractive; apt-get update; apt-get dist-upgrade --no-install-recommends --purge --yes clang-12 cmake g++ googletest libben",
+    "issue_type": "performance",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-25T23:18:41.813656",
+    "notes": null
+  },
+  "performance_8916": {
+    "id": "performance_8916",
+    "original_pattern": "# pull the official base image  \nFROM node:13.12.0-alpine\n\nFROM nginxinc/nginx-unprivileged\nCOPY src/ /etc/nginx/html\n\nUSER 101\nCOPY config/nginx.conf /etc/nginx/conf.d/default.conf\nCMD [\"nginx-debug\"",
+    "fixed_pattern": "FROM nginxinc/nginx-unprivileged\nCOPY src/ /etc/nginx/html\n\nRUN groupadd -r appgroup && useradd -r -g appgroup appuser\nUSER appuser\nCOPY config/nginx.conf /etc/nginx/conf.d/default.conf\nCMD [\"nginx\", ",
+    "issue_type": "performance",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-25T23:21:08.422957",
+    "notes": null
+  },
+  "performance_7627": {
+    "id": "performance_7627",
+    "original_pattern": "FROM node:9\nRUN npm i -g webpack webpack-cli\n\nWORKDIR /app\nCOPY . /app\nRUN npm i\n\nCMD npm run start-stg\n\nEXPOSE 3333",
+    "fixed_pattern": "FROM node:20-alpine\nRUN npm i -g webpack webpack-cli && npm cache clean --force\n\nWORKDIR /app\nCOPY package.json package-lock.json ./\nRUN npm ci\n\nCOPY . /app\nRUN addgroup -g 1000 appuser && adduser -D ",
+    "issue_type": "performance",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-25T23:22:47.248865",
+    "notes": null
+  },
+  "performance_8165": {
+    "id": "performance_8165",
+    "original_pattern": "# SPDX-FileCopyrightText: AISEC Pentesting Team\n#\n# SPDX-License-Identifier: CC0-1.0\n\nFROM debian:stable\n\nLABEL org.opencontainers.image.authors=\"stefan.tatschner@aisec.fraunhofer.de\"\n\nRUN DEBIAN_FRON",
+    "fixed_pattern": "FROM debian:12-slim\n\nLABEL org.opencontainers.image.authors=\"stefan.tatschner@aisec.fraunhofer.de\"\n\nRUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-install-recommends pipx",
+    "issue_type": "performance",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-25T23:27:45.760011",
+    "notes": null
+  },
+  "performance_3997": {
+    "id": "performance_3997",
+    "original_pattern": "FROM mcr.microsoft.com/devcontainers/typescript-node:22-bullseye\n\n# Accept build arguments\nARG NODE_USER=node\n\n# Install additional development packages\nRUN apt-get update && export DEBIAN_FRONTEND=no",
+    "fixed_pattern": "FROM mcr.microsoft.com/devcontainers/typescript-node:22.0.0-bullseye\n\n# Accept build arguments\nARG NODE_USER=node\n\n# Install additional development packages and cleanup\nRUN apt-get update && export DE",
+    "issue_type": "performance",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-25T23:31:49.785325",
+    "notes": null
+  },
+  "performance_4012": {
+    "id": "performance_4012",
+    "original_pattern": "FROM ubuntu:22.04\n\nARG DEBIAN_FRONTEND=noninteractive\nARG NODE_MAJOR=20\nRUN apt-get update -qq \\\n    && apt-get install -y ca-certificates curl gnupg \\\n    && mkdir -p /etc/apt/keyrings \\\n    && curl ",
+    "fixed_pattern": "FROM ubuntu:22.04\n\nARG DEBIAN_FRONTEND=noninteractive\nARG NODE_MAJOR=20\nRUN apt-get update -qq \\\n    && apt-get install -y --no-install-recommends ca-certificates curl gnupg \\\n    && mkdir -p /etc/apt",
+    "issue_type": "performance",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-25T23:34:59.213485",
+    "notes": null
+  },
+  "performance_6590": {
+    "id": "performance_6590",
+    "original_pattern": "FROM ubuntu:noble\n\nARG DEBIAN_FRONTEND=noninteractive\n\nRUN apt-get update \\\n && apt-get dist-upgrade -y \\\n && apt-get install -y locales sudo\n\nRUN locale-gen en_US.UTF-8 \\\n && update-locale LANG=en_US",
+    "fixed_pattern": "FROM ubuntu:22.04\n\nARG DEBIAN_FRONTEND=noninteractive\n\nRUN apt-get update \\\n && apt-get dist-upgrade -y \\\n && apt-get install -y locales sudo \\\n && apt-get clean && rm -rf /var/lib/apt/lists/*\n\nRUN lo",
+    "issue_type": "performance",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-25T23:45:41.838117",
+    "notes": null
+  },
+  "performance_8553": {
+    "id": "performance_8553",
+    "original_pattern": "FROM ubuntu:22.04\nSHELL [\"/bin/bash\", \"-xec\"]\nRUN export DEBIAN_FRONTEND=noninteractive;\\\n    apt-get update;\\\n    apt-get dist-upgrade --no-install-recommends --purge --yes\\\n        clang-12\\\n       ",
+    "fixed_pattern": "FROM ubuntu:22.04\nSHELL [\"/bin/bash\", \"-xec\"]\nRUN apt-get update && apt-get dist-upgrade --no-install-recommends --purge --yes \\\n        clang-12 \\\n        cmake \\\n        g++ \\\n        googletest \\\n ",
+    "issue_type": "performance",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-26T00:24:36.545669",
+    "notes": null
+  },
+  "security_512": {
+    "id": "security_512",
+    "original_pattern": "FROM ubuntu:22.04\nSHELL [\"/bin/bash\", \"-xec\"]\nRUN export DEBIAN_FRONTEND=noninteractive;\\\n    apt-get update;\\\n    apt-get dist-upgrade --no-install-recommends --purge --yes\\\n        clang-12\\\n       ",
+    "fixed_pattern": "FROM ubuntu:22.04\nSHELL [\"/bin/bash\", \"-xec\"]\nRUN export DEBIAN_FRONTEND=noninteractive && \\\n    apt-get update && \\\n    apt-get dist-upgrade --no-install-recommends --purge --yes \\\n        clang-12 \\",
+    "issue_type": "security",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-26T00:50:00.913392",
+    "notes": null
+  },
+  "optimization_4091": {
+    "id": "optimization_4091",
+    "original_pattern": "# pull the official base image  \nFROM node:13.12.0-alpine\n\nFROM nginxinc/nginx-unprivileged\nCOPY src/ /etc/nginx/html\n\nUSER 101\nCOPY config/nginx.conf /etc/nginx/conf.d/default.conf\nCMD [\"nginx-debug\"",
+    "fixed_pattern": "FROM node:20-alpine AS builder\n\nWORKDIR /app\n\nCOPY package*.json ./\nRUN npm install\n\nCOPY . .\n\nFROM nginxinc/nginx-unprivileged\nCOPY --from=builder /app/src /etc/nginx/html\n\nRUN addgroup -g 1000 appus",
+    "issue_type": "optimization",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-26T00:50:39.547575",
+    "notes": null
+  },
+  "performance_1511": {
+    "id": "performance_1511",
+    "original_pattern": "FROM node:9\nRUN npm i -g webpack webpack-cli\n\nWORKDIR /app\nCOPY . /app\nRUN npm i\n\nCMD npm run start-stg\n\nEXPOSE 3333",
+    "fixed_pattern": "FROM node:20-alpine\nRUN npm i -g webpack webpack-cli\n\nWORKDIR /app\nRUN useradd -m -s /bin/bash appuser && USER appuser\nCOPY package*.json ./\nRUN npm i && npm cache clean --force\nCOPY . /app\nCMD npm ru",
+    "issue_type": "performance",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-26T00:52:20.041697",
+    "notes": null
+  },
+  "optimization_1436": {
+    "id": "optimization_1436",
+    "original_pattern": "# SPDX-FileCopyrightText: AISEC Pentesting Team\n#\n# SPDX-License-Identifier: CC0-1.0\n\nFROM debian:stable\n\nLABEL org.opencontainers.image.authors=\"stefan.tatschner@aisec.fraunhofer.de\"\n\nRUN DEBIAN_FRON",
+    "fixed_pattern": "FROM debian:stable\n\nLABEL org.opencontainers.image.authors=\"stefan.tatschner@aisec.fraunhofer.de\"\n\nRUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-install-recommends pipx ",
+    "issue_type": "optimization",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-26T00:54:30.931456",
+    "notes": null
+  },
+  "performance_1770": {
+    "id": "performance_1770",
+    "original_pattern": "FROM ubuntu:noble\n\nARG DEBIAN_FRONTEND=noninteractive\n\nRUN apt-get update \\\n && apt-get dist-upgrade -y \\\n && apt-get install -y locales sudo\n\nRUN locale-gen en_US.UTF-8 \\\n && update-locale LANG=en_US",
+    "fixed_pattern": "FROM ubuntu:22.04\n\nARG DEBIAN_FRONTEND=noninteractive\n\nRUN apt-get update \\\n && apt-get dist-upgrade -y \\\n && apt-get install -y locales sudo\n\nRUN locale-gen en_US.UTF-8 \\\n && update-locale LANG=en_US",
+    "issue_type": "performance",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-26T01:05:03.927649",
+    "notes": null
+  },
+  "optimization_472": {
+    "id": "optimization_472",
+    "original_pattern": "FROM ubuntu:22.04\n\nRUN apt-get update\nRUN apt-get install -y cmake git g++-12\n",
+    "fixed_pattern": "FROM ubuntu:22.04\n\nRUN apt-get update && apt-get install -y --no-install-recommends cmake git g++-12 && apt-get clean && rm -rf /var/lib/apt/lists/*",
+    "issue_type": "optimization",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-26T01:32:31.238088",
+    "notes": null
+  },
+  "performance_7770": {
+    "id": "performance_7770",
+    "original_pattern": "# To build:\n# docker build --pull --no-cache --tag tello_ros:foxy .\n\n# To run:\n# docker run -it tello_ros:foxy bash\n\n# I'm using this for smoke tests\n# To run tello_ros in a docker container you will ",
+    "fixed_pattern": "FROM osrf/ros:foxy-desktop\n\nRUN apt-get update && apt-get install -y --no-install-recommends libasio-dev python3-pip && rm -rf /var/lib/apt/lists/*\nRUN apt-get upgrade -y\n\nRUN yes | pip3 install 'tran",
+    "issue_type": "performance",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-26T01:40:35.539217",
+    "notes": null
+  },
+  "optimization_1253": {
+    "id": "optimization_1253",
+    "original_pattern": "# see https://github.com/microsoft/vscode-dev-containers/tree/main/containers\nARG VARIANT=\"20\"\nFROM mcr.microsoft.com/vscode/devcontainers/javascript-node:0-${VARIANT}\n\nENV PATH=\"/opt/emsdk/upstream/e",
+    "fixed_pattern": "FROM mcr.microsoft.com/vscode/devcontainers/javascript-node:0-${VARIANT}\n\nENV PATH=\"/opt/emsdk/upstream/emscripten:${PATH}\"\n\nRUN useradd -m appuser && chown -R appuser:appuser /opt/emsdk && USER appus",
+    "issue_type": "optimization",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-26T01:56:43.427662",
+    "notes": null
+  },
+  "performance_7947": {
+    "id": "performance_7947",
+    "original_pattern": "FROM ubuntu:20.04 as build-tests\n\nENV DEBIAN_FRONTEND=noninteractive\n\nRUN apt-get update && apt-get install -y \\\n    git \\\n    wget \\\n    libssl-dev \\\n    build-essential \\\n    libffi-dev \\\n    librea",
+    "fixed_pattern": "FROM ubuntu:22.04 as builder\n\nENV DEBIAN_FRONTEND=noninteractive\n\nRUN apt-get update && apt-get install -y --no-install-recommends \\\n    git \\\n    wget \\\n    libssl-dev \\\n    build-essential \\\n    lib",
+    "issue_type": "performance",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-26T02:05:46.043856",
+    "notes": null
+  },
+  "security_9801": {
+    "id": "security_9801",
+    "original_pattern": "FROM golang:1.13.5-alpine\n\nADD ad1d54f.diff /\n\nRUN cd $(go env GOROOT) && patch -p 1 < /ad1d54f.diff\n\nENV GOCACHE=/go/.cache\n",
+    "fixed_pattern": "FROM golang:1.22-alpine\n\nADD ad1d54f.diff /\n\nRUN cd $(go env GOROOT) && patch -p 1 < /ad1d54f.diff\n\nENV GOCACHE=/go/.cache\n\nRUN adduser -D myuser\nUSER myuser",
+    "issue_type": "security",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-26T02:11:03.182962",
+    "notes": null
+  },
+  "security_4914": {
+    "id": "security_4914",
+    "original_pattern": "#\n# ------ Drone-Helm build image ------\n#\nFROM golang:1.12-alpine3.9 as builder\n\nRUN apk update\nRUN apk add dep git\n\nENV GOOS linux \nENV GOARCH=386 \n\nWORKDIR /go/src/github.com/ipedrazas/drone-helm\nC",
+    "fixed_pattern": "FROM golang:1.22-alpine as builder\n\nRUN apk update && apk add --no-cache dep git --no-install-recommends && rm -rf /var/cache/apk/*\n\nENV GOOS linux\nENV GOARCH=amd64\n\nWORKDIR /go/src/github.com/ipedraz",
+    "issue_type": "security",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-26T10:33:13.611120",
+    "notes": null
+  },
+  "security_146": {
+    "id": "security_146",
+    "original_pattern": "#\n# ------ Drone-Helm build image ------\n#\nFROM golang:1.12-alpine3.9 as builder\n\nRUN apk update\nRUN apk add dep git\n\nENV GOOS linux \nENV GOARCH=386 \n\nWORKDIR /go/src/github.com/ipedrazas/drone-helm\nC",
+    "fixed_pattern": "FROM golang:1.22-alpine3.9 as builder\n\nRUN apk update && apk add --no-cache dep git && rm -rf /var/cache/apk/*\n\nENV GOOS linux\nENV GOARCH=amd64\n\nWORKDIR /go/src/github.com/ipedrazas/drone-helm\nCOPY Go",
+    "issue_type": "security",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-26T10:48:24.426924",
+    "notes": null
+  },
+  "security_6212": {
+    "id": "security_6212",
+    "original_pattern": "#\n# ------ Drone-Helm build image ------\n#\nFROM golang:1.12-alpine3.9 as builder\n\nRUN apk update\nRUN apk add dep git\n\nENV GOOS linux \nENV GOARCH=386 \n\nWORKDIR /go/src/github.com/ipedrazas/drone-helm\nC",
+    "fixed_pattern": "FROM golang:1.22-alpine as builder\n\nRUN apk update && apk add --no-cache dep git && rm -rf /var/cache/apk/*\n\nENV GOOS linux\nENV GOARCH=amd64\n\nWORKDIR /go/src/github.com/ipedrazas/drone-helm\nCOPY Gopkg",
+    "issue_type": "security",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-26T10:54:49.715684",
+    "notes": null
+  },
+  "security_6976": {
+    "id": "security_6976",
+    "original_pattern": "#\n# ------ Drone-Helm build image ------\n#\nFROM golang:1.12-alpine3.9 as builder\n\nRUN apk update\nRUN apk add dep git\n\nENV GOOS linux \nENV GOARCH=386 \n\nWORKDIR /go/src/github.com/ipedrazas/drone-helm\nC",
+    "fixed_pattern": "FROM golang:1.22-alpine as builder\n\nRUN apk update && apk add --no-cache dep git && rm -rf /var/cache/apk/*\n\nENV GOOS linux \nENV GOARCH=amd64 \n\nWORKDIR /go/src/github.com/ipedrazas/drone-helm\nCOPY go.",
+    "issue_type": "security",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-26T10:59:22.410509",
+    "notes": null
+  },
+  "security_4585": {
+    "id": "security_4585",
+    "original_pattern": "#\n# ------ Drone-Helm build image ------\n#\nFROM golang:1.12-alpine3.9 as builder\n\nRUN apk update\nRUN apk add dep git\n\nENV GOOS linux \nENV GOARCH=386 \n\nWORKDIR /go/src/github.com/ipedrazas/drone-helm\nC",
+    "fixed_pattern": "FROM golang:1.22-alpine as builder\n\nRUN apk update && apk add --no-cache dep git && rm -rf /var/cache/apk/*\nENV GOOS linux\nENV GOARCH=amd64\n\nWORKDIR /go/src/github.com/ipedrazas/drone-helm\nCOPY go.mod",
+    "issue_type": "security",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-26T11:29:14.089432",
+    "notes": null
+  },
+  "security_6971": {
+    "id": "security_6971",
+    "original_pattern": "#\n# ------ Drone-Helm build image ------\n#\nFROM golang:1.12-alpine3.9 as builder\n\nRUN apk update\nRUN apk add dep git\n\nENV GOOS linux \nENV GOARCH=386 \n\nWORKDIR /go/src/github.com/ipedrazas/drone-helm\nC",
+    "fixed_pattern": "FROM golang:1.22-alpine as builder\n\nRUN apk update && apk add --no-cache dep git && rm -rf /var/cache/apk/*\n\nENV GOOS linux\nENV GOARCH=amd64\n\nWORKDIR /go/src/github.com/ipedrazas/drone-helm\nCOPY go.mo",
+    "issue_type": "security",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-26T11:31:47.693239",
+    "notes": null
+  },
+  "performance_5220": {
+    "id": "performance_5220",
+    "original_pattern": "FROM ubuntu:22.04\nSHELL [\"/bin/bash\", \"-xec\"]\nRUN export DEBIAN_FRONTEND=noninteractive;\\\n    apt-get update;\\\n    apt-get dist-upgrade --no-install-recommends --purge --yes\\\n        clang-12\\\n       ",
+    "fixed_pattern": "FROM ubuntu:22.04\nSHELL [\"/bin/bash\", \"-xec\"]\nRUN export DEBIAN_FRONTEND=noninteractive; \\\n    apt-get update; \\\n    apt-get dist-upgrade --no-install-recommends --purge --yes \\\n        clang-12 \\\n   ",
+    "issue_type": "performance",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-26T11:37:08.096457",
+    "notes": null
+  },
+  "performance_7008": {
+    "id": "performance_7008",
+    "original_pattern": "FROM node:9\nRUN npm i -g webpack webpack-cli\n\nWORKDIR /app\nCOPY . /app\nRUN npm i\n\nCMD npm run start-stg\n\nEXPOSE 3333",
+    "fixed_pattern": "FROM node:20-alpine\nRUN npm i -g webpack webpack-cli\n\nWORKDIR /app\nCOPY package.json package-lock.json ./\nRUN npm i\nCOPY . /app\nRUN npm run start-stg\n\nEXPOSE 3333",
+    "issue_type": "performance",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-11-26T11:39:16.727472",
+    "notes": null
+  }
+}

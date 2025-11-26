@@ -50,6 +50,65 @@ class DockerfilePipeline:
         )
         self.tester = DockerfileTester(build_timeout=build_timeout)
     
+    def _find_missing_copy_sources(self, dockerfile_content: str, build_context: str) -> List[str]:
+        """Find source paths in COPY/ADD instructions that do not exist in the build context."""
+        missing: List[str] = []
+        lines = dockerfile_content.split('\n')
+        
+        for line in lines:
+            stripped = line.strip()
+            if not stripped or stripped.startswith('#'):
+                continue
+            
+            upper = stripped.upper()
+            if not (upper.startswith('COPY ') or upper.startswith('ADD ')):
+                continue
+            
+            parts = stripped.split()
+            if len(parts) < 2:
+                continue
+            
+            tokens = parts[1:]
+            
+            while tokens and tokens[0].startswith('--'):
+                tokens = tokens[1:]
+            
+            if not tokens:
+                continue
+            
+            srcs: List[str] = []
+            if tokens[0].startswith('['):
+                try:
+                    import json as _json
+                    arr = _json.loads(' '.join(tokens))
+                    if isinstance(arr, list) and len(arr) >= 2:
+                        *srcs, _dest = arr
+                except Exception:
+                    continue
+            else:
+                if len(tokens) < 2:
+                    continue
+                *srcs, _dest = tokens
+            
+            for src in srcs:
+                if not isinstance(src, str):
+                    continue
+                if src.startswith(('http://', 'https://')):
+                    continue
+                if any(ch in src for ch in ['*', '?', '[']):
+                    continue
+                src_path = os.path.join(build_context, src)
+                if not os.path.exists(src_path):
+                    missing.append(src)
+        
+        seen = set()
+        unique_missing = []
+        for m in missing:
+            if m not in seen:
+                seen.add(m)
+                unique_missing.append(m)
+        return unique_missing
+    
     def optimize_dockerfile(
         self,
         dockerfile_path: str,
@@ -60,7 +119,6 @@ class DockerfilePipeline:
             "stages": {}
         }
         
-        # Stage 1: Analyze original
         print("\n" + "="*60)
         print("STAGE 1: ANALYZING ORIGINAL DOCKERFILE")
         print("="*60)
@@ -90,7 +148,6 @@ class DockerfilePipeline:
             results["stages"]["analysis"]["success"] = False
             return results
         
-        # Stage 2: Fix Dockerfile
         print("\n" + "="*60)
         print("STAGE 2: GENERATING OPTIMIZED DOCKERFILE")
         print("="*60)
@@ -98,12 +155,50 @@ class DockerfilePipeline:
             fix_result = self.fixer.fix_dockerfile(original_content, original_analysis)
             results["stages"]["fix"] = {
                 "success": fix_result.get("success", False),
-                "result": fix_result
+                "result": fix_result,
+                "skipped": fix_result.get("skipped", False)
             }
             if not fix_result.get("success"):
                 print(f"\n[ERROR] Fix failed: {fix_result.get('error', 'Unknown error')}")
                 return results
-            fixed_content = fix_result["fixed_dockerfile"]
+            
+            if fix_result.get("skipped", False):
+                reason = fix_result.get("reason", "Dockerfile is already optimal")
+                print(f"\n[INFO] Fix skipped: {reason}")
+                fixed_content = original_content  # Use original since no changes needed
+                results["fix_skipped"] = True
+                results["skip_reason"] = reason
+            else:
+                fixed_content = fix_result["fixed_dockerfile"]
+                
+                build_context = os.path.dirname(os.path.abspath(dockerfile_path)) or "."
+                missing_sources = self._find_missing_copy_sources(fixed_content, build_context)
+                if missing_sources:
+                    print("\n  [WARNING] Fixed Dockerfile references missing files in COPY/ADD instructions:")
+                    for src in sorted(missing_sources):
+                        print(f"    - {src}")
+                    results["missing_copy_sources"] = sorted(missing_sources)
+                
+                if hasattr(self.fixer, 'knowledge_base') and self.fixer.knowledge_base:
+                    try:
+                        original_lines = len(original_content.split('\n'))
+                        fixed_lines = len(fixed_content.split('\n'))
+                        issue_type = "optimization"
+                        
+                        llm_data = original_analysis.get("llm_analysis", {}).get("data", {})
+                        if llm_data.get("security_risks"):
+                            issue_type = "security"
+                        elif llm_data.get("performance_issues"):
+                            issue_type = "performance"
+                        
+                        self.fixer.knowledge_base.record_fix(
+                            original_pattern=original_content[:200],  # First 200 chars
+                            fixed_pattern=fixed_content[:200],
+                            issue_type=issue_type,
+                            success=True  # Will be updated after validation
+                        )
+                    except Exception as e:
+                        print(f"  [WARNING] Failed to record fix in knowledge base: {e}")
         except Exception as e:
             print(f"\n[ERROR] Fix failed: {str(e)}")
             results["stages"]["fix"] = {
@@ -112,24 +207,66 @@ class DockerfilePipeline:
             }
             return results
         
-        # Stage 3: Validate fixes
         print("\n" + "="*60)
         print("STAGE 3: VALIDATING FIXES")
         print("="*60)
         try:
-            validation_result = self.validator.validate_fixes(original_analysis, fixed_content)
-            if validation_result.get("success"):
+            if results.get("fix_skipped", False):
+                print("  Skipping validation - no changes were made to the Dockerfile")
                 results["stages"]["validation"] = {
                     "success": True,
-                    "result": validation_result
+                    "skipped": True,
+                    "reason": "No changes to validate - Dockerfile was already optimal",
+                    "result": {
+                        "success": True,
+                        "original_scores": original_analysis.get("scores", {}),
+                        "fixed_scores": original_analysis.get("scores", {}),
+                        "improvements": {},
+                        "issues_comparison": {
+                            "security_risks": {"original_count": 0, "fixed_count": 0},
+                            "performance_issues": {"original_count": 0, "fixed_count": 0},
+                            "missing_practices": {"original_count": 0, "fixed_count": 0}
+                        }
+                    }
                 }
             else:
-                print(f"\n[WARNING] Validation failed: {validation_result.get('error', 'Unknown error')}")
-                results["stages"]["validation"] = {
-                    "success": False,
-                    "error": validation_result.get("error", "Validation failed"),
-                    "result": validation_result
-                }
+                validation_result = self.validator.validate_fixes(original_analysis, fixed_content)
+                if validation_result.get("success"):
+                    improvements = validation_result.get("improvements", {})
+                    best_practices_imp = improvements.get("best_practices_score", {})
+                    best_practices_change = best_practices_imp.get("improvement", 0)
+                    
+                    if best_practices_change < 0:
+                        print(f"\n[WARNING] Fix rejected: Best practices score decreased by {abs(best_practices_change):.1f} points")
+                        print(f"  Original: {best_practices_imp.get('original', 0)}% → Fixed: {best_practices_imp.get('fixed', 0)}%")
+                        print(f"  Reverting to original Dockerfile to prevent negative changes")
+                        fixed_content = original_content
+                        results["fix_reverted"] = True
+                        results["revert_reason"] = f"Best practices score decreased by {abs(best_practices_change):.1f} points"
+                        validation_result = {
+                            "success": True,
+                            "original_scores": original_analysis.get("scores", {}),
+                            "fixed_scores": original_analysis.get("scores", {}),
+                            "improvements": {},
+                            "issues_comparison": {
+                                "security_risks": {"original_count": 0, "fixed_count": 0},
+                                "performance_issues": {"original_count": 0, "fixed_count": 0},
+                                "missing_practices": {"original_count": 0, "fixed_count": 0}
+                            },
+                            "reverted": True
+                        }
+                    
+                    results["stages"]["validation"] = {
+                        "success": True,
+                        "result": validation_result
+                    }
+                else:
+                    print(f"\n[WARNING] Validation failed: {validation_result.get('error', 'Unknown error')}")
+                    results["stages"]["validation"] = {
+                        "success": False,
+                        "error": validation_result.get("error", "Validation failed"),
+                        "result": validation_result
+                    }
         except Exception as e:
             print(f"\n[WARNING] Validation failed with exception: {str(e)}")
             results["stages"]["validation"] = {
@@ -137,8 +274,13 @@ class DockerfilePipeline:
                 "error": str(e)
             }
         
-        # Stage 4: Test Dockerfile (optional)
-        if not skip_test:
+        if 'no_effective_change' not in results:
+            if 'fixed_dockerfile' in results and results['fixed_dockerfile'] == results.get('original_dockerfile'):
+                results['no_effective_change'] = True
+            elif locals().get('fixed_content', None) == locals().get('original_content', None):
+                results['no_effective_change'] = True
+        
+        if not skip_test and not results.get("fix_skipped", False) and not results.get("no_effective_change", False):
             print("\n" + "="*60)
             print("STAGE 4: TESTING DOCKERFILE")
             print("="*60)
@@ -152,9 +294,9 @@ class DockerfilePipeline:
                     }
                 else:
                     test_result = self.tester.test_dockerfile(
-                        fixed_content,
-                        dockerfile_path,
-                        os.path.dirname(dockerfile_path) or "."
+                        dockerfile_content=fixed_content,
+                        dockerfile_path=None,
+                        build_context=os.path.dirname(dockerfile_path) or "."
                     )
                     results["stages"]["test"] = {
                         "success": test_result.get("success", False),
@@ -173,9 +315,11 @@ class DockerfilePipeline:
                     "error": str(e)
                 }
         else:
+            reason = "Skip test flag set" if skip_test else "No effective changes to Dockerfile"
             results["stages"]["test"] = {
                 "success": None,
-                "skipped": True
+                "skipped": True,
+                "reason": reason
             }
         
         results["original_dockerfile"] = original_content
@@ -210,7 +354,6 @@ class DockerfilePipeline:
             print(f"  Efficiency Score:     {scores.get('efficiency_score', 0):.1f}%")
             print(f"  Best Practices Score: {scores.get('best_practices_score', 0):.1f}%")
         
-        # Validation stage
         if "validation" in results.get("stages", {}):
             validation = results["stages"]["validation"].get("result", {})
             validation_success = validation.get("success", False)
@@ -304,6 +447,27 @@ def get_first_repo_from_file(repos_file: str) -> Optional[str]:
         return None
 
 
+def get_all_repos_from_file(repos_file: str) -> List[str]:
+    """Get all repository URLs from a file.
+    
+    Args:
+        repos_file: Path to file containing repository URLs (one per line)
+        
+    Returns:
+        List of valid repository URLs
+    """
+    repos = []
+    try:
+        with open(repos_file, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith("#") and line.startswith("http"):
+                    repos.append(line)
+    except FileNotFoundError:
+        print(f"ERROR: File not found: {repos_file}", file=sys.stderr)
+    return repos
+
+
 def main():
     import argparse
     
@@ -322,7 +486,7 @@ def main():
     )
     parser.add_argument(
         "--model",
-        help="Gemini model to use (default: gemini-2.5-flash-lite)",
+        help="Gemini model to use (default: gemini-3-pro-preview or GEMINI_MODEL env var)",
         default=None
     )
     parser.add_argument(

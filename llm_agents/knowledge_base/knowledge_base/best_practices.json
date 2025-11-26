@@ -1,0 +1,47 @@
+{
+  "multi_stage_builds": {
+    "id": "multi_stage_builds",
+    "name": "Use Multi-Stage Builds",
+    "category": "optimization",
+    "description": "Use multi-stage builds to reduce final image size",
+    "implementation": "Use separate FROM statements for build and runtime stages",
+    "example": "FROM builder AS build\n...\nFROM alpine AS final\nCOPY --from=build /app /app",
+    "priority": 9
+  },
+  "specific_version_tags": {
+    "id": "specific_version_tags",
+    "name": "Use Specific Version Tags",
+    "category": "security",
+    "description": "Use specific version tags instead of 'latest'",
+    "implementation": "FROM image:version instead of FROM image:latest",
+    "example": "FROM ubuntu:22.04 instead of FROM ubuntu:latest",
+    "priority": 10
+  },
+  "non_root_user": {
+    "id": "non_root_user",
+    "name": "Run as Non-Root User",
+    "category": "security",
+    "description": "Create and use non-root user",
+    "implementation": "Add USER directive after creating user",
+    "example": "RUN adduser -D appuser\nUSER appuser",
+    "priority": 9
+  },
+  "layer_caching": {
+    "id": "layer_caching",
+    "name": "Optimize Layer Caching",
+    "category": "performance",
+    "description": "Order instructions to maximize cache hits",
+    "implementation": "Copy dependency files first, then source code",
+    "example": "COPY go.mod go.sum ./\nRUN go mod download\nCOPY . .",
+    "priority": 8
+  },
+  "clean_package_cache": {
+    "id": "clean_package_cache",
+    "name": "Clean Package Cache",
+    "category": "optimization",
+    "description": "Remove package cache to reduce image size",
+    "implementation": "Add cleanup commands in same RUN as install",
+    "example": "RUN apk add --no-cache curl && rm -rf /var/cache/apk/*",
+    "priority": 7
+  }
+}

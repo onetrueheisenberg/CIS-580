@@ -1,16 +1,3 @@
-"""Runtime analyzer for Docker images and containers.
-
-This module inspects images that are currently available on the host and
-provides actionable recommendations that focus on image size, security, and
-runtime performance. The same heuristics are also applied to running containers
-to surface configuration issues such as missing health checks or security
-hardening gaps.
-
-The script depends on the Docker CLI. When Docker is unavailable or the user
-lacks sufficient permissions, a human-friendly error message is displayed
-instead of raising raw subprocess exceptions.
-"""
-
 from __future__ import annotations
 
 import argparse
@@ -20,7 +7,7 @@ import subprocess
 import sys
 import time
 from dataclasses import dataclass
-from typing import Dict, Iterable, List, Optional
+from typing import Any, Dict, Iterable, List, Optional
 
 
 @dataclass
@@ -250,6 +237,110 @@ def analyze_image(image: Dict[str, object]) -> List[Recommendation]:
     if not recs:
         recs.append(Recommendation(subject, "ok", "No issues detected for this image."))
     return recs
+
+
+def compare_images(original_image: Dict[str, object], optimized_image: Dict[str, object]) -> Dict[str, Any]:
+    """Compare two Docker images and generate a comparison report.
+    
+    Args:
+        original_image: Dictionary representing the original image (from list_images())
+        optimized_image: Dictionary representing the optimized image (from list_images())
+        
+    Returns:
+        Dictionary with comparison results:
+        - original_analysis: List of recommendations for original image
+        - optimized_analysis: List of recommendations for optimized image
+        - size_difference_bytes: Size difference in bytes (positive = reduction)
+        - size_difference_percent: Size difference as percentage
+        - layer_count_difference: Difference in layer count
+        - recommendations_resolved: Count of recommendations resolved
+        - recommendations_improved: Count of recommendations improved
+        - recommendations_new: Count of new recommendations in optimized
+    """
+    original_recs = analyze_image(original_image)
+    optimized_recs = analyze_image(optimized_image)
+    
+    original_id = str(original_image.get("ID"))
+    optimized_id = str(optimized_image.get("ID"))
+    
+    try:
+        original_metadata = inspect_image(original_id)
+        optimized_metadata = inspect_image(optimized_id)
+    except RuntimeError:
+        return {
+            "original_analysis": original_recs,
+            "optimized_analysis": optimized_recs,
+            "size_difference_bytes": None,
+            "size_difference_percent": None,
+            "layer_count_difference": None,
+            "recommendations_resolved": 0,
+            "recommendations_improved": 0,
+            "recommendations_new": 0,
+            "error": "Failed to inspect one or both images"
+        }
+    
+    original_size = int(original_metadata.get("Size", 0))
+    optimized_size = int(optimized_metadata.get("Size", 0))
+    
+    size_difference_bytes = original_size - optimized_size
+    size_difference_percent = None
+    if original_size > 0:
+        size_difference_percent = (size_difference_bytes / original_size) * 100
+    
+    original_layers = len(original_metadata.get("RootFS", {}).get("Layers", []))
+    optimized_layers = len(optimized_metadata.get("RootFS", {}).get("Layers", []))
+    layer_count_difference = original_layers - optimized_layers
+    
+    # Count recommendations by severity
+    def count_by_severity(recs: List[Recommendation]) -> Dict[str, int]:
+        counts = {"error": 0, "warning": 0, "suggestion": 0, "info": 0, "ok": 0}
+        for rec in recs:
+            counts[rec.severity] = counts.get(rec.severity, 0) + 1
+        return counts
+    
+    original_counts = count_by_severity(original_recs)
+    optimized_counts = count_by_severity(optimized_recs)
+    
+    # Calculate improvements
+    recommendations_resolved = 0
+    recommendations_improved = 0
+    recommendations_new = 0
+    
+    # Simple heuristic: if severity improved (error->warning, warning->suggestion, etc.)
+    severity_order = {"error": 4, "warning": 3, "suggestion": 2, "info": 1, "ok": 0}
+    
+    # Count resolved (issues that were errors/warnings/suggestions and are now ok/info)
+    for severity in ["error", "warning", "suggestion"]:
+        resolved = max(0, original_counts[severity] - optimized_counts[severity])
+        recommendations_resolved += resolved
+    
+    # Count new issues
+    for severity in ["error", "warning", "suggestion", "info"]:
+        new = max(0, optimized_counts[severity] - original_counts[severity])
+        recommendations_new += new
+    
+    return {
+        "original_analysis": [
+            {"severity": r.severity, "message": r.message, "subject": r.subject}
+            for r in original_recs
+        ],
+        "optimized_analysis": [
+            {"severity": r.severity, "message": r.message, "subject": r.subject}
+            for r in optimized_recs
+        ],
+        "size_difference_bytes": size_difference_bytes,
+        "size_difference_percent": size_difference_percent,
+        "layer_count_difference": layer_count_difference,
+        "recommendations_resolved": recommendations_resolved,
+        "recommendations_improved": recommendations_improved,
+        "recommendations_new": recommendations_new,
+        "original_size_bytes": original_size,
+        "optimized_size_bytes": optimized_size,
+        "original_layer_count": original_layers,
+        "optimized_layer_count": optimized_layers,
+        "original_recommendation_counts": original_counts,
+        "optimized_recommendation_counts": optimized_counts
+    }
 
 
 def analyze_container(container: Dict[str, object]) -> List[Recommendation]:

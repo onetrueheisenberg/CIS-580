@@ -16,11 +16,20 @@ try:
 except ImportError:
     pass
 
+try:
+    parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    if parent_dir not in sys.path:
+        sys.path.insert(0, parent_dir)
+    from rate_limiter import get_rate_limiter
+except ImportError:
+    get_rate_limiter = None
+
 class DockerfileAnalyzer:    
     def __init__(
         self,
         api_key: Optional[str] = None,
-        model: Optional[str] = None
+        model: Optional[str] = None,
+        use_knowledge_base: bool = True
     ):
         if not api_key:
             api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
@@ -43,8 +52,33 @@ class DockerfileAnalyzer:
             )
         genai.configure(api_key=self.api_key)
         self.client = genai.GenerativeModel(self.model)
+        
+        self.use_knowledge_base = use_knowledge_base
+        self.knowledge_base = None
+        if use_knowledge_base:
+            try:
+                from .knowledge_base import KnowledgeBase
+                self.knowledge_base = KnowledgeBase()
+                if not self.knowledge_base.base_images:
+                    from .kb_initializer import initialize_knowledge_base
+                    initialize_knowledge_base(self.knowledge_base)
+            except Exception as e:
+                print(f"  [WARNING] Knowledge base not available: {e}")
+                self.use_knowledge_base = False
     
     def _call_llm(self, prompt: str, system_prompt: Optional[str] = None) -> str:
+        if get_rate_limiter:
+            try:
+                rate_limiter = get_rate_limiter()
+                estimated_tokens = len(prompt) // 4
+                if system_prompt:
+                    estimated_tokens += len(system_prompt) // 4
+                wait_time = rate_limiter.wait_if_needed(estimated_tokens)
+                if wait_time > 0:
+                    print(f"  [Rate Limit] Waited {wait_time:.2f}s to respect API limits")
+            except Exception as e:
+                print(f"  [Warning] Rate limiter error: {e}")
+        
         try:
             full_prompt = prompt
             if system_prompt:
@@ -89,9 +123,50 @@ class DockerfileAnalyzer:
         4. Code quality and maintainability
         5. Image size reduction techniques
         6. Build process improvements
-
+        7. Runtime and TOOLCHAIN compatibility concerns
+           - e.g., legacy tools like Go dep with Gopkg.toml / Gopkg.lock
+           - tools or packages that may not exist on newer base images
+           - mismatches between base image versions and language/toolchain expectations
+        
+        When a Dockerfile uses LEGACY tooling (for example Go dep instead of Go modules),
+        you MUST explicitly call this out and explain how it constrains safe base-image upgrades.
+        
         Provide structured, actionable insights to help developers create better Dockerfiles.
         Focus on practical recommendations and real-world improvements."""
+        
+        kb_context = ""
+        if self.use_knowledge_base and self.knowledge_base:
+            try:
+                context = self.knowledge_base.get_context_for_analysis(dockerfile_content)
+                if context:
+                    kb_context = "\n\nKNOWLEDGE BASE CONTEXT:\n"
+                    kb_context += "=" * 60 + "\n"
+                    
+                    if context.get("base_images"):
+                        kb_context += "\nBASE IMAGES DETECTED:\n"
+                        for name, info in context["base_images"].items():
+                            kb_context += f"- {name}: Recommended version: {info.get('recommended', 'N/A')}\n"
+                            if info.get("eol_versions"):
+                                kb_context += f"  EOL versions: {', '.join(info.get('eol_versions', []))}\n"
+                            if info.get("security_issues"):
+                                kb_context += f"  Security issues: {len(info.get('security_issues', {}))} known\n"
+                    
+                    if context.get("security_advisories"):
+                        kb_context += "\nSECURITY ADVISORIES:\n"
+                        for advisory in context["security_advisories"][:5]:  # Top 5
+                            kb_context += f"- [{advisory.get('severity', 'unknown')}] {advisory.get('description', '')}\n"
+                            if advisory.get("fixed_version"):
+                                kb_context += f"  Fixed in: {advisory.get('fixed_version')}\n"
+                    
+                    if context.get("best_practices"):
+                        kb_context += "\nRELEVANT BEST PRACTICES:\n"
+                        for practice in context["best_practices"][:5]:  # Top 5
+                            kb_context += f"- {practice.get('name', '')}: {practice.get('description', '')}\n"
+                            kb_context += f"  Implementation: {practice.get('implementation', '')}\n"
+                    
+                    kb_context += "\n" + "=" * 60 + "\n"
+            except Exception as e:
+                print(f"  [WARNING] Failed to get knowledge base context: {e}")
                 
         user_prompt = f"""Analyze this Dockerfile and identify issues. Return JSON with the issues you find.
 
@@ -99,22 +174,51 @@ Dockerfile:
 ```
 {dockerfile_content}
 ```
-
+{kb_context}
 Return JSON with this structure:
 {{
     "security_risks": ["list of security concerns"],
     "performance_issues": ["list of performance problems"],
     "optimization_opportunities": ["optimization suggestions"],
-    "runtime_concerns": ["runtime problems"],
+    "runtime_concerns": ["runtime problems and TOOLCHAIN / COMPATIBILITY issues"],
     "best_practices_missing": ["missing best practices"],
     "estimated_wasted_space_kb": <number>,
     "complexity_score": <1-10, where 10 is most complex>,
     "maintainability_score": <1-10, where 10 is most maintainable>,
-    "overall_assessment": "summary of Dockerfile quality",
-    "recommendations": [{{"category": "security|performance|best_practice|optimization", "severity": "critical|high|medium|low", "message": "specific recommendation", "instruction_line": <line number or null>}}]
+    "overall_assessment": "summary of Dockerfile quality, including any legacy tooling (e.g., dep) and compatibility risks with the current base images",
+    "recommendations": [
+      {{
+        "category": "security|performance|best_practice|optimization|compatibility",
+        "severity": "critical|high|medium|low",
+        "message": "specific actionable recommendation with exact fix. When relevant, explain COMPATIBILITY reasons (e.g., dep may not be available on Alpine 3.20).",
+        "instruction_line": <line number or null>
+      }}
+    ]
 }}
 
-Focus on identifying issues accurately. Do not calculate scores - just list the issues you find."""
+CRITICAL: For the "recommendations" array, each recommendation MUST be:
+- SPECIFIC: State exactly what to change (e.g., "Combine apt-get update and apt-get install into a single RUN command")
+- ACTIONABLE: Provide the exact fix (e.g., "Add --no-install-recommends flag to apt-get install command")
+- PRECISE: Include the exact command or syntax to use (e.g., "Add 'apt-get clean && rm -rf /var/lib/apt/lists/*' after package installation")
+- LINE-SPECIFIC: Include instruction_line when possible to identify where to make the change
+
+Examples of GOOD recommendations:
+- "Combine apt-get update and apt-get install into a single RUN command to improve layer caching" (line 5)
+- "Add --no-install-recommends flag to apt-get install to reduce image size" (line 6)
+- "Add 'apt-get clean && rm -rf /var/lib/apt/lists/*' after package installation to clean apt cache" (line 6)
+- "Use specific version tag 'ubuntu:22.04' instead of 'ubuntu:latest' for reproducibility" (line 1)
+
+Examples of BAD recommendations (too vague):
+- "Optimize package installation"
+- "Improve caching"
+- "Follow best practices"
+
+IMPORTANT: If you see potential BREAKING changes or fragile combinations (for example, using Go dep on a very new Go/Alpine image where dep might not be packaged),
+- call this out explicitly as a COMPATIBILITY issue,
+- explain WHY it might break (e.g., package removed from repositories, tool deprecated),
+- and recommend either keeping a compatible base image or planning a toolchain migration (e.g., to Go modules).
+
+Focus on identifying issues accurately and providing SPECIFIC, ACTIONABLE recommendations, especially around compatibility. Do not calculate scores - just list the issues you find."""
         
         response = self._call_llm(user_prompt, system_prompt)
         
@@ -314,6 +418,25 @@ Focus on identifying issues accurately. Do not calculate scores - just list the 
                 "scores": {}
             }
         
+        base_image_issues: List[Dict[str, Any]] = []
+        if self.use_knowledge_base and self.knowledge_base:
+            try:
+                for i, line in enumerate(dockerfile_content.split('\n'), 1):
+                    if line.strip().upper().startswith('FROM'):
+                        parts = line.split()
+                        if len(parts) >= 2:
+                            image_spec = parts[1]
+                            analysis = self.knowledge_base.analyze_image_spec(image_spec)
+                            issues = analysis.get("issues") or []
+                            if issues:
+                                base_image_issues.append({
+                                    "line": i,
+                                    "image_spec": image_spec,
+                                    "analysis": analysis
+                                })
+            except Exception as e:
+                print(f"  [WARNING] Base image pre-analysis failed: {e}")
+
         print(f"  Performing LLM analysis...", end="", flush=True)
         llm_analysis = self.dynamic_llm_analysis(dockerfile_content)
         
@@ -344,16 +467,9 @@ Focus on identifying issues accurately. Do not calculate scores - just list the 
         performance_issues_count = len(performance_issues)
         missing_practices_count = len(missing_practices)
         
-        # Security: 100 - (risks * 12), minimum 0
         security_score = 100.0 if security_risks_count == 0 else max(0, 100 - (security_risks_count * 12))
-        
-        # Efficiency: 100 - (performance_issues * 9), minimum 0
         efficiency_score = 100.0 if performance_issues_count == 0 else max(0, 100 - (performance_issues_count * 9))
-        
-        # Best Practices: 100 - (missing_practices * 12), minimum 0
         best_practices_score = 100.0 if missing_practices_count == 0 else max(0, 100 - (missing_practices_count * 12))
-        
-        # Overall: weighted average
         overall_score = (security_score * 0.3) + (efficiency_score * 0.4) + (best_practices_score * 0.3)
         
         scores = {
@@ -375,7 +491,8 @@ Focus on identifying issues accurately. Do not calculate scores - just list the 
         return {
             "dockerfile_path": dockerfile_path,
             "llm_analysis": llm_analysis,
-            "scores": scores
+            "scores": scores,
+            "base_image_issues": base_image_issues
         }
     
     def print_analysis_report(self, analysis_result: Dict[str, Any]) -> None:
