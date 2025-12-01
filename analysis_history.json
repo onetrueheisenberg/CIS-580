@@ -18,5 +18,25 @@
       "repos_with_improvements": 1
     },
     "results_file": "batch_results_2025-11-26T11-39-27-318172.json"
+  },
+  {
+    "timestamp": "2025-11-26T18:33:36.342027",
+    "repos_file": "docker_repos.txt",
+    "model": "gemini-2.5-flash-lite",
+    "skip_test": false,
+    "max_repos": 20,
+    "total_repos": 20,
+    "successful_repos": 19,
+    "failed_repos": 1,
+    "summary": {
+      "total_repos": 20,
+      "successful_repos": 19,
+      "failed_repos": 1,
+      "avg_size_reduction_percent": 1.17,
+      "total_size_saved_bytes": 10003122,
+      "avg_efficiency_improvement": 0,
+      "repos_with_improvements": 1
+    },
+    "results_file": "batch_results_2025-11-26T18-33-36-342027.json"
   }
 ]

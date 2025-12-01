@@ -795,6 +795,23 @@ def main():
         
         # Display batch results in tabs
         if st.session_state.batch_results:
+            # Add reload button to refresh from JSON file
+            col1, col2 = st.columns([1, 5])
+            with col1:
+                if st.button("🔄 Reload Results", help="Reload results from batch_results.json"):
+                    try:
+                        results_file = "batch_results.json"
+                        if os.path.exists(results_file):
+                            with open(results_file, 'r') as f:
+                                reloaded_results = json.load(f)
+                            st.session_state.batch_results = reloaded_results
+                            st.success("Results reloaded!")
+                            st.rerun()
+                        else:
+                            st.error("batch_results.json not found")
+                    except Exception as e:
+                        st.error(f"Error reloading: {str(e)}")
+            
             _display_batch_results_tabs(st.session_state.batch_results)
         elif st.session_state.batch_running:
             st.info("Batch processing is running... Please wait.")
@@ -1108,22 +1125,34 @@ def _display_static_analysis_tab(results: List[Dict[str, Any]]):
         if is_estimated:
             repo_name = f"📊 {repo_name} (Estimated)"
         
+        orig_size_mb = round(orig_size / (1024 * 1024), 2) if orig_size else None
+        opt_size_mb = round(opt_size / (1024 * 1024), 2) if opt_size else None
+        
         table_data.append({
             "Repo": repo_name,
             "Type": "Estimated" if is_estimated else "Actual",
-            "Original Size (MB)": round(orig_size / (1024 * 1024), 2) if orig_size else "N/A",
-            "Optimized Size (MB)": round(opt_size / (1024 * 1024), 2) if opt_size else "N/A",
-            "Size Reduction %": f"~{round(size_reduction_pct, 2)}" if is_estimated and size_reduction_pct else round(size_reduction_pct, 2) if size_reduction_pct else 0,
-            "Efficiency (Original)": f"{orig_dive.get('efficiency', 0):.1f}%" if orig_dive.get('efficiency') else "N/A",
-            "Efficiency (Optimized)": f"{opt_dive.get('efficiency', 0):.1f}%" if opt_dive.get('efficiency') else "N/A",
-            "Efficiency Improvement": f"~{efficiency_imp:+.1f}%" if is_estimated and efficiency_imp else f"{efficiency_imp:+.1f}%" if efficiency_imp else "N/A",
-            "Original Layers": orig_dive.get("layer_count", 0),
-            "Optimized Layers": opt_dive.get("layer_count", 0),
+            "Original Size (MB)": orig_size_mb if orig_size_mb is not None else 0.0,
+            "Optimized Size (MB)": opt_size_mb if opt_size_mb is not None else 0.0,
+            "Size Reduction %": round(size_reduction_pct, 2) if size_reduction_pct is not None else 0.0,
+            "Efficiency (Original)": f"{orig_dive.get('efficiency', 0):.1f}%" if orig_dive.get('efficiency') is not None else "N/A",
+            "Efficiency (Optimized)": f"{opt_dive.get('efficiency', 0):.1f}%" if opt_dive.get('efficiency') is not None else "N/A",
+            "Efficiency Improvement": f"~{efficiency_imp:+.1f}%" if is_estimated and efficiency_imp is not None else f"{efficiency_imp:+.1f}%" if efficiency_imp is not None else "N/A",
+            "Original Layers": orig_dive.get("layer_count", 0) or 0,
+            "Optimized Layers": opt_dive.get("layer_count", 0) or 0,
             "Status": "Success" if result.get("success") else "Failed"
         })
     
     if table_data:
         df = pd.DataFrame(table_data)
+        
+        # Convert numeric columns to proper types, handling "N/A" strings
+        if "Original Size (MB)" in df.columns:
+            df["Original Size (MB)"] = pd.to_numeric(df["Original Size (MB)"], errors="coerce").fillna(0.0)
+        if "Optimized Size (MB)" in df.columns:
+            df["Optimized Size (MB)"] = pd.to_numeric(df["Optimized Size (MB)"], errors="coerce").fillna(0.0)
+        if "Size Reduction %" in df.columns:
+            df["Size Reduction %"] = pd.to_numeric(df["Size Reduction %"], errors="coerce").fillna(0.0)
+        
         st.dataframe(df, width="stretch", hide_index=True)
         
         st.subheader("Filters")
@@ -1143,6 +1172,100 @@ def _display_static_analysis_tab(results: List[Dict[str, Any]]):
             (efficiency_numeric >= min_efficiency)
         ]
         st.dataframe(filtered_df, width="stretch", hide_index=True)
+        
+        st.markdown("---")
+        st.subheader("Detailed Dive Analysis")
+        
+        successful_actual = [r for r in results if r.get("success") and not r.get("estimated", False)]
+        if successful_actual:
+            repo_options = {r.get("repo_name", r.get("repo_url", f"Repo {i}")): i for i, r in enumerate(results) if r.get("success") and not r.get("estimated", False)}
+            selected_repo = st.selectbox(
+                "Select repository to view full dive analysis:",
+                options=list(repo_options.keys())
+            )
+            
+            if selected_repo:
+                selected_idx = repo_options[selected_repo]
+                selected_result = results[selected_idx]
+                
+                orig_dive = selected_result.get("original_image", {}).get("dive_analysis", {})
+                opt_dive = selected_result.get("optimized_image", {}).get("dive_analysis", {})
+                dive_comparison = selected_result.get("comparison", {}).get("dive_analysis", {})
+                
+                col1, col2 = st.columns(2)
+                
+                with col1:
+                    st.markdown("### Original Image Dive Analysis")
+                    if orig_dive.get("success"):
+                        efficiency = orig_dive.get('efficiency')
+                        st.metric("Efficiency", f"{efficiency:.1f}%" if efficiency is not None else "N/A")
+                        
+                        total_size = orig_dive.get('total_size')
+                        st.metric("Total Size", f"{total_size / (1024**2):.2f} MB" if total_size is not None else "N/A")
+                        
+                        wasted_bytes = orig_dive.get('wasted_bytes')
+                        wasted_percent = orig_dive.get('wasted_percent')
+                        if wasted_bytes is not None and wasted_percent is not None:
+                            st.metric("Wasted Space", f"{wasted_bytes / (1024**2):.2f} MB ({wasted_percent:.1f}%)")
+                        else:
+                            st.metric("Wasted Space", "N/A")
+                        
+                        user_wasted = orig_dive.get('user_wasted_percent')
+                        st.metric("User Wasted", f"{user_wasted:.1f}%" if user_wasted is not None else "N/A")
+                        
+                        layer_count = orig_dive.get("layer_count", 0) or 0
+                        st.metric("Layer Count", layer_count)
+                        
+                        if orig_dive.get("raw_output"):
+                            with st.expander("View Raw Dive Output"):
+                                st.code(orig_dive["raw_output"], language="text")
+                    else:
+                        st.error(f"Dive analysis failed: {orig_dive.get('error', 'Unknown error')}")
+                
+                with col2:
+                    st.markdown("### Optimized Image Dive Analysis")
+                    if opt_dive.get("success"):
+                        efficiency = opt_dive.get('efficiency')
+                        st.metric("Efficiency", f"{efficiency:.1f}%" if efficiency is not None else "N/A")
+                        
+                        total_size = opt_dive.get('total_size')
+                        st.metric("Total Size", f"{total_size / (1024**2):.2f} MB" if total_size is not None else "N/A")
+                        
+                        wasted_bytes = opt_dive.get('wasted_bytes')
+                        wasted_percent = opt_dive.get('wasted_percent')
+                        if wasted_bytes is not None and wasted_percent is not None:
+                            st.metric("Wasted Space", f"{wasted_bytes / (1024**2):.2f} MB ({wasted_percent:.1f}%)")
+                        else:
+                            st.metric("Wasted Space", "N/A")
+                        
+                        user_wasted = opt_dive.get('user_wasted_percent')
+                        st.metric("User Wasted", f"{user_wasted:.1f}%" if user_wasted is not None else "N/A")
+                        
+                        layer_count = opt_dive.get("layer_count", 0) or 0
+                        st.metric("Layer Count", layer_count)
+                        
+                        if opt_dive.get("raw_output"):
+                            with st.expander("View Raw Dive Output"):
+                                st.code(opt_dive["raw_output"], language="text")
+                    else:
+                        st.error(f"Dive analysis failed: {opt_dive.get('error', 'Unknown error')}")
+                
+                if dive_comparison and dive_comparison.get("success"):
+                    st.markdown("---")
+                    st.markdown("### Comparison Metrics")
+                    col1, col2, col3 = st.columns(3)
+                    with col1:
+                        efficiency_imp = dive_comparison.get("efficiency_improvement")
+                        if efficiency_imp is not None:
+                            st.metric("Efficiency Improvement", f"{efficiency_imp:+.1f}%")
+                    with col2:
+                        wasted_reduction = dive_comparison.get("wasted_space_reduction")
+                        if wasted_reduction is not None:
+                            st.metric("Wasted Space Reduced", f"{wasted_reduction / (1024**2):.2f} MB" if wasted_reduction else "N/A")
+                    with col3:
+                        wasted_reduction_pct = dive_comparison.get("wasted_space_reduction_percent")
+                        if wasted_reduction_pct is not None:
+                            st.metric("Wasted Space Reduction %", f"{wasted_reduction_pct:.1f}%")
     else:
         st.info("No successful results to display.")
 

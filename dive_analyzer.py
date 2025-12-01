@@ -36,35 +36,68 @@ def _parse_dive_output(output: str) -> Dict[str, Any]:
         "raw_output": output
     }
     
-    efficiency_match = re.search(r'efficiency:\s*([\d.]+)%', output, re.IGNORECASE)
+    # Try new format first (JSON-like): "efficiency: 99.5332 %"
+    efficiency_match = re.search(r'efficiency:\s*([\d.]+)\s*%', output, re.IGNORECASE)
     if efficiency_match:
         result["efficiency"] = float(efficiency_match.group(1))
+    else:
+        # Try old format: "efficiency: 85.2%"
+        efficiency_match = re.search(r'efficiency:\s*([\d.]+)%', output, re.IGNORECASE)
+        if efficiency_match:
+            result["efficiency"] = float(efficiency_match.group(1))
     
-    wasted_bytes_match = re.search(r'wasted space:\s*([\d.]+)\s*([KMGT]?B)', output, re.IGNORECASE)
+    # Try new format: "wastedBytes: 3530062 bytes (3.5 MB)"
+    wasted_bytes_match = re.search(r'wastedBytes:\s*(\d+)\s*bytes', output, re.IGNORECASE)
     if wasted_bytes_match:
-        value = float(wasted_bytes_match.group(1))
-        unit = wasted_bytes_match.group(2).upper() if wasted_bytes_match.group(2) else "B"
-        multipliers = {"B": 1, "KB": 1024, "MB": 1024**2, "GB": 1024**3, "TB": 1024**4}
-        result["wasted_bytes"] = int(value * multipliers.get(unit, 1))
+        result["wasted_bytes"] = int(wasted_bytes_match.group(1))
+    else:
+        # Try old format: "wasted space: 3.5 MB"
+        wasted_bytes_match = re.search(r'wasted space:\s*([\d.]+)\s*([KMGT]?B)', output, re.IGNORECASE)
+        if wasted_bytes_match:
+            value = float(wasted_bytes_match.group(1))
+            unit = wasted_bytes_match.group(2).upper() if wasted_bytes_match.group(2) else "B"
+            multipliers = {"B": 1, "KB": 1024, "MB": 1024**2, "GB": 1024**3, "TB": 1024**4}
+            result["wasted_bytes"] = int(value * multipliers.get(unit, 1))
     
-    wasted_percent_match = re.search(r'wasted:\s*([\d.]+)%', output, re.IGNORECASE)
-    if wasted_percent_match:
-        result["wasted_percent"] = float(wasted_percent_match.group(1))
+    # Calculate wasted_percent from wasted_bytes and total_size if available
+    if result["wasted_bytes"] and result.get("total_size"):
+        result["wasted_percent"] = (result["wasted_bytes"] / result["total_size"]) * 100
     
-    user_wasted_match = re.search(r'user wasted:\s*([\d.]+)%', output, re.IGNORECASE)
+    # Try new format: "userWastedPercent: 1.3874 %"
+    user_wasted_match = re.search(r'userWastedPercent:\s*([\d.]+)\s*%', output, re.IGNORECASE)
     if user_wasted_match:
         result["user_wasted_percent"] = float(user_wasted_match.group(1))
+    else:
+        # Try old format: "user wasted: 1.4%"
+        user_wasted_match = re.search(r'user wasted:\s*([\d.]+)%', output, re.IGNORECASE)
+        if user_wasted_match:
+            result["user_wasted_percent"] = float(user_wasted_match.group(1))
     
+    # Try to find total size from image analysis
+    # Look for "Total Image size:" or similar patterns
     total_size_match = re.search(r'total size:\s*([\d.]+)\s*([KMGT]?B)', output, re.IGNORECASE)
     if total_size_match:
         value = float(total_size_match.group(1))
         unit = total_size_match.group(2).upper() if total_size_match.group(2) else "B"
         multipliers = {"B": 1, "KB": 1024, "MB": 1024**2, "GB": 1024**3, "TB": 1024**4}
         result["total_size"] = int(value * multipliers.get(unit, 1))
+    else:
+        # Try to extract from "Image Source:" or image metadata
+        # If we have wasted_bytes and efficiency, we can estimate total_size
+        if result["wasted_bytes"] and result["efficiency"]:
+            # wasted_bytes = total_size * (1 - efficiency/100)
+            # total_size = wasted_bytes / (1 - efficiency/100)
+            if result["efficiency"] < 100:
+                result["total_size"] = int(result["wasted_bytes"] / (1 - result["efficiency"] / 100))
     
+    # Count layers - look for layer indicators in the output
     layer_count = len(re.findall(r'(?:Step|Layer)\s+\d+', output, re.IGNORECASE))
-    if layer_count > 0:
-        result["layer_count"] = layer_count
+    if layer_count == 0:
+        # Try counting from inefficient files section or other indicators
+        layer_indicators = re.findall(r'Layer\s+\d+|Step\s+\d+', output, re.IGNORECASE)
+        layer_count = len(set(layer_indicators)) if layer_indicators else 0
+    
+    result["layer_count"] = layer_count if layer_count > 0 else 0
     
     return result
 
