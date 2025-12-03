@@ -348,5 +348,125 @@
     "usage_count": 1,
     "last_used": "2025-11-26T18:25:58.605835",
     "notes": null
+  },
+  "performance_4461": {
+    "id": "performance_4461",
+    "original_pattern": "FROM ubuntu:22.04\nSHELL [\"/bin/bash\", \"-xec\"]\nRUN export DEBIAN_FRONTEND=noninteractive;\\\n    apt-get update;\\\n    apt-get dist-upgrade --no-install-recommends --purge --yes\\\n        clang-12\\\n       ",
+    "fixed_pattern": "FROM ubuntu:22.04\nSHELL [\"/bin/bash\", \"-xec\"]\nRUN export DEBIAN_FRONTEND=noninteractive; \\\n    apt-get update; \\\n    apt-get dist-upgrade --no-install-recommends --purge --yes \\\n        clang-12 \\\n   ",
+    "issue_type": "performance",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-12-02T20:23:13.534188",
+    "notes": null
+  },
+  "performance_1072": {
+    "id": "performance_1072",
+    "original_pattern": "FROM nvidia/cuda:11.3.1-devel-ubuntu20.04\n\nRUN apt-get update && apt-get install wget -yq\nRUN apt-get install build-essential g++ gcc -y\nENV DEBIAN_FRONTEND noninteractive\nRUN apt-get install libgl1-m",
+    "fixed_pattern": "FROM nvidia/cuda:11.3.1-devel-ubuntu20.04\n\nENV DEBIAN_FRONTEND noninteractive\nRUN apt-get update && apt-get install wget build-essential g++ gcc libgl1-mesa-glx libglib2.0-0 openmpi-bin openmpi-common",
+    "issue_type": "performance",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-12-02T20:28:54.278776",
+    "notes": null
+  },
+  "optimization_1072": {
+    "id": "optimization_1072",
+    "original_pattern": "FROM nvidia/cuda:11.3.1-devel-ubuntu20.04\n\nRUN apt-get update && apt-get install wget -yq\nRUN apt-get install build-essential g++ gcc -y\nENV DEBIAN_FRONTEND noninteractive\nRUN apt-get install libgl1-m",
+    "fixed_pattern": "FROM nvidia/cuda:11.3.1-devel-ubuntu20.04\n\nRUN apt-get update && apt-get install wget -yq\nRUN apt-get install --no-install-recommends build-essential g++ gcc -y && apt-get clean && rm -rf /var/lib/apt",
+    "issue_type": "optimization",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-12-02T20:32:47.653858",
+    "notes": null
+  },
+  "security_8961": {
+    "id": "security_8961",
+    "original_pattern": "# Base packages for ubuntu\n# FROM nvidia/vulkan:1.1.121-cuda-10.1--ubuntu18.04\n# FROM nvidia/cudagl:10.1-devel-ubuntu18.04\n\nFROM nvidia/cudagl:11.3.1-devel-ubuntu18.04\n\n# clean the libs list\nRUN apt-g",
+    "fixed_pattern": "FROM nvidia/cudagl:11.3.1-devel-ubuntu18.04\n\n# clean the libs list\n# RUN apt-get clean\n\n# RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com A4B469963BF863CC\n# RUN packages='libsdl2-2.0 xser",
+    "issue_type": "security",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-12-02T20:36:53.257950",
+    "notes": null
+  },
+  "security_8999": {
+    "id": "security_8999",
+    "original_pattern": "FROM node:9\nRUN npm i -g webpack webpack-cli\n\nWORKDIR /app\nCOPY . /app\nRUN npm i\n\nCMD npm run start-stg\n\nEXPOSE 3333",
+    "fixed_pattern": "FROM node:20-alpine\nRUN npm i -g webpack webpack-cli && npm cache clean --force\nWORKDIR /app\nCOPY package*.json ./\nRUN npm i\nCOPY . .\nRUN addgroup --system --gid 1001 nodejs && adduser --system --uid ",
+    "issue_type": "security",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-12-02T21:32:16.208219",
+    "notes": null
+  },
+  "performance_1661": {
+    "id": "performance_1661",
+    "original_pattern": "# pull the official base image  \nFROM node:13.12.0-alpine\n\nFROM nginxinc/nginx-unprivileged\nCOPY src/ /etc/nginx/html\n\nUSER 101\nCOPY config/nginx.conf /etc/nginx/conf.d/default.conf\nCMD [\"nginx-debug\"",
+    "fixed_pattern": "FROM nginxinc/nginx-unprivileged\nCOPY src/ /etc/nginx/html\n\nUSER 101\nCOPY config/nginx.conf /etc/nginx/conf.d/default.conf\nCMD [\"nginx-debug\", \"-g\", \"daemon off;\"]",
+    "issue_type": "performance",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-12-02T22:06:35.501069",
+    "notes": null
+  },
+  "performance_5666": {
+    "id": "performance_5666",
+    "original_pattern": "# pull the official base image  \nFROM node:13.12.0-alpine\n\nFROM nginxinc/nginx-unprivileged\nCOPY src/ /etc/nginx/html\n\nUSER 101\nCOPY config/nginx.conf /etc/nginx/conf.d/default.conf\nCMD [\"nginx-debug\"",
+    "fixed_pattern": "FROM nginxinc/nginx-unprivileged\nCOPY src/ /etc/nginx/html\n\nUSER 101\nCOPY config/nginx.conf /etc/nginx/conf.d/default.conf\nCMD [\"nginx-debug\", \"-g\", \"daemon off;\"]",
+    "issue_type": "performance",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-12-02T23:31:20.226643",
+    "notes": null
+  },
+  "performance_8125": {
+    "id": "performance_8125",
+    "original_pattern": "# pull the official base image  \nFROM node:13.12.0-alpine\n\nFROM nginxinc/nginx-unprivileged\nCOPY src/ /etc/nginx/html\n\nUSER 101\nCOPY config/nginx.conf /etc/nginx/conf.d/default.conf\nCMD [\"nginx-debug\"",
+    "fixed_pattern": "FROM node:20-alpine\n\nFROM nginxinc/nginx-unprivileged\nUSER 101\nCOPY src/ /etc/nginx/html\nCOPY config/nginx.conf /etc/nginx/conf.d/default.conf\nCMD [\"nginx-debug\", \"-g\", \"daemon off;\"]",
+    "issue_type": "performance",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-12-02T23:42:35.853348",
+    "notes": null
+  },
+  "security_6162": {
+    "id": "security_6162",
+    "original_pattern": "FROM node:9\nRUN npm i -g webpack webpack-cli\n\nWORKDIR /app\nCOPY . /app\nRUN npm i\n\nCMD npm run start-stg\n\nEXPOSE 3333",
+    "fixed_pattern": "FROM node:20-alpine\nRUN npm i -g webpack webpack-cli && npm i && npm cache clean --force\n\nWORKDIR /app\nCOPY package*.json ./\nRUN npm i\nCOPY . .\n\nCMD npm run start-stg\n\nEXPOSE 3333\nRUN addgroup --syste",
+    "issue_type": "security",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-12-03T00:03:42.258922",
+    "notes": null
+  },
+  "performance_9971": {
+    "id": "performance_9971",
+    "original_pattern": "FROM nvidia/cuda:11.3.1-devel-ubuntu20.04\n\nRUN apt-get update && apt-get install wget -yq\nRUN apt-get install build-essential g++ gcc -y\nENV DEBIAN_FRONTEND noninteractive\nRUN apt-get install libgl1-m",
+    "fixed_pattern": "FROM nvidia/cuda:11.3.1-devel-ubuntu20.04\n\nRUN apt-get update && apt-get install -yq --no-install-recommends wget build-essential g++ gcc libgl1-mesa-glx libglib2.0-0 openmpi-bin openmpi-common libope",
+    "issue_type": "performance",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-12-03T00:14:00.817033",
+    "notes": null
+  },
+  "performance_4803": {
+    "id": "performance_4803",
+    "original_pattern": "FROM dronedb/builder\n\n# Set environment variables\nENV CMAKE_BUILD_TYPE=Release \\\n    DEBIAN_FRONTEND=noninteractive\n\n# Copy the source code\nCOPY . /workspace\n\nRUN cd /workspace && mkdir -p build && \\\n",
+    "fixed_pattern": "FROM dronedb/builder:latest\n\n# Set environment variables\nENV CMAKE_BUILD_TYPE=Release \\\n    DEBIAN_FRONTEND=noninteractive\n\n# Copy the source code\nCOPY . /workspace\n\nRUN cd /workspace && mkdir -p buil",
+    "issue_type": "performance",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-12-03T00:24:13.950443",
+    "notes": null
+  },
+  "security_1306": {
+    "id": "security_1306",
+    "original_pattern": "FROM osgeo/gdal:ubuntu-full-3.6.3\n\nLABEL NAME=\"fields2cover\" \\\n      VERSION=\"2.0.0\" \\\n      DESC=\"Fields2Cover is a complete coverage path planning package for autonomous robots\" \\\n      MAINTAINER=\"",
+    "fixed_pattern": "FROM osgeo/gdal:ubuntu-full-3.6.3\n\nLABEL NAME=\"fields2cover\" \\\n      VERSION=\"2.0.0\" \\\n      DESC=\"Fields2Cover is a complete coverage path planning package for autonomous robots\" \\\n      MAINTAINER=\"",
+    "issue_type": "security",
+    "success_rate": 1.0,
+    "usage_count": 1,
+    "last_used": "2025-12-03T00:34:32.763894",
+    "notes": null
   }
 }

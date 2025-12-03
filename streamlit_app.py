@@ -442,13 +442,13 @@ def main():
                 max_value=10,
                 value=st.session_state.max_workers,
                 key="max_workers_slider",
-                help="Number of repositories to process in parallel (higher = faster but more resource intensive). ⚠️ WARNING: Values > 1 require more memory. Use 1 for small EC2 instances (<4GB RAM) to prevent OOM errors."
+                help="Number of repositories to process in parallel (higher = faster but more resource intensive). ⚠️ WARNING: Values > 1 require more memory. Use 1 for systems with limited RAM (<4GB) to prevent OOM errors."
             )
             st.session_state.max_workers = max_workers
             if max_workers > 1:
-                st.warning(f"⚠️ Parallel processing enabled: {max_workers} workers. Ensure your EC2 instance has sufficient memory (≥4GB RAM recommended). OOM errors may occur on smaller instances.")
+                st.warning(f"Parallel processing enabled: {max_workers} workers.")
             else:
-                st.info("ℹ️ Sequential processing (1 worker). Safe for all instance sizes, but slower.")
+                st.info("Sequential processing (1 worker). Safe for all instance sizes, but slower.")
             
             cleanup_images = st.checkbox(
                 "Cleanup Images",
