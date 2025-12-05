@@ -6,3 +6,18 @@ node_test/node_modules/
 llm_agents/.env
 env
 
+# Virtual environment
+bin/
+include/
+lib/
+share/
+pyvenv.cfg
+
+# Result files (keep analysis_history.json as it's the main history)
+batch_results_*.json
+!batch_results.json
+
+# Logs
+logs/
+*.log
+
