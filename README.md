@@ -41,7 +41,7 @@ This project provides a comprehensive Dockerfile optimization pipeline that:
 
 - Python 3.8 or higher
 - Docker installed and running
-- Google Gemini API key ([Get one here](https://makersuite.google.com/app/apikey))
+- Google Gemini API key ([Get one here](https://makersuite.google.com/app/apikey)) [Steps here](GENERATE_GEMINI_KEY.md)
 
 ## Installation
 
