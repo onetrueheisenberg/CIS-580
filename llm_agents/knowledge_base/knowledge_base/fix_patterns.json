@@ -1,0 +1,146 @@
+{
+  "http_to_https": {
+    "id": "http_to_https",
+    "name": "Convert HTTP to HTTPS",
+    "category": "security",
+    "severity": "high",
+    "description": "Change HTTP URLs to HTTPS for secure downloads",
+    "pattern": "http://",
+    "replacement": "https://",
+    "template": null,
+    "conditions": {
+      "when": "downloading files"
+    },
+    "examples": [
+      "http://storage.googleapis.com \u2192 https://storage.googleapis.com"
+    ]
+  },
+  "add_checksum_verification": {
+    "id": "add_checksum_verification",
+    "name": "Add Checksum Verification",
+    "category": "security",
+    "severity": "critical",
+    "description": "Add SHA256 checksum verification for downloaded files",
+    "pattern": "curl.*-o.*\\$\\{.*\\}",
+    "replacement": "",
+    "template": "RUN curl -fsSL -o /tmp/${FILENAME} ${URL} \\\n  && echo '${SHA256} /tmp/${FILENAME}' | sha256sum -c -",
+    "conditions": {
+      "when": "downloading binaries"
+    },
+    "examples": [
+      "Add SHA256 verification after curl downloads"
+    ]
+  },
+  "combine_apk_commands": {
+    "id": "combine_apk_commands",
+    "name": "Combine APK Commands",
+    "category": "performance",
+    "severity": "medium",
+    "description": "Combine apk update and apk add into single RUN command",
+    "pattern": "RUN apk update\\s*\\n\\s*RUN apk add",
+    "replacement": "RUN apk update && apk add --no-cache",
+    "template": "RUN apk update && apk add --no-cache <packages> && rm -rf /var/cache/apk/*",
+    "conditions": {
+      "when": "multiple apk commands"
+    },
+    "examples": [
+      "RUN apk update\nRUN apk add curl \u2192 RUN apk update && apk add --no-cache curl"
+    ]
+  },
+  "add_non_root_user": {
+    "id": "add_non_root_user",
+    "name": "Add Non-Root User",
+    "category": "security",
+    "severity": "high",
+    "description": "Add non-root user and switch to it",
+    "pattern": "",
+    "replacement": "",
+    "template": "RUN addgroup -g 1000 appuser && adduser -D -u 1000 -G appuser appuser\nUSER appuser",
+    "conditions": {
+      "when": "running as root"
+    },
+    "examples": [
+      "Add USER directive after installing packages"
+    ]
+  },
+  "update_base_image": {
+    "id": "update_base_image",
+    "name": "Update Base Image",
+    "category": "security",
+    "severity": "high",
+    "description": "Update to latest stable base image version",
+    "pattern": "FROM.*:.*",
+    "replacement": "FROM ${RECOMMENDED_VERSION}",
+    "template": null,
+    "conditions": {
+      "when": "base image is EOL or outdated"
+    },
+    "examples": [
+      "FROM golang:1.12-alpine \u2192 FROM golang:1.22-alpine"
+    ]
+  },
+  "use_usr_local_bin": {
+    "id": "use_usr_local_bin",
+    "name": "Use /usr/local/bin Instead of /bin",
+    "category": "best_practice",
+    "severity": "low",
+    "description": "Use /usr/local/bin for user-installed binaries",
+    "pattern": "/bin/",
+    "replacement": "/usr/local/bin/",
+    "template": null,
+    "conditions": {
+      "when": "copying user binaries"
+    },
+    "examples": [
+      "COPY binary /bin/ \u2192 COPY binary /usr/local/bin/"
+    ]
+  },
+  "migrate_dep_to_go_modules": {
+    "id": "migrate_dep_to_go_modules",
+    "name": "Migrate from dep to Go Modules",
+    "category": "best_practice",
+    "severity": "medium",
+    "description": "Replace dep with Go modules",
+    "pattern": "RUN dep ensure",
+    "replacement": "",
+    "template": "COPY go.mod go.sum ./\nRUN go mod download\nCOPY . .\nRUN go build",
+    "conditions": {
+      "when": "using dep"
+    },
+    "examples": [
+      "Remove dep ensure, use go mod download"
+    ]
+  },
+  "fix_goarch_mismatch": {
+    "id": "fix_goarch_mismatch",
+    "name": "Fix GOARCH Mismatch",
+    "category": "compatibility",
+    "severity": "high",
+    "description": "Fix architecture mismatch between Go binary and downloaded binaries",
+    "pattern": "ENV GOARCH=386",
+    "replacement": "ENV GOARCH=amd64",
+    "template": null,
+    "conditions": {
+      "when": "GOARCH=386 but downloading amd64 binaries"
+    },
+    "examples": [
+      "ENV GOARCH=386 \u2192 ENV GOARCH=amd64"
+    ]
+  },
+  "replace_maintainer": {
+    "id": "replace_maintainer",
+    "name": "Replace MAINTAINER with LABEL",
+    "category": "best_practice",
+    "severity": "low",
+    "description": "Replace deprecated MAINTAINER with LABEL maintainer",
+    "pattern": "MAINTAINER",
+    "replacement": "LABEL maintainer",
+    "template": "LABEL maintainer=\"Name <email>\"",
+    "conditions": {
+      "when": "MAINTAINER instruction present"
+    },
+    "examples": [
+      "MAINTAINER name \u2192 LABEL maintainer=\"name\""
+    ]
+  }
+}

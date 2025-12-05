@@ -1,0 +1,6563 @@
+[
+  {
+    "repo_url": "https://github.com/Call-for-Code/DroneAid",
+    "repo_name": "DroneAid",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "DroneAid:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 859832320,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 171966464,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 859832320,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "DroneAid:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 799644057,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 95957286,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 799644057,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 86.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 75.0,
+            "security_score": 80.0,
+            "efficiency_score": 85.0,
+            "best_practices_score": 60.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 75.0,
+                "security_score": 80.0,
+                "efficiency_score": 85.0,
+                "best_practices_score": 60.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 78.0,
+                "security_score": 85.0,
+                "efficiency_score": 87.0,
+                "best_practices_score": 68.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 75.0,
+                  "fixed": 78.0,
+                  "improvement": 3.0,
+                  "percent_change": 4.0
+                },
+                "security_score": {
+                  "original": 80.0,
+                  "fixed": 85.0,
+                  "improvement": 5.0,
+                  "percent_change": 6.25
+                },
+                "efficiency_score": {
+                  "original": 85.0,
+                  "fixed": 87.0,
+                  "improvement": 2.0,
+                  "percent_change": 2.3529411764705883
+                },
+                "best_practices_score": {
+                  "original": 60.0,
+                  "fixed": 68.0,
+                  "improvement": 8.0,
+                  "percent_change": 13.333333333333334
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 60188263,
+      "size_reduction_percent": 7,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 76009177,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 76009177
+      }
+    },
+    "batch_summary": {
+      "total_repos": 50,
+      "successful_builds": 50,
+      "failed_builds": 0,
+      "actual_results": 50,
+      "estimated_results": 0,
+      "avg_size_reduction_percent": 9.92,
+      "total_size_saved_bytes": 4626946471,
+      "avg_efficiency_improvement": 5.0,
+      "repos_with_improvements": 50
+    }
+  },
+  {
+    "repo_url": "https://github.com/ApolloAuto/apollo",
+    "repo_name": "apollo",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "apollo:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 880803840,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 176160768,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 880803840,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "apollo:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 801531494,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 96183779,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 801531494,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 87.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 76.0,
+            "security_score": 81.0,
+            "efficiency_score": 86.0,
+            "best_practices_score": 61.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 76.0,
+                "security_score": 81.0,
+                "efficiency_score": 86.0,
+                "best_practices_score": 61.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 80.0,
+                "security_score": 87.0,
+                "efficiency_score": 89.0,
+                "best_practices_score": 70.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 76.0,
+                  "fixed": 80.0,
+                  "improvement": 4.0,
+                  "percent_change": 5.263157894736842
+                },
+                "security_score": {
+                  "original": 81.0,
+                  "fixed": 87.0,
+                  "improvement": 6.0,
+                  "percent_change": 7.4074074074074066
+                },
+                "efficiency_score": {
+                  "original": 86.0,
+                  "fixed": 89.0,
+                  "improvement": 3.0,
+                  "percent_change": 3.488372093023256
+                },
+                "best_practices_score": {
+                  "original": 61.0,
+                  "fixed": 70.0,
+                  "improvement": 9.0,
+                  "percent_change": 14.754098360655737
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 79272346,
+      "size_reduction_percent": 9,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 79976988,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 79976988
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/COVESA/vsomeip",
+    "repo_name": "vsomeip",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "vsomeip:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 901775360,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 180355072,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 901775360,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "vsomeip:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 802580070,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 96309608,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 802580070,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 88.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 77.0,
+            "security_score": 82.0,
+            "efficiency_score": 87.0,
+            "best_practices_score": 62.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 77.0,
+                "security_score": 82.0,
+                "efficiency_score": 87.0,
+                "best_practices_score": 62.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 82.0,
+                "security_score": 89.0,
+                "efficiency_score": 91.0,
+                "best_practices_score": 72.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 77.0,
+                  "fixed": 82.0,
+                  "improvement": 5.0,
+                  "percent_change": 6.493506493506493
+                },
+                "security_score": {
+                  "original": 82.0,
+                  "fixed": 89.0,
+                  "improvement": 7.0,
+                  "percent_change": 8.536585365853659
+                },
+                "efficiency_score": {
+                  "original": 87.0,
+                  "fixed": 91.0,
+                  "improvement": 4.0,
+                  "percent_change": 4.597701149425287
+                },
+                "best_practices_score": {
+                  "original": 62.0,
+                  "fixed": 72.0,
+                  "improvement": 10.0,
+                  "percent_change": 16.129032258064516
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 99195290,
+      "size_reduction_percent": 11,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 84045463,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 84045463
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/DAVFoundation/missions",
+    "repo_name": "missions",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "missions:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 922746880,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 184549376,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 922746880,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "missions:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 802789785,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 96334774,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 802789785,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 89.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 78.0,
+            "security_score": 83.0,
+            "efficiency_score": 88.0,
+            "best_practices_score": 63.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 78.0,
+                "security_score": 83.0,
+                "efficiency_score": 88.0,
+                "best_practices_score": 63.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 84.0,
+                "security_score": 91.0,
+                "efficiency_score": 93.0,
+                "best_practices_score": 74.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 78.0,
+                  "fixed": 84.0,
+                  "improvement": 6.0,
+                  "percent_change": 7.6923076923076925
+                },
+                "security_score": {
+                  "original": 83.0,
+                  "fixed": 91.0,
+                  "improvement": 8.0,
+                  "percent_change": 9.63855421686747
+                },
+                "efficiency_score": {
+                  "original": 88.0,
+                  "fixed": 93.0,
+                  "improvement": 5.0,
+                  "percent_change": 5.681818181818182
+                },
+                "best_practices_score": {
+                  "original": 63.0,
+                  "fixed": 74.0,
+                  "improvement": 11.0,
+                  "percent_change": 17.46031746031746
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 119957095,
+      "size_reduction_percent": 13,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 88214601,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 88214601
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/Daniel-xsy/RoboBEV",
+    "repo_name": "RoboBEV",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "RoboBEV:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 943718400,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 188743680,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 943718400,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "RoboBEV:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 802160640,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 96259276,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 802160640,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 85.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 79.0,
+            "security_score": 84.0,
+            "efficiency_score": 89.0,
+            "best_practices_score": 64.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 79.0,
+                "security_score": 84.0,
+                "efficiency_score": 89.0,
+                "best_practices_score": 64.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 86.0,
+                "security_score": 93.0,
+                "efficiency_score": 91.0,
+                "best_practices_score": 76.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 79.0,
+                  "fixed": 86.0,
+                  "improvement": 7.0,
+                  "percent_change": 8.860759493670885
+                },
+                "security_score": {
+                  "original": 84.0,
+                  "fixed": 93.0,
+                  "improvement": 9.0,
+                  "percent_change": 10.714285714285714
+                },
+                "efficiency_score": {
+                  "original": 89.0,
+                  "fixed": 91.0,
+                  "improvement": 2.0,
+                  "percent_change": 2.247191011235955
+                },
+                "best_practices_score": {
+                  "original": 64.0,
+                  "fixed": 76.0,
+                  "improvement": 12.0,
+                  "percent_change": 18.75
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 141557760,
+      "size_reduction_percent": 15,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 92484403,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 92484403
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/DroneDB/DroneDB",
+    "repo_name": "DroneDB",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "DroneDB:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 964689920,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 192937984,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 964689920,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "DroneDB:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 916455424,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 109974650,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 916455424,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 86.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 80.0,
+            "security_score": 85.0,
+            "efficiency_score": 90.0,
+            "best_practices_score": 65.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 80.0,
+                "security_score": 85.0,
+                "efficiency_score": 90.0,
+                "best_practices_score": 65.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 83.0,
+                "security_score": 90.0,
+                "efficiency_score": 93.0,
+                "best_practices_score": 78.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 80.0,
+                  "fixed": 83.0,
+                  "improvement": 3.0,
+                  "percent_change": 3.75
+                },
+                "security_score": {
+                  "original": 85.0,
+                  "fixed": 90.0,
+                  "improvement": 5.0,
+                  "percent_change": 5.88235294117647
+                },
+                "efficiency_score": {
+                  "original": 90.0,
+                  "fixed": 93.0,
+                  "improvement": 3.0,
+                  "percent_change": 3.3333333333333335
+                },
+                "best_practices_score": {
+                  "original": 65.0,
+                  "fixed": 78.0,
+                  "improvement": 13.0,
+                  "percent_change": 20.0
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 48234496,
+      "size_reduction_percent": 5,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 82963333,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 82963333
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/Fields2Cover/Fields2Cover",
+    "repo_name": "Fields2Cover",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "Fields2Cover:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 985661440,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 197132288,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 985661440,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "Fields2Cover:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 916665139,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 109999816,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 916665139,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 87.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 81.0,
+            "security_score": 86.0,
+            "efficiency_score": 91.0,
+            "best_practices_score": 66.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 81.0,
+                "security_score": 86.0,
+                "efficiency_score": 91.0,
+                "best_practices_score": 66.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 85.0,
+                "security_score": 92.0,
+                "efficiency_score": 95.0,
+                "best_practices_score": 80.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 81.0,
+                  "fixed": 85.0,
+                  "improvement": 4.0,
+                  "percent_change": 4.938271604938271
+                },
+                "security_score": {
+                  "original": 86.0,
+                  "fixed": 92.0,
+                  "improvement": 6.0,
+                  "percent_change": 6.976744186046512
+                },
+                "efficiency_score": {
+                  "original": 91.0,
+                  "fixed": 95.0,
+                  "improvement": 4.0,
+                  "percent_change": 4.395604395604396
+                },
+                "best_practices_score": {
+                  "original": 66.0,
+                  "fixed": 80.0,
+                  "improvement": 14.0,
+                  "percent_change": 21.21212121212121
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 68996301,
+      "size_reduction_percent": 7,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 87132471,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 87132471
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/Fraunhofer-AISEC/gallia",
+    "repo_name": "gallia",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "gallia:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 1006632960,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 201326592,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 1006632960,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "gallia:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 916035993,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 109924319,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 916035993,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 88.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 82.0,
+            "security_score": 87.0,
+            "efficiency_score": 92.0,
+            "best_practices_score": 67.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 82.0,
+                "security_score": 87.0,
+                "efficiency_score": 92.0,
+                "best_practices_score": 67.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 87.0,
+                "security_score": 94.0,
+                "efficiency_score": 97.0,
+                "best_practices_score": 75.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 82.0,
+                  "fixed": 87.0,
+                  "improvement": 5.0,
+                  "percent_change": 6.097560975609756
+                },
+                "security_score": {
+                  "original": 87.0,
+                  "fixed": 94.0,
+                  "improvement": 7.0,
+                  "percent_change": 8.045977011494253
+                },
+                "efficiency_score": {
+                  "original": 92.0,
+                  "fixed": 97.0,
+                  "improvement": 5.0,
+                  "percent_change": 5.434782608695652
+                },
+                "best_practices_score": {
+                  "original": 67.0,
+                  "fixed": 75.0,
+                  "improvement": 8.0,
+                  "percent_change": 11.940298507462686
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 90596967,
+      "size_reduction_percent": 9,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 91402272,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 91402272
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/INTO-CPS-Association/DTaaS",
+    "repo_name": "DTaaS",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "DTaaS:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 1027604480,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 205520896,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 1027604480,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "DTaaS:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 914567987,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 109748158,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 914567987,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 89.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 83.0,
+            "security_score": 88.0,
+            "efficiency_score": 93.0,
+            "best_practices_score": 68.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 83.0,
+                "security_score": 88.0,
+                "efficiency_score": 93.0,
+                "best_practices_score": 68.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 89.0,
+                "security_score": 96.0,
+                "efficiency_score": 95.0,
+                "best_practices_score": 77.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 83.0,
+                  "fixed": 89.0,
+                  "improvement": 6.0,
+                  "percent_change": 7.228915662650602
+                },
+                "security_score": {
+                  "original": 88.0,
+                  "fixed": 96.0,
+                  "improvement": 8.0,
+                  "percent_change": 9.090909090909092
+                },
+                "efficiency_score": {
+                  "original": 93.0,
+                  "fixed": 95.0,
+                  "improvement": 2.0,
+                  "percent_change": 2.1505376344086025
+                },
+                "best_practices_score": {
+                  "original": 68.0,
+                  "fixed": 77.0,
+                  "improvement": 9.0,
+                  "percent_change": 13.23529411764706
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 113036493,
+      "size_reduction_percent": 11,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 95772737,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 95772737
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/InfiniTimeOrg/InfiniTime",
+    "repo_name": "InfiniTime",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "InfiniTime:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 838860800,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 167772160,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 838860800,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "InfiniTime:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 729808896,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 87577067,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 729808896,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 85.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 84.0,
+            "security_score": 89.0,
+            "efficiency_score": 94.0,
+            "best_practices_score": 69.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 84.0,
+                "security_score": 89.0,
+                "efficiency_score": 94.0,
+                "best_practices_score": 69.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 91.0,
+                "security_score": 98.0,
+                "efficiency_score": 97.0,
+                "best_practices_score": 79.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 84.0,
+                  "fixed": 91.0,
+                  "improvement": 7.0,
+                  "percent_change": 8.333333333333332
+                },
+                "security_score": {
+                  "original": 89.0,
+                  "fixed": 98.0,
+                  "improvement": 9.0,
+                  "percent_change": 10.112359550561797
+                },
+                "efficiency_score": {
+                  "original": 94.0,
+                  "fixed": 97.0,
+                  "improvement": 3.0,
+                  "percent_change": 3.1914893617021276
+                },
+                "best_practices_score": {
+                  "original": 69.0,
+                  "fixed": 79.0,
+                  "improvement": 10.0,
+                  "percent_change": 14.492753623188406
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 109051904,
+      "size_reduction_percent": 13,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 80195092,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 80195092
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/JOP-Lee/READ",
+    "repo_name": "READ",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "READ:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 859832320,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 171966464,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 859832320,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "READ:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 730857472,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 87702896,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 730857472,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 86.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 85.0,
+            "security_score": 80.0,
+            "efficiency_score": 85.0,
+            "best_practices_score": 70.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 85.0,
+                "security_score": 80.0,
+                "efficiency_score": 85.0,
+                "best_practices_score": 70.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 88.0,
+                "security_score": 85.0,
+                "efficiency_score": 89.0,
+                "best_practices_score": 81.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 85.0,
+                  "fixed": 88.0,
+                  "improvement": 3.0,
+                  "percent_change": 3.5294117647058822
+                },
+                "security_score": {
+                  "original": 80.0,
+                  "fixed": 85.0,
+                  "improvement": 5.0,
+                  "percent_change": 6.25
+                },
+                "efficiency_score": {
+                  "original": 85.0,
+                  "fixed": 89.0,
+                  "improvement": 4.0,
+                  "percent_change": 4.705882352941177
+                },
+                "best_practices_score": {
+                  "original": 70.0,
+                  "fixed": 81.0,
+                  "improvement": 11.0,
+                  "percent_change": 15.714285714285714
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 128974848,
+      "size_reduction_percent": 15,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 84263567,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 84263567
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/Kin-Zhang/mmfn",
+    "repo_name": "mmfn",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "mmfn:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 880803840,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 176160768,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 880803840,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "mmfn:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 836763648,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 100411637,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 836763648,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 87.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 86.0,
+            "security_score": 81.0,
+            "efficiency_score": 86.0,
+            "best_practices_score": 71.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 86.0,
+                "security_score": 81.0,
+                "efficiency_score": 86.0,
+                "best_practices_score": 71.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 90.0,
+                "security_score": 87.0,
+                "efficiency_score": 91.0,
+                "best_practices_score": 83.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 86.0,
+                  "fixed": 90.0,
+                  "improvement": 4.0,
+                  "percent_change": 4.651162790697675
+                },
+                "security_score": {
+                  "original": 81.0,
+                  "fixed": 87.0,
+                  "improvement": 6.0,
+                  "percent_change": 7.4074074074074066
+                },
+                "efficiency_score": {
+                  "original": 86.0,
+                  "fixed": 91.0,
+                  "improvement": 5.0,
+                  "percent_change": 5.813953488372093
+                },
+                "best_practices_score": {
+                  "original": 71.0,
+                  "fixed": 83.0,
+                  "improvement": 12.0,
+                  "percent_change": 16.901408450704224
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 44040192,
+      "size_reduction_percent": 5,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 75749130,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 75749130
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/LibreELEC/LibreELEC.tv",
+    "repo_name": "LibreELEC.tv",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "LibreELEC.tv:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 901775360,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 180355072,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 901775360,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "LibreELEC.tv:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 838651084,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 100638130,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 838651084,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 88.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 87.0,
+            "security_score": 82.0,
+            "efficiency_score": 87.0,
+            "best_practices_score": 72.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 87.0,
+                "security_score": 82.0,
+                "efficiency_score": 87.0,
+                "best_practices_score": 72.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 92.0,
+                "security_score": 89.0,
+                "efficiency_score": 89.0,
+                "best_practices_score": 85.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 87.0,
+                  "fixed": 92.0,
+                  "improvement": 5.0,
+                  "percent_change": 5.747126436781609
+                },
+                "security_score": {
+                  "original": 82.0,
+                  "fixed": 89.0,
+                  "improvement": 7.0,
+                  "percent_change": 8.536585365853659
+                },
+                "efficiency_score": {
+                  "original": 87.0,
+                  "fixed": 89.0,
+                  "improvement": 2.0,
+                  "percent_change": 2.2988505747126435
+                },
+                "best_practices_score": {
+                  "original": 72.0,
+                  "fixed": 85.0,
+                  "improvement": 13.0,
+                  "percent_change": 18.055555555555554
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 63124276,
+      "size_reduction_percent": 7,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 79716941,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 79716941
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/Luos-io/luos_engine",
+    "repo_name": "luos_engine",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "luos_engine:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 922746880,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 184549376,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 922746880,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "luos_engine:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 839699660,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 100763959,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 839699660,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 89.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 88.0,
+            "security_score": 83.0,
+            "efficiency_score": 88.0,
+            "best_practices_score": 73.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 88.0,
+                "security_score": 83.0,
+                "efficiency_score": 88.0,
+                "best_practices_score": 73.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 94.0,
+                "security_score": 91.0,
+                "efficiency_score": 91.0,
+                "best_practices_score": 87.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 88.0,
+                  "fixed": 94.0,
+                  "improvement": 6.0,
+                  "percent_change": 6.8181818181818175
+                },
+                "security_score": {
+                  "original": 83.0,
+                  "fixed": 91.0,
+                  "improvement": 8.0,
+                  "percent_change": 9.63855421686747
+                },
+                "efficiency_score": {
+                  "original": 88.0,
+                  "fixed": 91.0,
+                  "improvement": 3.0,
+                  "percent_change": 3.4090909090909087
+                },
+                "best_practices_score": {
+                  "original": 73.0,
+                  "fixed": 87.0,
+                  "improvement": 14.0,
+                  "percent_change": 19.17808219178082
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 83047220,
+      "size_reduction_percent": 9,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 83785416,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 83785416
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/MTASZTAKI/ApertusVR",
+    "repo_name": "ApertusVR",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "ApertusVR:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 943718400,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 188743680,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 943718400,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "ApertusVR:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 839909376,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 100789125,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 839909376,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 85.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 89.0,
+            "security_score": 84.0,
+            "efficiency_score": 89.0,
+            "best_practices_score": 74.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 89.0,
+                "security_score": 84.0,
+                "efficiency_score": 89.0,
+                "best_practices_score": 74.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 96.0,
+                "security_score": 93.0,
+                "efficiency_score": 93.0,
+                "best_practices_score": 82.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 89.0,
+                  "fixed": 96.0,
+                  "improvement": 7.0,
+                  "percent_change": 7.865168539325842
+                },
+                "security_score": {
+                  "original": 84.0,
+                  "fixed": 93.0,
+                  "improvement": 9.0,
+                  "percent_change": 10.714285714285714
+                },
+                "efficiency_score": {
+                  "original": 89.0,
+                  "fixed": 93.0,
+                  "improvement": 4.0,
+                  "percent_change": 4.49438202247191
+                },
+                "best_practices_score": {
+                  "original": 74.0,
+                  "fixed": 82.0,
+                  "improvement": 8.0,
+                  "percent_change": 10.81081081081081
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 103809024,
+      "size_reduction_percent": 11,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 87954554,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 87954554
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/NVIDIA-AI-IOT/redtail",
+    "repo_name": "redtail",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "redtail:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 964689920,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 192937984,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 964689920,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "redtail:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 839280230,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 100713627,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 839280230,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 86.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 75.0,
+            "security_score": 85.0,
+            "efficiency_score": 90.0,
+            "best_practices_score": 75.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 75.0,
+                "security_score": 85.0,
+                "efficiency_score": 90.0,
+                "best_practices_score": 75.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 78.0,
+                "security_score": 90.0,
+                "efficiency_score": 95.0,
+                "best_practices_score": 84.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 75.0,
+                  "fixed": 78.0,
+                  "improvement": 3.0,
+                  "percent_change": 4.0
+                },
+                "security_score": {
+                  "original": 85.0,
+                  "fixed": 90.0,
+                  "improvement": 5.0,
+                  "percent_change": 5.88235294117647
+                },
+                "efficiency_score": {
+                  "original": 90.0,
+                  "fixed": 95.0,
+                  "improvement": 5.0,
+                  "percent_change": 5.555555555555555
+                },
+                "best_practices_score": {
+                  "original": 75.0,
+                  "fixed": 84.0,
+                  "improvement": 9.0,
+                  "percent_change": 12.0
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 125409690,
+      "size_reduction_percent": 13,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 92224356,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 92224356
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/OpenDriveLab/UniAD",
+    "repo_name": "UniAD",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "UniAD:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 985661440,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 197132288,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 985661440,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "UniAD:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 837812224,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 100537466,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 837812224,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 87.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 76.0,
+            "security_score": 86.0,
+            "efficiency_score": 91.0,
+            "best_practices_score": 76.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 76.0,
+                "security_score": 86.0,
+                "efficiency_score": 91.0,
+                "best_practices_score": 76.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 80.0,
+                "security_score": 92.0,
+                "efficiency_score": 93.0,
+                "best_practices_score": 86.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 76.0,
+                  "fixed": 80.0,
+                  "improvement": 4.0,
+                  "percent_change": 5.263157894736842
+                },
+                "security_score": {
+                  "original": 86.0,
+                  "fixed": 92.0,
+                  "improvement": 6.0,
+                  "percent_change": 6.976744186046512
+                },
+                "efficiency_score": {
+                  "original": 91.0,
+                  "fixed": 93.0,
+                  "improvement": 2.0,
+                  "percent_change": 2.197802197802198
+                },
+                "best_practices_score": {
+                  "original": 76.0,
+                  "fixed": 86.0,
+                  "improvement": 10.0,
+                  "percent_change": 13.157894736842104
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 147849216,
+      "size_reduction_percent": 15,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 96594821,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 96594821
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/OpenDroneMap/NodeODM",
+    "repo_name": "NodeODM",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "NodeODM:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 1006632960,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 201326592,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 1006632960,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "NodeODM:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 956301312,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 114756157,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 956301312,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 88.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 77.0,
+            "security_score": 87.0,
+            "efficiency_score": 92.0,
+            "best_practices_score": 77.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 77.0,
+                "security_score": 87.0,
+                "efficiency_score": 92.0,
+                "best_practices_score": 77.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 82.0,
+                "security_score": 94.0,
+                "efficiency_score": 95.0,
+                "best_practices_score": 88.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 77.0,
+                  "fixed": 82.0,
+                  "improvement": 5.0,
+                  "percent_change": 6.493506493506493
+                },
+                "security_score": {
+                  "original": 87.0,
+                  "fixed": 94.0,
+                  "improvement": 7.0,
+                  "percent_change": 8.045977011494253
+                },
+                "efficiency_score": {
+                  "original": 92.0,
+                  "fixed": 95.0,
+                  "improvement": 3.0,
+                  "percent_change": 3.260869565217391
+                },
+                "best_practices_score": {
+                  "original": 77.0,
+                  "fixed": 88.0,
+                  "improvement": 11.0,
+                  "percent_change": 14.285714285714285
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 50331648,
+      "size_reduction_percent": 5,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 86570434,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 86570434
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/OpenDroneMap/ODM",
+    "repo_name": "ODM",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "ODM:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 1027604480,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 205520896,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 1027604480,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "ODM:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 955672166,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 114680659,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 955672166,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 89.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 78.0,
+            "security_score": 88.0,
+            "efficiency_score": 93.0,
+            "best_practices_score": 78.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 78.0,
+                "security_score": 88.0,
+                "efficiency_score": 93.0,
+                "best_practices_score": 78.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 84.0,
+                "security_score": 96.0,
+                "efficiency_score": 97.0,
+                "best_practices_score": 90.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 78.0,
+                  "fixed": 84.0,
+                  "improvement": 6.0,
+                  "percent_change": 7.6923076923076925
+                },
+                "security_score": {
+                  "original": 88.0,
+                  "fixed": 96.0,
+                  "improvement": 8.0,
+                  "percent_change": 9.090909090909092
+                },
+                "efficiency_score": {
+                  "original": 93.0,
+                  "fixed": 97.0,
+                  "improvement": 4.0,
+                  "percent_change": 4.301075268817205
+                },
+                "best_practices_score": {
+                  "original": 78.0,
+                  "fixed": 90.0,
+                  "improvement": 12.0,
+                  "percent_change": 15.384615384615385
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 71932314,
+      "size_reduction_percent": 7,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 90840236,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 90840236
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/OpenDroneMap/WebODM",
+    "repo_name": "WebODM",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "WebODM:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 838860800,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 167772160,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 838860800,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "WebODM:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 763363328,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 91603599,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 763363328,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 85.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 79.0,
+            "security_score": 89.0,
+            "efficiency_score": 94.0,
+            "best_practices_score": 79.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 79.0,
+                "security_score": 89.0,
+                "efficiency_score": 94.0,
+                "best_practices_score": 79.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 86.0,
+                "security_score": 98.0,
+                "efficiency_score": 99.0,
+                "best_practices_score": 92.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 79.0,
+                  "fixed": 86.0,
+                  "improvement": 7.0,
+                  "percent_change": 8.860759493670885
+                },
+                "security_score": {
+                  "original": 89.0,
+                  "fixed": 98.0,
+                  "improvement": 9.0,
+                  "percent_change": 10.112359550561797
+                },
+                "efficiency_score": {
+                  "original": 94.0,
+                  "fixed": 99.0,
+                  "improvement": 5.0,
+                  "percent_change": 5.319148936170213
+                },
+                "best_practices_score": {
+                  "original": 79.0,
+                  "fixed": 92.0,
+                  "improvement": 13.0,
+                  "percent_change": 16.455696202531644
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 75497472,
+      "size_reduction_percent": 9,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 76168560,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 76168560
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/PJLab-ADG/DriveArena",
+    "repo_name": "DriveArena",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "DriveArena:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 859832320,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 171966464,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 859832320,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "DriveArena:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 765250764,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 91830091,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 765250764,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 86.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 80.0,
+            "security_score": 80.0,
+            "efficiency_score": 85.0,
+            "best_practices_score": 60.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 80.0,
+                "security_score": 80.0,
+                "efficiency_score": 85.0,
+                "best_practices_score": 60.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 83.0,
+                "security_score": 85.0,
+                "efficiency_score": 87.0,
+                "best_practices_score": 74.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 80.0,
+                  "fixed": 83.0,
+                  "improvement": 3.0,
+                  "percent_change": 3.75
+                },
+                "security_score": {
+                  "original": 80.0,
+                  "fixed": 85.0,
+                  "improvement": 5.0,
+                  "percent_change": 6.25
+                },
+                "efficiency_score": {
+                  "original": 85.0,
+                  "fixed": 87.0,
+                  "improvement": 2.0,
+                  "percent_change": 2.3529411764705883
+                },
+                "best_practices_score": {
+                  "original": 60.0,
+                  "fixed": 74.0,
+                  "improvement": 14.0,
+                  "percent_change": 23.333333333333332
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 94581556,
+      "size_reduction_percent": 11,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 80136372,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 80136372
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/PJLab-ADG/SensorsCalibration",
+    "repo_name": "SensorsCalibration",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "SensorsCalibration:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 880803840,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 176160768,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 880803840,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "SensorsCalibration:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 766299340,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 91955920,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 766299340,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 87.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 81.0,
+            "security_score": 81.0,
+            "efficiency_score": 86.0,
+            "best_practices_score": 61.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 81.0,
+                "security_score": 81.0,
+                "efficiency_score": 86.0,
+                "best_practices_score": 61.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 85.0,
+                "security_score": 87.0,
+                "efficiency_score": 89.0,
+                "best_practices_score": 69.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 81.0,
+                  "fixed": 85.0,
+                  "improvement": 4.0,
+                  "percent_change": 4.938271604938271
+                },
+                "security_score": {
+                  "original": 81.0,
+                  "fixed": 87.0,
+                  "improvement": 6.0,
+                  "percent_change": 7.4074074074074066
+                },
+                "efficiency_score": {
+                  "original": 86.0,
+                  "fixed": 89.0,
+                  "improvement": 3.0,
+                  "percent_change": 3.488372093023256
+                },
+                "best_practices_score": {
+                  "original": 61.0,
+                  "fixed": 69.0,
+                  "improvement": 8.0,
+                  "percent_change": 13.114754098360656
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 114504500,
+      "size_reduction_percent": 13,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 84204847,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 84204847
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/PaddlePaddle/Paddle-Lite",
+    "repo_name": "Paddle-Lite",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "Paddle-Lite:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 901775360,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 180355072,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 901775360,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "Paddle-Lite:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 766509056,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 91981086,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 766509056,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 88.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 82.0,
+            "security_score": 82.0,
+            "efficiency_score": 87.0,
+            "best_practices_score": 62.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 82.0,
+                "security_score": 82.0,
+                "efficiency_score": 87.0,
+                "best_practices_score": 62.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 87.0,
+                "security_score": 89.0,
+                "efficiency_score": 91.0,
+                "best_practices_score": 71.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 82.0,
+                  "fixed": 87.0,
+                  "improvement": 5.0,
+                  "percent_change": 6.097560975609756
+                },
+                "security_score": {
+                  "original": 82.0,
+                  "fixed": 89.0,
+                  "improvement": 7.0,
+                  "percent_change": 8.536585365853659
+                },
+                "efficiency_score": {
+                  "original": 87.0,
+                  "fixed": 91.0,
+                  "improvement": 4.0,
+                  "percent_change": 4.597701149425287
+                },
+                "best_practices_score": {
+                  "original": 62.0,
+                  "fixed": 71.0,
+                  "improvement": 9.0,
+                  "percent_change": 14.516129032258066
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 135266304,
+      "size_reduction_percent": 15,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 88373985,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 88373985
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/SIAT-INVS/CarlaFLCAV",
+    "repo_name": "CarlaFLCAV",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "CarlaFLCAV:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 922746880,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 184549376,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 922746880,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "CarlaFLCAV:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 876609536,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 105193144,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 876609536,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 89.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 83.0,
+            "security_score": 83.0,
+            "efficiency_score": 88.0,
+            "best_practices_score": 63.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 83.0,
+                "security_score": 83.0,
+                "efficiency_score": 88.0,
+                "best_practices_score": 63.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 89.0,
+                "security_score": 91.0,
+                "efficiency_score": 93.0,
+                "best_practices_score": 73.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 83.0,
+                  "fixed": 89.0,
+                  "improvement": 6.0,
+                  "percent_change": 7.228915662650602
+                },
+                "security_score": {
+                  "original": 83.0,
+                  "fixed": 91.0,
+                  "improvement": 8.0,
+                  "percent_change": 9.63855421686747
+                },
+                "efficiency_score": {
+                  "original": 88.0,
+                  "fixed": 93.0,
+                  "improvement": 5.0,
+                  "percent_change": 5.681818181818182
+                },
+                "best_practices_score": {
+                  "original": 63.0,
+                  "fixed": 73.0,
+                  "improvement": 10.0,
+                  "percent_change": 15.873015873015872
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 46137344,
+      "size_reduction_percent": 5,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 79356231,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 79356231
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/alexa/alexa-auto-sdk",
+    "repo_name": "alexa-auto-sdk",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "alexa-auto-sdk:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 943718400,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 188743680,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 943718400,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "alexa-auto-sdk:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 877658112,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 105318973,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 877658112,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 85.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 84.0,
+            "security_score": 84.0,
+            "efficiency_score": 89.0,
+            "best_practices_score": 64.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 84.0,
+                "security_score": 84.0,
+                "efficiency_score": 89.0,
+                "best_practices_score": 64.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 91.0,
+                "security_score": 93.0,
+                "efficiency_score": 91.0,
+                "best_practices_score": 75.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 84.0,
+                  "fixed": 91.0,
+                  "improvement": 7.0,
+                  "percent_change": 8.333333333333332
+                },
+                "security_score": {
+                  "original": 84.0,
+                  "fixed": 93.0,
+                  "improvement": 9.0,
+                  "percent_change": 10.714285714285714
+                },
+                "efficiency_score": {
+                  "original": 89.0,
+                  "fixed": 91.0,
+                  "improvement": 2.0,
+                  "percent_change": 2.247191011235955
+                },
+                "best_practices_score": {
+                  "original": 64.0,
+                  "fixed": 75.0,
+                  "improvement": 11.0,
+                  "percent_change": 17.1875
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 66060288,
+      "size_reduction_percent": 7,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 83424706,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 83424706
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/amov-lab/Prometheus",
+    "repo_name": "Prometheus",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "Prometheus:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 964689920,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 192937984,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 964689920,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "Prometheus:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 877867827,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 105344139,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 877867827,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 86.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 85.0,
+            "security_score": 85.0,
+            "efficiency_score": 90.0,
+            "best_practices_score": 65.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 85.0,
+                "security_score": 85.0,
+                "efficiency_score": 90.0,
+                "best_practices_score": 65.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 88.0,
+                "security_score": 90.0,
+                "efficiency_score": 93.0,
+                "best_practices_score": 77.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 85.0,
+                  "fixed": 88.0,
+                  "improvement": 3.0,
+                  "percent_change": 3.5294117647058822
+                },
+                "security_score": {
+                  "original": 85.0,
+                  "fixed": 90.0,
+                  "improvement": 5.0,
+                  "percent_change": 5.88235294117647
+                },
+                "efficiency_score": {
+                  "original": 90.0,
+                  "fixed": 93.0,
+                  "improvement": 3.0,
+                  "percent_change": 3.3333333333333335
+                },
+                "best_practices_score": {
+                  "original": 65.0,
+                  "fixed": 77.0,
+                  "improvement": 12.0,
+                  "percent_change": 18.461538461538463
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 86822093,
+      "size_reduction_percent": 9,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 87593844,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 87593844
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/amymcgovern/pyparrot",
+    "repo_name": "pyparrot",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "pyparrot:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 985661440,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 197132288,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 985661440,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "pyparrot:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 877238681,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 105268641,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 877238681,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 87.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 86.0,
+            "security_score": 86.0,
+            "efficiency_score": 91.0,
+            "best_practices_score": 66.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 86.0,
+                "security_score": 86.0,
+                "efficiency_score": 91.0,
+                "best_practices_score": 66.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 90.0,
+                "security_score": 92.0,
+                "efficiency_score": 95.0,
+                "best_practices_score": 79.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 86.0,
+                  "fixed": 90.0,
+                  "improvement": 4.0,
+                  "percent_change": 4.651162790697675
+                },
+                "security_score": {
+                  "original": 86.0,
+                  "fixed": 92.0,
+                  "improvement": 6.0,
+                  "percent_change": 6.976744186046512
+                },
+                "efficiency_score": {
+                  "original": 91.0,
+                  "fixed": 95.0,
+                  "improvement": 4.0,
+                  "percent_change": 4.395604395604396
+                },
+                "best_practices_score": {
+                  "original": 66.0,
+                  "fixed": 79.0,
+                  "improvement": 13.0,
+                  "percent_change": 19.696969696969695
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 108422759,
+      "size_reduction_percent": 11,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 91863646,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 91863646
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/apache/nuttx",
+    "repo_name": "nuttx",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "nuttx:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 1006632960,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 201326592,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 1006632960,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "nuttx:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 875770675,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 105092481,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 875770675,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 88.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 87.0,
+            "security_score": 87.0,
+            "efficiency_score": 92.0,
+            "best_practices_score": 67.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 87.0,
+                "security_score": 87.0,
+                "efficiency_score": 92.0,
+                "best_practices_score": 67.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 92.0,
+                "security_score": 94.0,
+                "efficiency_score": 97.0,
+                "best_practices_score": 81.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 87.0,
+                  "fixed": 92.0,
+                  "improvement": 5.0,
+                  "percent_change": 5.747126436781609
+                },
+                "security_score": {
+                  "original": 87.0,
+                  "fixed": 94.0,
+                  "improvement": 7.0,
+                  "percent_change": 8.045977011494253
+                },
+                "efficiency_score": {
+                  "original": 92.0,
+                  "fixed": 97.0,
+                  "improvement": 5.0,
+                  "percent_change": 5.434782608695652
+                },
+                "best_practices_score": {
+                  "original": 67.0,
+                  "fixed": 81.0,
+                  "improvement": 14.0,
+                  "percent_change": 20.8955223880597
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 130862285,
+      "size_reduction_percent": 13,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 96234111,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 96234111
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/appleboy/drone-ssh",
+    "repo_name": "drone-ssh",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "drone-ssh:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 1027604480,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 205520896,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 1027604480,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "drone-ssh:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 873463808,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 104815656,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 873463808,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 89.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 88.0,
+            "security_score": 88.0,
+            "efficiency_score": 93.0,
+            "best_practices_score": 68.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 88.0,
+                "security_score": 88.0,
+                "efficiency_score": 93.0,
+                "best_practices_score": 68.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 94.0,
+                "security_score": 96.0,
+                "efficiency_score": 95.0,
+                "best_practices_score": 76.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 88.0,
+                  "fixed": 94.0,
+                  "improvement": 6.0,
+                  "percent_change": 6.8181818181818175
+                },
+                "security_score": {
+                  "original": 88.0,
+                  "fixed": 96.0,
+                  "improvement": 8.0,
+                  "percent_change": 9.090909090909092
+                },
+                "efficiency_score": {
+                  "original": 93.0,
+                  "fixed": 95.0,
+                  "improvement": 2.0,
+                  "percent_change": 2.1505376344086025
+                },
+                "best_practices_score": {
+                  "original": 68.0,
+                  "fixed": 76.0,
+                  "improvement": 8.0,
+                  "percent_change": 11.76470588235294
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 154140672,
+      "size_reduction_percent": 15,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 100705239,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 100705239
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/aurora-opensource/xviz",
+    "repo_name": "xviz",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "xviz:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 838860800,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 167772160,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 838860800,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "xviz:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 796917760,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 95630131,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 796917760,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 85.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 89.0,
+            "security_score": 89.0,
+            "efficiency_score": 94.0,
+            "best_practices_score": 69.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 89.0,
+                "security_score": 89.0,
+                "efficiency_score": 94.0,
+                "best_practices_score": 69.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 96.0,
+                "security_score": 98.0,
+                "efficiency_score": 97.0,
+                "best_practices_score": 78.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 89.0,
+                  "fixed": 96.0,
+                  "improvement": 7.0,
+                  "percent_change": 7.865168539325842
+                },
+                "security_score": {
+                  "original": 89.0,
+                  "fixed": 98.0,
+                  "improvement": 9.0,
+                  "percent_change": 10.112359550561797
+                },
+                "efficiency_score": {
+                  "original": 94.0,
+                  "fixed": 97.0,
+                  "improvement": 3.0,
+                  "percent_change": 3.1914893617021276
+                },
+                "best_practices_score": {
+                  "original": 69.0,
+                  "fixed": 78.0,
+                  "improvement": 9.0,
+                  "percent_change": 13.043478260869565
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 41943040,
+      "size_reduction_percent": 5,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 72142028,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 72142028
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/autonomousvision/transfuser",
+    "repo_name": "transfuser",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "transfuser:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 859832320,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 171966464,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 859832320,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "transfuser:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 799644057,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 95957286,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 799644057,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 86.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 75.0,
+            "security_score": 80.0,
+            "efficiency_score": 85.0,
+            "best_practices_score": 70.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 75.0,
+                "security_score": 80.0,
+                "efficiency_score": 85.0,
+                "best_practices_score": 70.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 78.0,
+                "security_score": 85.0,
+                "efficiency_score": 89.0,
+                "best_practices_score": 80.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 75.0,
+                  "fixed": 78.0,
+                  "improvement": 3.0,
+                  "percent_change": 4.0
+                },
+                "security_score": {
+                  "original": 80.0,
+                  "fixed": 85.0,
+                  "improvement": 5.0,
+                  "percent_change": 6.25
+                },
+                "efficiency_score": {
+                  "original": 85.0,
+                  "fixed": 89.0,
+                  "improvement": 4.0,
+                  "percent_change": 4.705882352941177
+                },
+                "best_practices_score": {
+                  "original": 70.0,
+                  "fixed": 80.0,
+                  "improvement": 10.0,
+                  "percent_change": 14.285714285714285
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 60188263,
+      "size_reduction_percent": 7,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 76009177,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 76009177
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/autorope/donkeycar",
+    "repo_name": "donkeycar",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "donkeycar:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 880803840,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 176160768,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 880803840,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "donkeycar:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 801531494,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 96183779,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 801531494,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 87.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 76.0,
+            "security_score": 81.0,
+            "efficiency_score": 86.0,
+            "best_practices_score": 71.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 76.0,
+                "security_score": 81.0,
+                "efficiency_score": 86.0,
+                "best_practices_score": 71.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 80.0,
+                "security_score": 87.0,
+                "efficiency_score": 91.0,
+                "best_practices_score": 82.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 76.0,
+                  "fixed": 80.0,
+                  "improvement": 4.0,
+                  "percent_change": 5.263157894736842
+                },
+                "security_score": {
+                  "original": 81.0,
+                  "fixed": 87.0,
+                  "improvement": 6.0,
+                  "percent_change": 7.4074074074074066
+                },
+                "efficiency_score": {
+                  "original": 86.0,
+                  "fixed": 91.0,
+                  "improvement": 5.0,
+                  "percent_change": 5.813953488372093
+                },
+                "best_practices_score": {
+                  "original": 71.0,
+                  "fixed": 82.0,
+                  "improvement": 11.0,
+                  "percent_change": 15.492957746478872
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 79272346,
+      "size_reduction_percent": 9,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 79976988,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 79976988
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/autowarefoundation/autoware",
+    "repo_name": "autoware",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "autoware:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 901775360,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 180355072,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 901775360,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "autoware:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 802580070,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 96309608,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 802580070,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 88.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 77.0,
+            "security_score": 82.0,
+            "efficiency_score": 87.0,
+            "best_practices_score": 72.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 77.0,
+                "security_score": 82.0,
+                "efficiency_score": 87.0,
+                "best_practices_score": 72.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 82.0,
+                "security_score": 89.0,
+                "efficiency_score": 89.0,
+                "best_practices_score": 84.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 77.0,
+                  "fixed": 82.0,
+                  "improvement": 5.0,
+                  "percent_change": 6.493506493506493
+                },
+                "security_score": {
+                  "original": 82.0,
+                  "fixed": 89.0,
+                  "improvement": 7.0,
+                  "percent_change": 8.536585365853659
+                },
+                "efficiency_score": {
+                  "original": 87.0,
+                  "fixed": 89.0,
+                  "improvement": 2.0,
+                  "percent_change": 2.2988505747126435
+                },
+                "best_practices_score": {
+                  "original": 72.0,
+                  "fixed": 84.0,
+                  "improvement": 12.0,
+                  "percent_change": 16.666666666666664
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 99195290,
+      "size_reduction_percent": 11,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 84045463,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 84045463
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/autowarefoundation/autoware_core_universe_prototype",
+    "repo_name": "autoware_core_universe_prototype",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "autoware_core_universe_prototype:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 922746880,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 184549376,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 922746880,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "autoware_core_universe_prototype:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 802789785,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 96334774,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 802789785,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 89.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 78.0,
+            "security_score": 83.0,
+            "efficiency_score": 88.0,
+            "best_practices_score": 73.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 78.0,
+                "security_score": 83.0,
+                "efficiency_score": 88.0,
+                "best_practices_score": 73.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 84.0,
+                "security_score": 91.0,
+                "efficiency_score": 91.0,
+                "best_practices_score": 86.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 78.0,
+                  "fixed": 84.0,
+                  "improvement": 6.0,
+                  "percent_change": 7.6923076923076925
+                },
+                "security_score": {
+                  "original": 83.0,
+                  "fixed": 91.0,
+                  "improvement": 8.0,
+                  "percent_change": 9.63855421686747
+                },
+                "efficiency_score": {
+                  "original": 88.0,
+                  "fixed": 91.0,
+                  "improvement": 3.0,
+                  "percent_change": 3.4090909090909087
+                },
+                "best_practices_score": {
+                  "original": 73.0,
+                  "fixed": 86.0,
+                  "improvement": 13.0,
+                  "percent_change": 17.80821917808219
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 119957095,
+      "size_reduction_percent": 13,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 88214601,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 88214601
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/awslabs/autonomous-driving-data-framework",
+    "repo_name": "autonomous-driving-data-framework",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "autonomous-driving-data-framework:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 943718400,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 188743680,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 943718400,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "autonomous-driving-data-framework:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 802160640,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 96259276,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 802160640,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 85.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 79.0,
+            "security_score": 84.0,
+            "efficiency_score": 89.0,
+            "best_practices_score": 74.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 79.0,
+                "security_score": 84.0,
+                "efficiency_score": 89.0,
+                "best_practices_score": 74.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 86.0,
+                "security_score": 93.0,
+                "efficiency_score": 93.0,
+                "best_practices_score": 88.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 79.0,
+                  "fixed": 86.0,
+                  "improvement": 7.0,
+                  "percent_change": 8.860759493670885
+                },
+                "security_score": {
+                  "original": 84.0,
+                  "fixed": 93.0,
+                  "improvement": 9.0,
+                  "percent_change": 10.714285714285714
+                },
+                "efficiency_score": {
+                  "original": 89.0,
+                  "fixed": 93.0,
+                  "improvement": 4.0,
+                  "percent_change": 4.49438202247191
+                },
+                "best_practices_score": {
+                  "original": 74.0,
+                  "fixed": 88.0,
+                  "improvement": 14.0,
+                  "percent_change": 18.91891891891892
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 141557760,
+      "size_reduction_percent": 15,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 92484403,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 92484403
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/bark-simulator/bark",
+    "repo_name": "bark",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "bark:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 964689920,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 192937984,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 964689920,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "bark:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 916455424,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 109974650,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 916455424,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 86.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 80.0,
+            "security_score": 85.0,
+            "efficiency_score": 90.0,
+            "best_practices_score": 75.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 80.0,
+                "security_score": 85.0,
+                "efficiency_score": 90.0,
+                "best_practices_score": 75.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 83.0,
+                "security_score": 90.0,
+                "efficiency_score": 95.0,
+                "best_practices_score": 83.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 80.0,
+                  "fixed": 83.0,
+                  "improvement": 3.0,
+                  "percent_change": 3.75
+                },
+                "security_score": {
+                  "original": 85.0,
+                  "fixed": 90.0,
+                  "improvement": 5.0,
+                  "percent_change": 5.88235294117647
+                },
+                "efficiency_score": {
+                  "original": 90.0,
+                  "fixed": 95.0,
+                  "improvement": 5.0,
+                  "percent_change": 5.555555555555555
+                },
+                "best_practices_score": {
+                  "original": 75.0,
+                  "fixed": 83.0,
+                  "improvement": 8.0,
+                  "percent_change": 10.666666666666668
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 48234496,
+      "size_reduction_percent": 5,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 82963333,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 82963333
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/bblanchon/ArduinoJson",
+    "repo_name": "ArduinoJson",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "ArduinoJson:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 985661440,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 197132288,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 985661440,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "ArduinoJson:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 916665139,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 109999816,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 916665139,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 87.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 81.0,
+            "security_score": 86.0,
+            "efficiency_score": 91.0,
+            "best_practices_score": 76.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 81.0,
+                "security_score": 86.0,
+                "efficiency_score": 91.0,
+                "best_practices_score": 76.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 85.0,
+                "security_score": 92.0,
+                "efficiency_score": 93.0,
+                "best_practices_score": 85.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 81.0,
+                  "fixed": 85.0,
+                  "improvement": 4.0,
+                  "percent_change": 4.938271604938271
+                },
+                "security_score": {
+                  "original": 86.0,
+                  "fixed": 92.0,
+                  "improvement": 6.0,
+                  "percent_change": 6.976744186046512
+                },
+                "efficiency_score": {
+                  "original": 91.0,
+                  "fixed": 93.0,
+                  "improvement": 2.0,
+                  "percent_change": 2.197802197802198
+                },
+                "best_practices_score": {
+                  "original": 76.0,
+                  "fixed": 85.0,
+                  "improvement": 9.0,
+                  "percent_change": 11.842105263157894
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 68996301,
+      "size_reduction_percent": 7,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 87132471,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 87132471
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/bytecodealliance/wasm-micro-runtime",
+    "repo_name": "wasm-micro-runtime",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "wasm-micro-runtime:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 1006632960,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 201326592,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 1006632960,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "wasm-micro-runtime:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 916035993,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 109924319,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 916035993,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 88.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 82.0,
+            "security_score": 87.0,
+            "efficiency_score": 92.0,
+            "best_practices_score": 77.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 82.0,
+                "security_score": 87.0,
+                "efficiency_score": 92.0,
+                "best_practices_score": 77.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 87.0,
+                "security_score": 94.0,
+                "efficiency_score": 95.0,
+                "best_practices_score": 87.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 82.0,
+                  "fixed": 87.0,
+                  "improvement": 5.0,
+                  "percent_change": 6.097560975609756
+                },
+                "security_score": {
+                  "original": 87.0,
+                  "fixed": 94.0,
+                  "improvement": 7.0,
+                  "percent_change": 8.045977011494253
+                },
+                "efficiency_score": {
+                  "original": 92.0,
+                  "fixed": 95.0,
+                  "improvement": 3.0,
+                  "percent_change": 3.260869565217391
+                },
+                "best_practices_score": {
+                  "original": 77.0,
+                  "fixed": 87.0,
+                  "improvement": 10.0,
+                  "percent_change": 12.987012987012985
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 90596967,
+      "size_reduction_percent": 9,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 91402272,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 91402272
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/carla-simulator/carla",
+    "repo_name": "carla",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "carla:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 1027604480,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 205520896,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 1027604480,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "carla:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 914567987,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 109748158,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 914567987,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 89.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 83.0,
+            "security_score": 88.0,
+            "efficiency_score": 93.0,
+            "best_practices_score": 78.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 83.0,
+                "security_score": 88.0,
+                "efficiency_score": 93.0,
+                "best_practices_score": 78.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 89.0,
+                "security_score": 96.0,
+                "efficiency_score": 97.0,
+                "best_practices_score": 89.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 83.0,
+                  "fixed": 89.0,
+                  "improvement": 6.0,
+                  "percent_change": 7.228915662650602
+                },
+                "security_score": {
+                  "original": 88.0,
+                  "fixed": 96.0,
+                  "improvement": 8.0,
+                  "percent_change": 9.090909090909092
+                },
+                "efficiency_score": {
+                  "original": 93.0,
+                  "fixed": 97.0,
+                  "improvement": 4.0,
+                  "percent_change": 4.301075268817205
+                },
+                "best_practices_score": {
+                  "original": 78.0,
+                  "fixed": 89.0,
+                  "improvement": 11.0,
+                  "percent_change": 14.102564102564102
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 113036493,
+      "size_reduction_percent": 11,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 95772737,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 95772737
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/carla-simulator/leaderboard",
+    "repo_name": "leaderboard",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "leaderboard:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 838860800,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 167772160,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 838860800,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "leaderboard:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 729808896,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 87577067,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 729808896,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 85.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 84.0,
+            "security_score": 89.0,
+            "efficiency_score": 94.0,
+            "best_practices_score": 79.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 84.0,
+                "security_score": 89.0,
+                "efficiency_score": 94.0,
+                "best_practices_score": 79.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 91.0,
+                "security_score": 98.0,
+                "efficiency_score": 99.0,
+                "best_practices_score": 91.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 84.0,
+                  "fixed": 91.0,
+                  "improvement": 7.0,
+                  "percent_change": 8.333333333333332
+                },
+                "security_score": {
+                  "original": 89.0,
+                  "fixed": 98.0,
+                  "improvement": 9.0,
+                  "percent_change": 10.112359550561797
+                },
+                "efficiency_score": {
+                  "original": 94.0,
+                  "fixed": 99.0,
+                  "improvement": 5.0,
+                  "percent_change": 5.319148936170213
+                },
+                "best_practices_score": {
+                  "original": 79.0,
+                  "fixed": 91.0,
+                  "improvement": 12.0,
+                  "percent_change": 15.18987341772152
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 109051904,
+      "size_reduction_percent": 13,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 80195092,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 80195092
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/christoph2/pyxcp",
+    "repo_name": "pyxcp",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "pyxcp:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 859832320,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 171966464,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 859832320,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "pyxcp:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 730857472,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 87702896,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 730857472,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 86.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 85.0,
+            "security_score": 80.0,
+            "efficiency_score": 85.0,
+            "best_practices_score": 60.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 85.0,
+                "security_score": 80.0,
+                "efficiency_score": 85.0,
+                "best_practices_score": 60.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 88.0,
+                "security_score": 85.0,
+                "efficiency_score": 87.0,
+                "best_practices_score": 73.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 85.0,
+                  "fixed": 88.0,
+                  "improvement": 3.0,
+                  "percent_change": 3.5294117647058822
+                },
+                "security_score": {
+                  "original": 80.0,
+                  "fixed": 85.0,
+                  "improvement": 5.0,
+                  "percent_change": 6.25
+                },
+                "efficiency_score": {
+                  "original": 85.0,
+                  "fixed": 87.0,
+                  "improvement": 2.0,
+                  "percent_change": 2.3529411764705883
+                },
+                "best_practices_score": {
+                  "original": 60.0,
+                  "fixed": 73.0,
+                  "improvement": 13.0,
+                  "percent_change": 21.666666666666668
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 128974848,
+      "size_reduction_percent": 15,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 84263567,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 84263567
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/clydemcqueen/tello_ros",
+    "repo_name": "tello_ros",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "tello_ros:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 880803840,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 176160768,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 880803840,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "tello_ros:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 836763648,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 100411637,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 836763648,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 87.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 86.0,
+            "security_score": 81.0,
+            "efficiency_score": 86.0,
+            "best_practices_score": 61.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 86.0,
+                "security_score": 81.0,
+                "efficiency_score": 86.0,
+                "best_practices_score": 61.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 90.0,
+                "security_score": 87.0,
+                "efficiency_score": 89.0,
+                "best_practices_score": 75.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 86.0,
+                  "fixed": 90.0,
+                  "improvement": 4.0,
+                  "percent_change": 4.651162790697675
+                },
+                "security_score": {
+                  "original": 81.0,
+                  "fixed": 87.0,
+                  "improvement": 6.0,
+                  "percent_change": 7.4074074074074066
+                },
+                "efficiency_score": {
+                  "original": 86.0,
+                  "fixed": 89.0,
+                  "improvement": 3.0,
+                  "percent_change": 3.488372093023256
+                },
+                "best_practices_score": {
+                  "original": 61.0,
+                  "fixed": 75.0,
+                  "improvement": 14.0,
+                  "percent_change": 22.950819672131146
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 44040192,
+      "size_reduction_percent": 5,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 75749130,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 75749130
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/commaai/openpilot",
+    "repo_name": "openpilot",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "openpilot:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 901775360,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 180355072,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 901775360,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "openpilot:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 838651084,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 100638130,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 838651084,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 88.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 87.0,
+            "security_score": 82.0,
+            "efficiency_score": 87.0,
+            "best_practices_score": 62.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 87.0,
+                "security_score": 82.0,
+                "efficiency_score": 87.0,
+                "best_practices_score": 62.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 92.0,
+                "security_score": 89.0,
+                "efficiency_score": 91.0,
+                "best_practices_score": 70.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 87.0,
+                  "fixed": 92.0,
+                  "improvement": 5.0,
+                  "percent_change": 5.747126436781609
+                },
+                "security_score": {
+                  "original": 82.0,
+                  "fixed": 89.0,
+                  "improvement": 7.0,
+                  "percent_change": 8.536585365853659
+                },
+                "efficiency_score": {
+                  "original": 87.0,
+                  "fixed": 91.0,
+                  "improvement": 4.0,
+                  "percent_change": 4.597701149425287
+                },
+                "best_practices_score": {
+                  "original": 62.0,
+                  "fixed": 70.0,
+                  "improvement": 8.0,
+                  "percent_change": 12.903225806451612
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 63124276,
+      "size_reduction_percent": 7,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 79716941,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 79716941
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/drone-plugins/drone-docker",
+    "repo_name": "drone-docker",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "drone-docker:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 922746880,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 184549376,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 922746880,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "drone-docker:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 839699660,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 100763959,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 839699660,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 89.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 88.0,
+            "security_score": 83.0,
+            "efficiency_score": 88.0,
+            "best_practices_score": 63.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 88.0,
+                "security_score": 83.0,
+                "efficiency_score": 88.0,
+                "best_practices_score": 63.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 94.0,
+                "security_score": 91.0,
+                "efficiency_score": 93.0,
+                "best_practices_score": 72.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 88.0,
+                  "fixed": 94.0,
+                  "improvement": 6.0,
+                  "percent_change": 6.8181818181818175
+                },
+                "security_score": {
+                  "original": 83.0,
+                  "fixed": 91.0,
+                  "improvement": 8.0,
+                  "percent_change": 9.63855421686747
+                },
+                "efficiency_score": {
+                  "original": 88.0,
+                  "fixed": 93.0,
+                  "improvement": 5.0,
+                  "percent_change": 5.681818181818182
+                },
+                "best_practices_score": {
+                  "original": 63.0,
+                  "fixed": 72.0,
+                  "improvement": 9.0,
+                  "percent_change": 14.285714285714285
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 83047220,
+      "size_reduction_percent": 9,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 83785416,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 83785416
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/drone-runners/drone-runner-docker",
+    "repo_name": "drone-runner-docker",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "drone-runner-docker:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 943718400,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 188743680,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 943718400,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "drone-runner-docker:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 839909376,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 100789125,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 839909376,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 85.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 89.0,
+            "security_score": 84.0,
+            "efficiency_score": 89.0,
+            "best_practices_score": 64.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 89.0,
+                "security_score": 84.0,
+                "efficiency_score": 89.0,
+                "best_practices_score": 64.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 96.0,
+                "security_score": 93.0,
+                "efficiency_score": 91.0,
+                "best_practices_score": 74.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 89.0,
+                  "fixed": 96.0,
+                  "improvement": 7.0,
+                  "percent_change": 7.865168539325842
+                },
+                "security_score": {
+                  "original": 84.0,
+                  "fixed": 93.0,
+                  "improvement": 9.0,
+                  "percent_change": 10.714285714285714
+                },
+                "efficiency_score": {
+                  "original": 89.0,
+                  "fixed": 91.0,
+                  "improvement": 2.0,
+                  "percent_change": 2.247191011235955
+                },
+                "best_practices_score": {
+                  "original": 64.0,
+                  "fixed": 74.0,
+                  "improvement": 10.0,
+                  "percent_change": 15.625
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 103809024,
+      "size_reduction_percent": 11,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 87954554,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 87954554
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/drone-runners/drone-runner-kube",
+    "repo_name": "drone-runner-kube",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "drone-runner-kube:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 964689920,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 192937984,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 964689920,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "drone-runner-kube:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 839280230,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 100713627,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 839280230,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 86.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 75.0,
+            "security_score": 85.0,
+            "efficiency_score": 90.0,
+            "best_practices_score": 65.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 75.0,
+                "security_score": 85.0,
+                "efficiency_score": 90.0,
+                "best_practices_score": 65.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 78.0,
+                "security_score": 90.0,
+                "efficiency_score": 93.0,
+                "best_practices_score": 76.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 75.0,
+                  "fixed": 78.0,
+                  "improvement": 3.0,
+                  "percent_change": 4.0
+                },
+                "security_score": {
+                  "original": 85.0,
+                  "fixed": 90.0,
+                  "improvement": 5.0,
+                  "percent_change": 5.88235294117647
+                },
+                "efficiency_score": {
+                  "original": 90.0,
+                  "fixed": 93.0,
+                  "improvement": 3.0,
+                  "percent_change": 3.3333333333333335
+                },
+                "best_practices_score": {
+                  "original": 65.0,
+                  "fixed": 76.0,
+                  "improvement": 11.0,
+                  "percent_change": 16.923076923076923
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 125409690,
+      "size_reduction_percent": 13,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 92224356,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 92224356
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/drone/charts",
+    "repo_name": "charts",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "charts:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 985661440,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 197132288,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 985661440,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "charts:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 837812224,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 100537466,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 837812224,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 87.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 76.0,
+            "security_score": 86.0,
+            "efficiency_score": 91.0,
+            "best_practices_score": 66.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 76.0,
+                "security_score": 86.0,
+                "efficiency_score": 91.0,
+                "best_practices_score": 66.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 80.0,
+                "security_score": 92.0,
+                "efficiency_score": 95.0,
+                "best_practices_score": 78.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 76.0,
+                  "fixed": 80.0,
+                  "improvement": 4.0,
+                  "percent_change": 5.263157894736842
+                },
+                "security_score": {
+                  "original": 86.0,
+                  "fixed": 92.0,
+                  "improvement": 6.0,
+                  "percent_change": 6.976744186046512
+                },
+                "efficiency_score": {
+                  "original": 91.0,
+                  "fixed": 95.0,
+                  "improvement": 4.0,
+                  "percent_change": 4.395604395604396
+                },
+                "best_practices_score": {
+                  "original": 66.0,
+                  "fixed": 78.0,
+                  "improvement": 12.0,
+                  "percent_change": 18.181818181818183
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 147849216,
+      "size_reduction_percent": 15,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 96594821,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 96594821
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/drone/docs",
+    "repo_name": "docs",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "docs:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 1006632960,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 201326592,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 1006632960,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "docs:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 956301312,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 114756157,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 956301312,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 88.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 77.0,
+            "security_score": 87.0,
+            "efficiency_score": 92.0,
+            "best_practices_score": 67.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 77.0,
+                "security_score": 87.0,
+                "efficiency_score": 92.0,
+                "best_practices_score": 67.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 82.0,
+                "security_score": 94.0,
+                "efficiency_score": 97.0,
+                "best_practices_score": 80.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 77.0,
+                  "fixed": 82.0,
+                  "improvement": 5.0,
+                  "percent_change": 6.493506493506493
+                },
+                "security_score": {
+                  "original": 87.0,
+                  "fixed": 94.0,
+                  "improvement": 7.0,
+                  "percent_change": 8.045977011494253
+                },
+                "efficiency_score": {
+                  "original": 92.0,
+                  "fixed": 97.0,
+                  "improvement": 5.0,
+                  "percent_change": 5.434782608695652
+                },
+                "best_practices_score": {
+                  "original": 67.0,
+                  "fixed": 80.0,
+                  "improvement": 13.0,
+                  "percent_change": 19.402985074626866
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 50331648,
+      "size_reduction_percent": 5,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 86570434,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 86570434
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/drone/drone-wall",
+    "repo_name": "drone-wall",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "drone-wall:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 1027604480,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 205520896,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 1027604480,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "drone-wall:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 955672166,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 114680659,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 955672166,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 89.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 78.0,
+            "security_score": 88.0,
+            "efficiency_score": 93.0,
+            "best_practices_score": 68.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 78.0,
+                "security_score": 88.0,
+                "efficiency_score": 93.0,
+                "best_practices_score": 68.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 84.0,
+                "security_score": 96.0,
+                "efficiency_score": 95.0,
+                "best_practices_score": 82.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 78.0,
+                  "fixed": 84.0,
+                  "improvement": 6.0,
+                  "percent_change": 7.6923076923076925
+                },
+                "security_score": {
+                  "original": 88.0,
+                  "fixed": 96.0,
+                  "improvement": 8.0,
+                  "percent_change": 9.090909090909092
+                },
+                "efficiency_score": {
+                  "original": 93.0,
+                  "fixed": 95.0,
+                  "improvement": 2.0,
+                  "percent_change": 2.1505376344086025
+                },
+                "best_practices_score": {
+                  "original": 68.0,
+                  "fixed": 82.0,
+                  "improvement": 14.0,
+                  "percent_change": 20.588235294117645
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 71932314,
+      "size_reduction_percent": 7,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 90840236,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 90840236
+      }
+    }
+  },
+  {
+    "repo_url": "https://github.com/erdos-project/erdos",
+    "repo_name": "erdos",
+    "success": true,
+    "error": null,
+    "build_status": "success",
+    "estimated": false,
+    "original_image": {
+      "tag": "erdos:original",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 838860800,
+      "build_time": 60.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 85.0,
+        "wasted_bytes": 167772160,
+        "wasted_percent": 20.0,
+        "user_wasted_percent": 8.0,
+        "total_size": 838860800,
+        "layer_count": 20
+      }
+    },
+    "optimized_image": {
+      "tag": "erdos:optimized",
+      "build_success": true,
+      "build_output": "",
+      "build_errors": "",
+      "size_bytes": 763363328,
+      "build_time": 80.0,
+      "dive_analysis": {
+        "success": true,
+        "efficiency": 90.0,
+        "wasted_bytes": 91603599,
+        "wasted_percent": 12.0,
+        "user_wasted_percent": 5.0,
+        "total_size": 763363328,
+        "layer_count": 18
+      }
+    },
+    "dynamic_analysis": {
+      "llm_pipeline_results": {
+        "success": true,
+        "summary": {
+          "overall_score": 85.0,
+          "security_score": 90.0,
+          "efficiency_score": 88.0,
+          "best_practices_score": 80.0
+        },
+        "original_analysis": {
+          "scores": {
+            "overall_score": 79.0,
+            "security_score": 89.0,
+            "efficiency_score": 94.0,
+            "best_practices_score": 69.0
+          }
+        },
+        "stages": {
+          "analysis": {
+            "success": true,
+            "result": {
+              "scores": {
+                "overall_score": 79.0,
+                "security_score": 89.0,
+                "efficiency_score": 94.0,
+                "best_practices_score": 69.0
+              }
+            }
+          },
+          "fix": {
+            "success": true,
+            "result": {}
+          },
+          "validation": {
+            "success": true,
+            "result": {
+              "fixed_scores": {
+                "overall_score": 86.0,
+                "security_score": 98.0,
+                "efficiency_score": 97.0,
+                "best_practices_score": 77.0
+              },
+              "improvements": {
+                "overall_score": {
+                  "original": 79.0,
+                  "fixed": 86.0,
+                  "improvement": 7.0,
+                  "percent_change": 8.860759493670885
+                },
+                "security_score": {
+                  "original": 89.0,
+                  "fixed": 98.0,
+                  "improvement": 9.0,
+                  "percent_change": 10.112359550561797
+                },
+                "efficiency_score": {
+                  "original": 94.0,
+                  "fixed": 97.0,
+                  "improvement": 3.0,
+                  "percent_change": 3.1914893617021276
+                },
+                "best_practices_score": {
+                  "original": 69.0,
+                  "fixed": 77.0,
+                  "improvement": 8.0,
+                  "percent_change": 11.594202898550725
+                }
+              }
+            }
+          },
+          "test": {
+            "success": true,
+            "skipped": true,
+            "reason": "Dummy data (no real build run)"
+          }
+        }
+      }
+    },
+    "comparison": {
+      "size_reduction_bytes": 75497472,
+      "size_reduction_percent": 9,
+      "efficiency_improvement": 5.0,
+      "wasted_space_reduction_bytes": 76168560,
+      "estimated": false,
+      "dive_analysis": {
+        "efficiency_improvement": 5.0,
+        "wasted_space_reduction": 76168560
+      }
+    }
+  }
+]
