@@ -1,23 +1,23 @@
 [
   {
-    "timestamp": "2025-11-26T11:39:27.318172",
+    "timestamp": "2025-12-03T10:40:57.872419",
     "repos_file": "docker_repos.txt",
     "model": "gemini-2.5-flash-lite",
-    "skip_test": false,
-    "max_repos": 5,
-    "total_repos": 5,
-    "successful_repos": 4,
-    "failed_repos": 1,
+    "skip_test": true,
+    "max_repos": 50,
+    "total_repos": 50,
+    "successful_repos": 50,
+    "failed_repos": 0,
     "summary": {
-      "total_repos": 5,
-      "successful_repos": 4,
-      "failed_repos": 1,
-      "avg_size_reduction_percent": 74.5,
-      "total_size_saved_bytes": 59003929,
-      "avg_efficiency_improvement": 0,
-      "repos_with_improvements": 1
+      "total_repos": 50,
+      "successful_repos": 50,
+      "failed_repos": 0,
+      "avg_size_reduction_percent": 9.92,
+      "total_size_saved_bytes": 4626946471,
+      "avg_efficiency_improvement": 5.0,
+      "repos_with_improvements": 50
     },
-    "results_file": "batch_results_2025-11-26T11-39-27-318172.json"
+    "results_file": "batch_results_2025-12-03T10-40-57.872419.json"
   },
   {
     "timestamp": "2025-11-26T18:33:36.342027",
@@ -40,23 +40,43 @@
     "results_file": "batch_results_2025-11-26T18-33-36-342027.json"
   },
   {
-    "timestamp": "2025-12-03T10:40:57.872419",
+    "timestamp": "2025-11-26T11:39:27.318172",
     "repos_file": "docker_repos.txt",
     "model": "gemini-2.5-flash-lite",
-    "skip_test": true,
-    "max_repos": 50,
-    "total_repos": 50,
-    "successful_repos": 50,
-    "failed_repos": 0,
+    "skip_test": false,
+    "max_repos": 5,
+    "total_repos": 5,
+    "successful_repos": 4,
+    "failed_repos": 1,
     "summary": {
-      "total_repos": 50,
-      "successful_repos": 50,
-      "failed_repos": 0,
-      "avg_size_reduction_percent": 9.92,
-      "total_size_saved_bytes": 4626946471,
-      "avg_efficiency_improvement": 5.0,
-      "repos_with_improvements": 50
+      "total_repos": 5,
+      "successful_repos": 4,
+      "failed_repos": 1,
+      "avg_size_reduction_percent": 74.5,
+      "total_size_saved_bytes": 59003929,
+      "avg_efficiency_improvement": 0,
+      "repos_with_improvements": 1
     },
-    "results_file": "batch_results_2025-12-03T10-40-57.872419.json"
+    "results_file": "batch_results_2025-11-26T11-39-27-318172.json"
+  },
+  {
+    "timestamp": "2025-12-07T20:54:40.389640",
+    "repos_file": "docker_repos.txt",
+    "model": "gemini-2.5-flash-lite",
+    "skip_test": false,
+    "max_repos": 100,
+    "total_repos": 96,
+    "successful_repos": 25,
+    "failed_repos": 71,
+    "summary": {
+      "total_repos": 96,
+      "successful_repos": 25,
+      "failed_repos": 71,
+      "avg_size_reduction_percent": 12.78,
+      "total_size_saved_bytes": 3250543759,
+      "avg_efficiency_improvement": -1.46,
+      "repos_with_improvements": 4
+    },
+    "results_file": "batch_results_2025-12-07T20-54-40-389640.json"
   }
 ]

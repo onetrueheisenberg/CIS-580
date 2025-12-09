@@ -116,109 +116,63 @@ class DockerfileAnalyzer:
             return error_msg
     
     def dynamic_llm_analysis(self, dockerfile_content: str) -> Dict[str, Any]:
-        system_prompt = """You are an expert Docker and container specialist. Your role is to help improve Dockerfile quality by analyzing:
-        1. Dockerfile structure and best practices
-        2. Performance and efficiency improvements
-        3. Optimization opportunities
-        4. Code quality and maintainability
-        5. Image size reduction techniques
-        6. Build process improvements
-        7. Runtime and TOOLCHAIN compatibility concerns
-           - e.g., legacy tools like Go dep with Gopkg.toml / Gopkg.lock
-           - tools or packages that may not exist on newer base images
-           - mismatches between base image versions and language/toolchain expectations
+        system_prompt = """You are an expert Docker and container specialist focused ONLY on image size optimization. Your role is to analyze Dockerfiles for:
+        1. Image size reduction opportunities
+        2. Layer optimization techniques
+        3. Cache optimization for smaller images
+        4. Multi-stage build opportunities
+        5. Unnecessary files and dependencies that can be removed
         
-        When a Dockerfile uses LEGACY tooling (for example Go dep instead of Go modules),
-        you MUST explicitly call this out and explain how it constrains safe base-image upgrades.
+        IGNORE: security issues, performance (non-size), maintainability, best practices (non-size), runtime concerns.
+        FOCUS ONLY: on techniques that reduce the final Docker image size.
         
-        Provide structured, actionable insights to help developers create better Dockerfiles.
-        Focus on practical recommendations and real-world improvements."""
+        Provide structured, actionable insights focused ONLY on size reduction."""
         
+        # Skip knowledge base context for size-only analysis
         kb_context = ""
-        if self.use_knowledge_base and self.knowledge_base:
-            try:
-                context = self.knowledge_base.get_context_for_analysis(dockerfile_content)
-                if context:
-                    kb_context = "\n\nKNOWLEDGE BASE CONTEXT:\n"
-                    kb_context += "=" * 60 + "\n"
-                    
-                    if context.get("base_images"):
-                        kb_context += "\nBASE IMAGES DETECTED:\n"
-                        for name, info in context["base_images"].items():
-                            kb_context += f"- {name}: Recommended version: {info.get('recommended', 'N/A')}\n"
-                            if info.get("eol_versions"):
-                                kb_context += f"  EOL versions: {', '.join(info.get('eol_versions', []))}\n"
-                            if info.get("security_issues"):
-                                kb_context += f"  Security issues: {len(info.get('security_issues', {}))} known\n"
-                    
-                    if context.get("security_advisories"):
-                        kb_context += "\nSECURITY ADVISORIES:\n"
-                        for advisory in context["security_advisories"][:5]:  # Top 5
-                            kb_context += f"- [{advisory.get('severity', 'unknown')}] {advisory.get('description', '')}\n"
-                            if advisory.get("fixed_version"):
-                                kb_context += f"  Fixed in: {advisory.get('fixed_version')}\n"
-                    
-                    if context.get("best_practices"):
-                        kb_context += "\nRELEVANT BEST PRACTICES:\n"
-                        for practice in context["best_practices"][:5]:  # Top 5
-                            kb_context += f"- {practice.get('name', '')}: {practice.get('description', '')}\n"
-                            kb_context += f"  Implementation: {practice.get('implementation', '')}\n"
-                    
-                    kb_context += "\n" + "=" * 60 + "\n"
-            except Exception as e:
-                print(f"  [WARNING] Failed to get knowledge base context: {e}")
                 
-        user_prompt = f"""Analyze this Dockerfile and identify issues. Return JSON with the issues you find.
+        user_prompt = f"""Analyze this Dockerfile and identify ONLY size-related optimization opportunities. IGNORE security, performance (non-size), maintainability, and other concerns.
 
 Dockerfile:
 ```
 {dockerfile_content}
 ```
-{kb_context}
-Return JSON with this structure:
+
+Return JSON with this structure (ONLY size-related fields):
 {{
-    "security_risks": ["list of security concerns"],
-    "performance_issues": ["list of performance problems"],
-    "optimization_opportunities": ["optimization suggestions"],
-    "runtime_concerns": ["runtime problems and TOOLCHAIN / COMPATIBILITY issues"],
-    "best_practices_missing": ["missing best practices"],
+    "performance_issues": ["list of size-related performance problems (e.g., unnecessary layers, large files, unused packages)"],
+    "optimization_opportunities": ["size optimization suggestions (e.g., multi-stage builds, removing build dependencies, combining layers)"],
     "estimated_wasted_space_kb": <number>,
-    "complexity_score": <1-10, where 10 is most complex>,
-    "maintainability_score": <1-10, where 10 is most maintainable>,
-    "overall_assessment": "summary of Dockerfile quality, including any legacy tooling (e.g., dep) and compatibility risks with the current base images",
+    "overall_assessment": "summary of size optimization opportunities",
     "recommendations": [
       {{
-        "category": "security|performance|best_practice|optimization|compatibility",
-        "severity": "critical|high|medium|low",
-        "message": "specific actionable recommendation with exact fix. When relevant, explain COMPATIBILITY reasons (e.g., dep may not be available on Alpine 3.20).",
+        "category": "optimization",
+        "severity": "high|medium|low",
+        "message": "specific actionable size optimization recommendation with exact fix",
         "instruction_line": <line number or null>
       }}
     ]
 }}
 
-CRITICAL: For the "recommendations" array, each recommendation MUST be:
-- SPECIFIC: State exactly what to change (e.g., "Combine apt-get update and apt-get install into a single RUN command")
-- ACTIONABLE: Provide the exact fix (e.g., "Add --no-install-recommends flag to apt-get install command")
-- PRECISE: Include the exact command or syntax to use (e.g., "Add 'apt-get clean && rm -rf /var/lib/apt/lists/*' after package installation")
-- LINE-SPECIFIC: Include instruction_line when possible to identify where to make the change
+CRITICAL RULES:
+- ONLY include size-related issues (image size, layer count, cache size, wasted space)
+- IGNORE security risks, maintainability, runtime concerns, best practices (unless size-related)
+- Each recommendation MUST be SPECIFIC and ACTIONABLE for size reduction
+- Focus on: layer reduction, cache cleanup, multi-stage builds, removing unnecessary files/dependencies
 
-Examples of GOOD recommendations:
-- "Combine apt-get update and apt-get install into a single RUN command to improve layer caching" (line 5)
-- "Add --no-install-recommends flag to apt-get install to reduce image size" (line 6)
+Examples of GOOD size-related recommendations:
+- "Combine apt-get update and apt-get install into a single RUN command to reduce layers" (line 5)
+- "Add --no-install-recommends flag to apt-get install to reduce image size by ~50MB" (line 6)
 - "Add 'apt-get clean && rm -rf /var/lib/apt/lists/*' after package installation to clean apt cache" (line 6)
-- "Use specific version tag 'ubuntu:22.04' instead of 'ubuntu:latest' for reproducibility" (line 1)
+- "Use multi-stage build to separate build dependencies from runtime image" (line 1)
+- "Remove unnecessary build tools in final stage to reduce image size" (line 20)
 
-Examples of BAD recommendations (too vague):
-- "Optimize package installation"
-- "Improve caching"
-- "Follow best practices"
+Examples of BAD recommendations (not size-focused):
+- "Add USER directive for security" (security, not size)
+- "Use specific version tag for reproducibility" (maintainability, not size)
+- "Add HEALTHCHECK" (best practice, not size)
 
-IMPORTANT: If you see potential BREAKING changes or fragile combinations (for example, using Go dep on a very new Go/Alpine image where dep might not be packaged),
-- call this out explicitly as a COMPATIBILITY issue,
-- explain WHY it might break (e.g., package removed from repositories, tool deprecated),
-- and recommend either keeping a compatible base image or planning a toolchain migration (e.g., to Go modules).
-
-Focus on identifying issues accurately and providing SPECIFIC, ACTIONABLE recommendations, especially around compatibility. Do not calculate scores - just list the issues you find."""
+Focus ONLY on identifying size optimization opportunities and providing SPECIFIC, ACTIONABLE recommendations for reducing image size."""
         
         response = self._call_llm(user_prompt, system_prompt)
         
@@ -227,18 +181,9 @@ Focus on identifying issues accurately and providing SPECIFIC, ACTIONABLE recomm
                 "success": False,
                 "data": {
                     "overall_assessment": f"API Error: {response}",
-                    "security_risks": [],
                     "performance_issues": [],
                     "optimization_opportunities": [],
-                    "runtime_concerns": [],
-                    "best_practices_missing": [],
                     "estimated_wasted_space_kb": 0,
-                    "complexity_score": 5,
-                    "maintainability_score": 5,
-                    "security_score": 50,
-                    "efficiency_score": 50,
-                    "best_practices_score": 50,
-                    "overall_score": 50,
                     "recommendations": []
                 },
                 "raw_response": response,
@@ -285,27 +230,51 @@ Focus on identifying issues accurately and providing SPECIFIC, ACTIONABLE recomm
             
             llm_data = json.loads(cleaned_response)
             
-            security_risks_count = len(llm_data.get("security_risks", []))
-            performance_issues_count = len(llm_data.get("performance_issues", []))
-            missing_practices_count = len(llm_data.get("best_practices_missing", []))
+            # Filter to only size-related issues
+            performance_issues = llm_data.get("performance_issues", [])
+            optimization_opportunities = llm_data.get("optimization_opportunities", [])
             
-            print(f"\n  [LLM Response Analysis]", flush=True)
+            # Filter performance issues to only size-related ones
+            SIZE_KEYWORDS = (
+                "size", "layer", "cache", "no-cache", "multi-stage",
+                "apt-get clean", "rm -rf /var/lib/apt/lists",
+                "--no-install-recommends", "--no-cache-dir", "COPY", "ADD",
+                "reduce", "smaller", "minimize", "compress", "waste", "unnecessary"
+            )
+            
+            size_performance_issues = [
+                issue for issue in performance_issues 
+                if any(keyword in str(issue).lower() for keyword in SIZE_KEYWORDS)
+            ]
+            
+            size_optimization_opportunities = [
+                opt for opt in optimization_opportunities 
+                if any(keyword in str(opt).lower() for keyword in SIZE_KEYWORDS)
+            ]
+            
+            # Filter recommendations to only size-related
+            all_recommendations = llm_data.get("recommendations", [])
+            size_recommendations = [
+                rec for rec in all_recommendations
+                if rec.get("category") == "optimization" or 
+                   any(keyword in str(rec.get("message", "")).lower() for keyword in SIZE_KEYWORDS)
+            ]
+            
+            performance_issues_count = len(size_performance_issues)
+            optimization_count = len(size_optimization_opportunities)
+            
+            print(f"\n  [LLM Response Analysis (Size-Only)]", flush=True)
             print(f"    Raw response length: {len(response)} chars", flush=True)
-            print(f"    Issues found: {security_risks_count} security risks, {performance_issues_count} performance issues, {missing_practices_count} missing practices", flush=True)
+            print(f"    Size issues found: {performance_issues_count} size-related performance issues, {optimization_count} size optimization opportunities", flush=True)
             
             result = {
                 "success": True,
                 "data": {
-                    "security_risks": llm_data.get("security_risks", []),
-                    "performance_issues": llm_data.get("performance_issues", []),
-                    "optimization_opportunities": llm_data.get("optimization_opportunities", []),
-                    "runtime_concerns": llm_data.get("runtime_concerns", []),
-                    "best_practices_missing": llm_data.get("best_practices_missing", []),
+                    "performance_issues": size_performance_issues,
+                    "optimization_opportunities": size_optimization_opportunities,
                     "estimated_wasted_space_kb": llm_data.get("estimated_wasted_space_kb", 0),
-                    "complexity_score": llm_data.get("complexity_score", 5),
-                    "maintainability_score": llm_data.get("maintainability_score", 5),
-                    "overall_assessment": llm_data.get("overall_assessment", "Analysis completed"),
-                    "recommendations": llm_data.get("recommendations", [])
+                    "overall_assessment": llm_data.get("overall_assessment", "Size analysis completed"),
+                    "recommendations": size_recommendations
                 },
                 "raw_response": response
             }
@@ -313,28 +282,6 @@ Focus on identifying issues accurately and providing SPECIFIC, ACTIONABLE recomm
         except json.JSONDecodeError as e:
             try:
                 partial_data = {}
-                
-                if '"security_risks"' in response:
-                    risks_start = response.find('"security_risks"')
-                    if risks_start != -1:
-                        array_start = response.find('[', risks_start)
-                        if array_start != -1:
-                            bracket_count = 0
-                            array_end = array_start
-                            for i in range(array_start, min(len(response), array_start + 2000)):
-                                if response[i] == '[':
-                                    bracket_count += 1
-                                elif response[i] == ']':
-                                    bracket_count -= 1
-                                    if bracket_count == 0:
-                                        array_end = i + 1
-                                        break
-                            if array_end > array_start:
-                                try:
-                                    risks_array = json.loads(response[array_start:array_end])
-                                    partial_data["security_risks"] = risks_array
-                                except:
-                                    pass
                 
                 if '"performance_issues"' in response:
                     perf_start = response.find('"performance_issues"')
@@ -362,19 +309,10 @@ Focus on identifying issues accurately and providing SPECIFIC, ACTIONABLE recomm
                     return {
                         "success": True,
                         "data": {
-                            "security_risks": partial_data.get("security_risks", []),
                             "performance_issues": partial_data.get("performance_issues", []),
                             "optimization_opportunities": [],
-                            "runtime_concerns": [],
-                            "best_practices_missing": [],
                             "estimated_wasted_space_kb": 0,
-                            "complexity_score": 5,
-                            "maintainability_score": 5,
-                            "security_score": 50,
-                            "efficiency_score": 50,
-                            "best_practices_score": 50,
-                            "overall_score": 50,
-                            "overall_assessment": "Partial analysis - JSON response was incomplete",
+                            "overall_assessment": "Partial size analysis - JSON response was incomplete",
                             "recommendations": []
                         },
                         "raw_response": response,
@@ -389,19 +327,10 @@ Focus on identifying issues accurately and providing SPECIFIC, ACTIONABLE recomm
             return {
                 "success": False,
                 "data": {
-                    "overall_assessment": f"Analysis unavailable - JSON parsing failed. Response may be incomplete.",
-                    "security_risks": [],
+                    "overall_assessment": f"Size analysis unavailable - JSON parsing failed. Response may be incomplete.",
                     "performance_issues": [],
                     "optimization_opportunities": [],
-                    "runtime_concerns": [],
-                    "best_practices_missing": [],
                     "estimated_wasted_space_kb": 0,
-                    "complexity_score": 5,
-                    "maintainability_score": 5,
-                    "security_score": 50,
-                    "efficiency_score": 50,
-                    "best_practices_score": 50,
-                    "overall_score": 50,
                     "recommendations": []
                 },
                 "raw_response": response,
@@ -418,24 +347,8 @@ Focus on identifying issues accurately and providing SPECIFIC, ACTIONABLE recomm
                 "scores": {}
             }
         
+        # Skip base image analysis for size-only analysis
         base_image_issues: List[Dict[str, Any]] = []
-        if self.use_knowledge_base and self.knowledge_base:
-            try:
-                for i, line in enumerate(dockerfile_content.split('\n'), 1):
-                    if line.strip().upper().startswith('FROM'):
-                        parts = line.split()
-                        if len(parts) >= 2:
-                            image_spec = parts[1]
-                            analysis = self.knowledge_base.analyze_image_spec(image_spec)
-                            issues = analysis.get("issues") or []
-                            if issues:
-                                base_image_issues.append({
-                                    "line": i,
-                                    "image_spec": image_spec,
-                                    "analysis": analysis
-                                })
-            except Exception as e:
-                print(f"  [WARNING] Base image pre-analysis failed: {e}")
 
         print(f"  Performing LLM analysis...", end="", flush=True)
         llm_analysis = self.dynamic_llm_analysis(dockerfile_content)
@@ -448,45 +361,40 @@ Focus on identifying issues accurately and providing SPECIFIC, ACTIONABLE recomm
                 print(f"  [LLM Response Preview] {preview}...", flush=True)
             
             llm_data = llm_analysis.get("data", {})
-            print(f"  [LLM Parsed Data] Security Risks: {len(llm_data.get('security_risks', []))}, "
-                  f"Performance Issues: {len(llm_data.get('performance_issues', []))}, "
+            print(f"  [LLM Parsed Data (Size-Only)] Performance Issues: {len(llm_data.get('performance_issues', []))}, "
                   f"Optimization Opportunities: {len(llm_data.get('optimization_opportunities', []))}", flush=True)
         else:
             error = llm_analysis.get("error", "Unknown error")
             print(f"\n  [LLM Analysis Failed] {error[:200]}")
         
         llm_data = llm_analysis.get("data", {})
-        security_risks = llm_data.get("security_risks", [])
         performance_issues = llm_data.get("performance_issues", [])
-        missing_practices = llm_data.get("best_practices_missing", [])
-        llm_complexity = llm_data.get("complexity_score")
-        llm_maintainability = llm_data.get("maintainability_score")
-        llm_wasted_space = llm_data.get("estimated_wasted_space_kb")
+        optimization_opportunities = llm_data.get("optimization_opportunities", [])
+        llm_wasted_space = llm_data.get("estimated_wasted_space_kb", 0)
         
-        security_risks_count = len(security_risks)
         performance_issues_count = len(performance_issues)
-        missing_practices_count = len(missing_practices)
+        optimization_count = len(optimization_opportunities)
         
-        security_score = 100.0 if security_risks_count == 0 else max(0, 100 - (security_risks_count * 12))
-        efficiency_score = 100.0 if performance_issues_count == 0 else max(0, 100 - (performance_issues_count * 9))
-        best_practices_score = 100.0 if missing_practices_count == 0 else max(0, 100 - (missing_practices_count * 12))
-        overall_score = (security_score * 0.3) + (efficiency_score * 0.4) + (best_practices_score * 0.3)
+        # Calculate size efficiency score based on wasted space and issues
+        if llm_wasted_space > 0:
+            # More wasted space = lower score
+            efficiency_score = max(0, 100 - (llm_wasted_space / 100))  # Scale: 10MB wasted = 10% reduction
+        else:
+            efficiency_score = 100.0 if performance_issues_count == 0 else max(0, 100 - (performance_issues_count * 10))
+        
+        # Overall score is just the efficiency score for size-only analysis
+        overall_score = efficiency_score
         
         scores = {
             "overall_score": round(overall_score, 1),
             "efficiency_score": round(efficiency_score, 1),
-            "security_score": round(security_score, 1),
-            "best_practices_score": round(best_practices_score, 1),
-            "complexity_score": round(llm_complexity if llm_complexity is not None and isinstance(llm_complexity, (int, float)) else 5.0, 1),
-            "maintainability_score": round(llm_maintainability if llm_maintainability is not None and isinstance(llm_maintainability, (int, float)) else 5.0, 1),
             "estimated_wasted_space_kb": round(llm_wasted_space if llm_wasted_space is not None and isinstance(llm_wasted_space, (int, float)) else 0, 2)
         }
         
-        print(f"  [Issues Found] Security Risks: {security_risks_count}, Performance Issues: {performance_issues_count}, Missing Practices: {missing_practices_count}")
+        print(f"  [Size Issues Found] Performance Issues: {performance_issues_count}, Optimization Opportunities: {optimization_count}")
         print(f"  [Calculated Scores] Overall: {scores['overall_score']}%, "
-              f"Security: {scores['security_score']}%, "
               f"Efficiency: {scores['efficiency_score']}%, "
-              f"Best Practices: {scores['best_practices_score']}%")
+              f"Wasted Space: {scores['estimated_wasted_space_kb']:.2f} KB")
         
         return {
             "dockerfile_path": dockerfile_path,
@@ -506,82 +414,51 @@ Focus on identifying issues accurately and providing SPECIFIC, ACTIONABLE recomm
         has_api_error = llm_analysis and not llm_analysis.get("success") and llm_analysis.get("error")
         
         print("\n" + "="*60)
-        print("DOCKERFILE ANALYSIS REPORT (LLM-Based)")
+        print("DOCKERFILE SIZE ANALYSIS REPORT (LLM-Based)")
         print("="*60)
         
         if has_api_error:
             print(f"\n[WARNING] NOTE: Scores are default values due to API error.")
             print(f"    Real analysis requires a valid API key with available quota.")
         
-        print(f"\nSCORES:")
-        print(f"  Image Efficiency Score: {scores.get('overall_score', 0):.1f}%")
-        print(f"  Security Score:          {scores.get('security_score', 0):.1f}%")
-        print(f"  Best Practices Score:    {scores.get('best_practices_score', 0):.1f}%")
-        print(f"  Efficiency Score:       {scores.get('efficiency_score', 0):.1f}%")
-        print(f"  Complexity Score:        {scores.get('complexity_score', 0):.1f}/10")
-        print(f"  Maintainability Score:   {scores.get('maintainability_score', 0):.1f}/10")
+        print(f"\nSIZE-RELATED SCORES:")
+        print(f"  Overall Size Efficiency Score: {scores.get('overall_score', 0):.1f}%")
+        print(f"  Efficiency Score:              {scores.get('efficiency_score', 0):.1f}%")
         
         if "estimated_wasted_space_kb" in scores:
             wasted = scores["estimated_wasted_space_kb"]
-            print(f"  Potential Wasted Space:  {wasted:.2f} kB")
+            print(f"  Potential Wasted Space:       {wasted:.2f} kB")
         
         if llm_analysis and llm_analysis.get("success"):
             llm_data = llm_analysis.get("data", {})
             
-            print(f"\nLLM DYNAMIC ANALYSIS:")
+            print(f"\nLLM SIZE ANALYSIS:")
             
             recommendations = llm_data.get("recommendations", [])
             if recommendations:
-                by_category = {}
-                for rec in recommendations:
-                    cat = rec.get("category", "general")
-                    if cat not in by_category:
-                        by_category[cat] = []
-                    by_category[cat].append(rec)
-                
-                for category in ["security", "performance", "best_practice", "optimization"]:
-                    if category in by_category:
-                        print(f"\n  {category.upper()} Recommendations ({len(by_category[category])}):")
-                        for rec in by_category[category][:5]:  # Top 5 per category
-                            severity = rec.get("severity", "medium").upper()
-                            message = rec.get("message", "")
-                            line = rec.get("instruction_line")
-                            line_str = f" (line {line})" if line else ""
-                            print(f"    [{severity:8}] {message}{line_str}")
-            
-            security_risks = llm_data.get("security_risks", [])
-            if security_risks:
-                print(f"\n  Security Risks ({len(security_risks)}):")
-                for risk in security_risks[:5]:  # Top 5
-                    print(f"    [-] {risk}")
+                print(f"\n  Size Optimization Recommendations ({len(recommendations)}):")
+                for rec in recommendations[:10]:  # Top 10
+                    severity = rec.get("severity", "medium").upper()
+                    message = rec.get("message", "")
+                    line = rec.get("instruction_line")
+                    line_str = f" (line {line})" if line else ""
+                    print(f"    [{severity:8}] {message}{line_str}")
             
             performance_issues = llm_data.get("performance_issues", [])
             if performance_issues:
-                print(f"\n  Performance Issues ({len(performance_issues)}):")
+                print(f"\n  Size-Related Performance Issues ({len(performance_issues)}):")
                 for issue in performance_issues[:5]:
-                    print(f"    [PERF] {issue}")
+                    print(f"    [SIZE] {issue}")
             
             optimizations = llm_data.get("optimization_opportunities", [])
             if optimizations:
-                print(f"\n  Optimization Opportunities ({len(optimizations)}):")
+                print(f"\n  Size Optimization Opportunities ({len(optimizations)}):")
                 for opt in optimizations[:5]:
                     print(f"    [OPT] {opt}")
             
-            runtime_concerns = llm_data.get("runtime_concerns", [])
-            if runtime_concerns:
-                print(f"\n  Runtime Concerns ({len(runtime_concerns)}):")
-                for concern in runtime_concerns[:5]:
-                    print(f"    [RUNTIME] {concern}")
-            
-            missing_practices = llm_data.get("best_practices_missing", [])
-            if missing_practices:
-                print(f"\n  Missing Best Practices ({len(missing_practices)}):")
-                for practice in missing_practices[:5]:
-                    print(f"    [MISSING] {practice}")
-            
             assessment = llm_data.get("overall_assessment", "")
             if assessment:
-                print(f"\n  Overall Assessment:")
+                print(f"\n  Size Assessment:")
                 print(f"    {assessment}")
         
         elif llm_analysis:

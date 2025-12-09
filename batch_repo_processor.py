@@ -27,6 +27,11 @@ from docker_image_analyzer import list_images, analyze_image, compare_images
 from dive_analyzer import analyze_image_with_dive, compare_images_with_dive, DiveUnavailableError
 from image_builder import build_image_from_dockerfile, image_exists, remove_image
 from rate_limiter import get_rate_limiter, reset_rate_limiter
+from size_optimization_pipeline import (
+    apply_static_size_optimizations,
+    apply_llm_size_optimization,
+    select_best_dockerfile
+)
 
 
 def cleanup_docker_if_needed(disk_usage_threshold: float = 0.85, progress_callback: Optional[Callable[[str], None]] = None) -> bool:
@@ -166,6 +171,7 @@ def process_single_repo(
         "success": False,
         "error": None,
         "original_image": {},
+        "static_optimized_image": {},
         "optimized_image": {},
         "dynamic_analysis": {},
         "comparison": {}
@@ -173,6 +179,7 @@ def process_single_repo(
     
     repo_name = result["repo_name"]
     original_tag = f"{repo_name}:original"
+    static_tag = f"{repo_name}:static"
     optimized_tag = f"{repo_name}:optimized"
     
     try:
@@ -190,11 +197,15 @@ def process_single_repo(
                 result["error"] = f"No Dockerfiles found in {repo_path}"
                 return result
             
-            dockerfile_path = dockerfiles[0]
+            # Select best dockerfile (prefer "Dockerfile" over others)
+            dockerfile_path = select_best_dockerfile(dockerfiles)
+            if not dockerfile_path:
+                dockerfile_path = dockerfiles[0]
             
             with open(dockerfile_path, "r", encoding="utf-8") as f:
                 original_dockerfile_content = f.read()
             
+            # Step 1: Build original image
             if progress_callback:
                 progress_callback(f"Building original image for {repo_name}...")
             
@@ -218,25 +229,89 @@ def process_single_repo(
                 result["error"] = f"Failed to build original image: {original_build.get('error') or original_build.get('errors')}"
                 result["build_status"] = "original_build_failed"
             
+            # Step 2: Apply static optimizations
             if progress_callback:
-                progress_callback(f"Running LLM optimization for {repo_name}...")
+                progress_callback(f"Applying static optimizations for {repo_name}...")
             
-            llm_results = pipeline.optimize_dockerfile(dockerfile_path, skip_test=skip_test)
-            result["dynamic_analysis"]["llm_pipeline_results"] = llm_results
+            static_optimized_content, static_changes = apply_static_size_optimizations(original_dockerfile_content)
             
-            if not llm_results.get("success"):
-                result["error"] = "LLM pipeline failed"
+            static_dockerfile_path = None
+            static_build_success = False
+            
+            if static_optimized_content != original_dockerfile_content:
+                static_dockerfile_path = os.path.join(repo_path, "Dockerfile.static")
+                with open(static_dockerfile_path, "w", encoding="utf-8") as f:
+                    f.write(static_optimized_content)
+                
+                if progress_callback:
+                    progress_callback(f"Building static optimized image for {repo_name}...")
+                
+                static_build = build_image_from_dockerfile(
+                    static_dockerfile_path,
+                    static_tag,
+                    build_context,
+                    timeout=600
+                )
+                
+                static_build_success = bool(static_build.get("success"))
+                result["static_optimized_image"]["tag"] = static_tag
+                result["static_optimized_image"]["build_success"] = static_build_success
+                result["static_optimized_image"]["build_output"] = static_build.get("output", "")
+                result["static_optimized_image"]["build_errors"] = static_build.get("errors", "")
+                result["static_optimized_image"]["size_bytes"] = static_build.get("image_size_bytes")
+                result["static_optimized_image"]["build_time"] = static_build.get("build_time")
+                result["static_optimized_image"]["changes_applied"] = len(static_changes)
+            else:
+                # No static optimizations applied, use original as static
+                result["static_optimized_image"]["tag"] = static_tag
+                result["static_optimized_image"]["build_success"] = original_build_success
+                result["static_optimized_image"]["size_bytes"] = result["original_image"].get("size_bytes")
+                result["static_optimized_image"]["changes_applied"] = 0
+                static_optimized_content = original_dockerfile_content
+            
+            # Step 3: Apply LLM optimizations (on top of static optimized) - SIZE ONLY
+            if progress_callback:
+                progress_callback(f"Running LLM size optimization for {repo_name}...")
+            
+            # Use static optimized as base for LLM if available, otherwise use original
+            base_for_llm = static_optimized_content if static_optimized_content != original_dockerfile_content else original_dockerfile_content
+            
+            # Get API key and model from pipeline for size optimization
+            api_key = pipeline.analyzer.api_key if hasattr(pipeline, 'analyzer') else None
+            model = pipeline.analyzer.model if hasattr(pipeline, 'analyzer') else None
+            
+            # Apply size-only LLM optimization (filters out security and performance issues)
+            llm_optimized_content, llm_result = apply_llm_size_optimization(
+                base_for_llm,
+                api_key=api_key,
+                model=model
+            )
+            
+            if llm_optimized_content is None:
+                error_msg = llm_result.get("error", "LLM size optimization failed")
+                result["error"] = f"LLM size optimization failed: {error_msg}"
                 result["build_status"] = "llm_failed"
-                return result
-            
-            optimized_dockerfile_content = llm_results.get("fixed_dockerfile", original_dockerfile_content)
+                # Still try to build with static optimized version
+                optimized_dockerfile_content = base_for_llm
+                result["dynamic_analysis"]["llm_pipeline_results"] = {
+                    "success": False,
+                    "error": error_msg
+                }
+            else:
+                optimized_dockerfile_content = llm_optimized_content
+                result["dynamic_analysis"]["llm_pipeline_results"] = {
+                    "success": True,
+                    "fixed_dockerfile": optimized_dockerfile_content,
+                    "size_issues": llm_result.get("size_issues", []),
+                    "llm_data": llm_result.get("llm_data", {})
+                }
             
             temp_dockerfile_path = os.path.join(repo_path, "Dockerfile.optimized")
             with open(temp_dockerfile_path, "w", encoding="utf-8") as f:
                 f.write(optimized_dockerfile_content)
             
             if progress_callback:
-                progress_callback(f"Building optimized image for {repo_name}...")
+                progress_callback(f"Building LLM optimized image for {repo_name}...")
             
             optimized_build = build_image_from_dockerfile(
                 temp_dockerfile_path,
@@ -253,10 +328,13 @@ def process_single_repo(
             result["optimized_image"]["size_bytes"] = optimized_build.get("image_size_bytes")
             result["optimized_image"]["build_time"] = optimized_build.get("build_time")
             
-            if original_build_success and optimized_build_success:
+            # Determine build status
+            if original_build_success and static_build_success and optimized_build_success:
                 result["build_status"] = "success"
             elif not original_build_success:
                 result["build_status"] = "original_build_failed"
+            elif not static_build_success:
+                result["build_status"] = "static_build_failed"
             elif not optimized_build_success:
                 result["build_status"] = "optimized_build_failed"
                 result["error"] = f"Failed to build optimized image: {optimized_build.get('error') or optimized_build.get('errors')}"
@@ -265,54 +343,77 @@ def process_single_repo(
                 if progress_callback:
                     progress_callback(f"Estimating improvements for {repo_name} (build failed, using LLM analysis)...")
                 
-                estimation = estimate_improvements_from_llm(llm_results)
-                result["comparison"]["estimation"] = estimation
-                result["comparison"]["estimated"] = True
-                result["estimated"] = True
-                result["success"] = True
+                llm_pipeline_results = result.get("dynamic_analysis", {}).get("llm_pipeline_results", {})
+                if llm_pipeline_results:
+                    estimation = estimate_improvements_from_llm(llm_pipeline_results)
+                    result["comparison"]["estimation"] = estimation
+                    result["comparison"]["estimated"] = True
+                    result["estimated"] = True
+                    result["success"] = True
             
-            if original_build_success and optimized_build_success:
+            if original_build_success and static_build_success and optimized_build_success:
                 if progress_callback:
                     progress_callback(f"Running static analysis for {repo_name}...")
                 
                 images = list_images()
                 original_image_dict = None
+                static_image_dict = None
                 optimized_image_dict = None
                 
                 for img in images:
                     repo_tag = img.get("Repository") or img.get("RepositoryName", "")
                     tag = img.get("Tag") or img.get("TagName", "")
-                    if f"{repo_tag}:{tag}" == original_tag or tag == original_tag:
+                    full_tag = f"{repo_tag}:{tag}" if repo_tag else tag
+                    if full_tag == original_tag or tag == original_tag:
                         original_image_dict = img
-                    if f"{repo_tag}:{tag}" == optimized_tag or tag == optimized_tag:
+                    if full_tag == static_tag or tag == static_tag:
+                        static_image_dict = img
+                    if full_tag == optimized_tag or tag == optimized_tag:
                         optimized_image_dict = img
                 
-                if original_image_dict and optimized_image_dict:
+                if original_image_dict and static_image_dict and optimized_image_dict:
                     original_recs = analyze_image(original_image_dict)
+                    static_recs = analyze_image(static_image_dict)
                     optimized_recs = analyze_image(optimized_image_dict)
-                    static_comparison = compare_images(original_image_dict, optimized_image_dict)
+                    
+                    original_vs_static = compare_images(original_image_dict, static_image_dict)
+                    static_vs_optimized = compare_images(static_image_dict, optimized_image_dict)
+                    original_vs_optimized = compare_images(original_image_dict, optimized_image_dict)
                     
                     result["original_image"]["static_analysis"] = [
                         {"severity": r.severity, "message": r.message}
                         for r in original_recs
                     ]
+                    result["static_optimized_image"]["static_analysis"] = [
+                        {"severity": r.severity, "message": r.message}
+                        for r in static_recs
+                    ]
                     result["optimized_image"]["static_analysis"] = [
                         {"severity": r.severity, "message": r.message}
                         for r in optimized_recs
                     ]
-                    result["comparison"]["static_analysis"] = static_comparison
+                    result["comparison"]["original_vs_static"] = original_vs_static
+                    result["comparison"]["static_vs_optimized"] = static_vs_optimized
+                    result["comparison"]["original_vs_optimized"] = original_vs_optimized
                 
                 if progress_callback:
                     progress_callback(f"Running dive analysis for {repo_name}...")
                 
                 try:
                     original_dive = analyze_image_with_dive(original_tag)
+                    static_dive = analyze_image_with_dive(static_tag)
                     optimized_dive = analyze_image_with_dive(optimized_tag)
-                    dive_comparison = compare_images_with_dive(original_tag, optimized_tag)
+                    
+                    original_vs_static_dive = compare_images_with_dive(original_tag, static_tag)
+                    static_vs_optimized_dive = compare_images_with_dive(static_tag, optimized_tag)
+                    original_vs_optimized_dive = compare_images_with_dive(original_tag, optimized_tag)
                     
                     result["original_image"]["dive_analysis"] = original_dive
+                    result["static_optimized_image"]["dive_analysis"] = static_dive
                     result["optimized_image"]["dive_analysis"] = optimized_dive
-                    result["comparison"]["dive_analysis"] = dive_comparison
+                    result["comparison"]["original_vs_static_dive"] = original_vs_static_dive
+                    result["comparison"]["static_vs_optimized_dive"] = static_vs_optimized_dive
+                    result["comparison"]["original_vs_optimized_dive"] = original_vs_optimized_dive
                 except DiveUnavailableError as e:
                     error_msg = "dive CLI not available. Install dive: https://github.com/wagoodman/dive"
                     if progress_callback:
@@ -327,20 +428,35 @@ def process_single_repo(
                     result["original_image"]["dive_analysis"] = {"success": False, "error": error_msg}
                     result["optimized_image"]["dive_analysis"] = {"success": False, "error": error_msg}
                 
-                if result["original_image"].get("size_bytes") and result["optimized_image"].get("size_bytes"):
-                    orig_size = result["original_image"]["size_bytes"]
-                    opt_size = result["optimized_image"]["size_bytes"]
-                    size_diff = orig_size - opt_size
-                    size_diff_pct = (size_diff / orig_size * 100) if orig_size > 0 else 0
-                    
-                    result["comparison"]["size_reduction_bytes"] = size_diff
-                    result["comparison"]["size_reduction_percent"] = round(size_diff_pct, 2)
+                # Calculate size comparisons
+                orig_size = result["original_image"].get("size_bytes")
+                static_size = result["static_optimized_image"].get("size_bytes")
+                opt_size = result["optimized_image"].get("size_bytes")
                 
-                if result["comparison"].get("dive_analysis", {}).get("efficiency_improvement") is not None:
-                    result["comparison"]["efficiency_improvement"] = result["comparison"]["dive_analysis"]["efficiency_improvement"]
+                if orig_size and static_size:
+                    static_diff = orig_size - static_size
+                    static_diff_pct = (static_diff / orig_size * 100) if orig_size > 0 else 0
+                    result["comparison"]["original_to_static_reduction_bytes"] = static_diff
+                    result["comparison"]["original_to_static_reduction_percent"] = round(static_diff_pct, 2)
                 
-                if result["comparison"].get("dive_analysis", {}).get("wasted_space_reduction") is not None:
-                    result["comparison"]["wasted_space_reduction_bytes"] = result["comparison"]["dive_analysis"]["wasted_space_reduction"]
+                if static_size and opt_size:
+                    llm_diff = static_size - opt_size
+                    llm_diff_pct = (llm_diff / static_size * 100) if static_size > 0 else 0
+                    result["comparison"]["static_to_llm_reduction_bytes"] = llm_diff
+                    result["comparison"]["static_to_llm_reduction_percent"] = round(llm_diff_pct, 2)
+                
+                if orig_size and opt_size:
+                    total_diff = orig_size - opt_size
+                    total_diff_pct = (total_diff / orig_size * 100) if orig_size > 0 else 0
+                    result["comparison"]["size_reduction_bytes"] = total_diff
+                    result["comparison"]["size_reduction_percent"] = round(total_diff_pct, 2)
+                
+                # Use the overall comparison (original vs optimized) for main metrics
+                if result["comparison"].get("original_vs_optimized_dive", {}).get("efficiency_improvement") is not None:
+                    result["comparison"]["efficiency_improvement"] = result["comparison"]["original_vs_optimized_dive"]["efficiency_improvement"]
+                
+                if result["comparison"].get("original_vs_optimized_dive", {}).get("wasted_space_reduction") is not None:
+                    result["comparison"]["wasted_space_reduction_bytes"] = result["comparison"]["original_vs_optimized_dive"]["wasted_space_reduction"]
                 
                 result["comparison"]["estimated"] = False
                 result["estimated"] = False
@@ -348,7 +464,8 @@ def process_single_repo(
             if result["build_status"] == "success":
                 result["success"] = True
             else:
-                result["success"] = bool(llm_results.get("success"))
+                llm_pipeline_results = result.get("dynamic_analysis", {}).get("llm_pipeline_results", {})
+                result["success"] = bool(llm_pipeline_results.get("success", False))
             
         finally:
             if cleanup_repo and os.path.exists(repo_path):
@@ -359,6 +476,8 @@ def process_single_repo(
             if cleanup_images:
                 if image_exists(original_tag):
                     remove_image(original_tag)
+                if image_exists(static_tag):
+                    remove_image(static_tag)
                 if image_exists(optimized_tag):
                     remove_image(optimized_tag)
     
